@@ -33,9 +33,9 @@ SPACESHIP_PROMPT_ORDER=(
   # elixir        # Elixir section
   # swift         # Swift section
   golang        # Go section
-  # rust          # Rust section
+  rust          # Rust section
   haskell       # Haskell Stack section # stack is being weird here...
-  # docker        # Docker section
+  docker        # Docker section
   # aws           # Amazon Web Services section
   venv          # virtualenv section
   # conda         # conda virtualenv section
