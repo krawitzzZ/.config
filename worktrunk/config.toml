@@ -8,8 +8,10 @@ worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
 [commit.generation]
 command = "opencode run -m opencode/deepseek-v4-flash-free"
 template-append = """
-- Prefer conventional commits when the recent history uses them (feat:, fix:, chore:, …)
-- Mention the language/ecosystem only when it clarifies the change (Rust crate, TS package, Cabal component)
+- Always use Conventional Commits: type(optional-scope): Subject
+- Allowed types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+- Subject: imperative, starts with capital letter after the type, no trailing period, ≤50 chars
+- Add a body only when the why isn't obvious from the subject. Body should be a detailed explanation of the change.
 """
 
 [commit]
@@ -58,10 +60,15 @@ copy = "wt step copy-ignored"
 # --- Shortcuts useful across TS / Haskell / Rust ---
 [aliases]
 # Navigation
-s = "wt switch {{ args }}"
-sc = "wt switch --create {{ args }}"
 ls = "wt list {{ args }}"
 ll = "wt list --full {{ args }}"
+s = "wt switch {{ args }}"
+sc = "wt switch --create {{ args }}"
+# Switch to branch (create if missing) and open Zed
+sz = '''
+wt switch {{ args }} -x zed -- '{% raw %}{{ worktree_path }}{% endraw %}' \
+  || wt switch --create {{ args }} -x zed -- '{% raw %}{{ worktree_path }}{% endraw %}'
+'''
 
 # Agents in a fresh worktree (Cursor Agent / OpenCode)
 new-agent = "wt switch --create {{ args }} -x agent"

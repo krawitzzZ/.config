@@ -7,6 +7,11 @@
 // from the command palette.
 [
   {
+    "bindings": {
+      "ctrl-shift-c": "workspace::CopyRelativePath",
+    },
+  },
+  {
     "context": "Workspace",
     "unbind": {
       "ctrl-shift-t": "pane::ReopenClosedItem",
@@ -128,6 +133,13 @@
       "alt-r": "git::Restore",
     },
   },
+  {
+    "context": "Editor && vim_mode != operator",
+    "bindings": {
+      "] c": ["workspace::SendKeystrokes", "escape alt-. ctrl-'"],
+      "[ c": ["workspace::SendKeystrokes", "escape alt-, ctrl-'"],
+    },
+  },
 
   {
     "context": "Editor",
@@ -153,8 +165,6 @@
       "ctrl-w ctrl-l": "workspace::MovePaneRight",
       "ctrl-w ctrl-j": "workspace::MovePaneDown",
       "ctrl-w ctrl-k": "workspace::MovePaneUp",
-      "] c": ["workspace::SendKeystrokes", "escape alt-. ctrl-'"],
-      "[ c": ["workspace::SendKeystrokes", "escape alt-, ctrl-'"],
     },
   },
 
@@ -296,7 +306,11 @@
   },
   {
     "context": "vim_mode == insert",
+    "unbind": {
+      "ctrl-s": "editor::ShowSignatureHelp",
+    },
     "bindings": {
+      "alt-space": "editor::ShowSignatureHelp",
       "ctrl-space": "editor::ShowCompletions",
       "ctrl-v": "editor::Paste",
       "ctrl-a": "editor::SelectAll",
@@ -384,4 +398,11 @@
   },
 
   // Changes from the UI keymap editor
+
+  {
+    "context": "!Terminal",
+    "unbind": {
+      "ctrl-shift-c": "collab_panel::ToggleFocus",
+    },
+  },
 ]
