@@ -8,7 +8,9 @@
 [
   {
     "unbind": {
+      "ctrl-q": "zed::Quit",
       "ctrl-alt-l": "lsp_tool::ToggleMenu",
+      "ctrl-alt-i": "dev::ToggleInspector",
     },
     "bindings": {
       "ctrl-shift-c": "workspace::CopyRelativePath",
@@ -100,13 +102,14 @@
       "space s": "workspace::SaveAll",
       "space e": "pane::RevealInProjectPanel",
       "space g": "git::Diff",
-      "space b": "outline_panel::ToggleFocus",
+      "space b": ["workspace::SendKeystrokes", "space o b ctrl-j"],
       "space t": "git::FileHistory",
       "space f f": "file_finder::Toggle",
       "space o t": "terminal_panel::ToggleFocus",
       "space o a": "agent::ToggleFocus",
       "space o b": "outline_panel::ToggleFocus",
       "space o d": "diagnostics::Deploy",
+      "space o D": "debug_panel::ToggleFocus",
       "space o f": "file_finder::Toggle",
       "space o g": "git_panel::ToggleFocus",
       "space o u": "multi_workspace::ToggleWorkspaceSidebar",
@@ -137,13 +140,6 @@
     "bindings": {
       "alt-s": "git::ToggleStaged",
       "alt-r": "git::Restore",
-    },
-  },
-  {
-    "context": "Editor && vim_mode != operator",
-    "bindings": {
-      // "] c": ["workspace::SendKeystrokes", "escape alt-. ctrl-'"],
-      // "[ c": ["workspace::SendKeystrokes", "escape alt-, ctrl-'"],
     },
   },
 
@@ -205,7 +201,7 @@
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
-      "e": ["workspace::SendKeystrokes", "enter ctrl-space"],
+      "e": ["workspace::SendKeystrokes", "enter ctrl-alt-b"],
       "s": "project_panel::OpenSplitHorizontal",
       "v": "project_panel::OpenSplitVertical",
       "o": "project_panel::Open",
@@ -217,7 +213,7 @@
   },
 
   {
-    "context": "Dock > GitPanel",
+    "context": "(Dock > GitPanel) && ChangesList",
     "bindings": {
       "ctrl-alt-space": "workspace::CloseAllDocks",
       "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
@@ -225,9 +221,18 @@
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
-      "e": ["workspace::SendKeystrokes", "enter ctrl-space"],
+      "e": ["workspace::SendKeystrokes", "enter ctrl-alt-b"],
+      "j": "git_panel::NextEntry",
+      "k": "git_panel::PreviousEntry",
+      "ctrl-j": "git_panel::FocusEditor",
       "s": "git::ToggleStaged",
-      "space": ["workspace::SendKeystrokes", "enter ctrl-alt-b"],
+      "space": "menu::Confirm",
+    },
+  },
+  {
+    "context": "Dock > GitPanel > Editor",
+    "bindings": {
+      "ctrl-k": "git_panel::FocusChanges",
     },
   },
 
@@ -240,7 +245,23 @@
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
-      "space": ["workspace::SendKeystrokes", "enter ctrl-b"],
+      "ctrl-j": "menu::Cancel",
+      "ctrl-n": "menu::Cancel",
+    },
+  },
+  {
+    "context": "OutlinePanel && !editing",
+    "bindings": {
+      "ctrl-alt-space": "workspace::CloseAllDocks",
+      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "workspace::SendKeystrokes",
+        "ctrl-alt-space ctrl-alt-shift-=",
+      ],
+      "space": "menu::Confirm",
+      "ctrl-k": "menu::Cancel",
+      "ctrl-shift-j": "outline_panel::CollapseAllEntries",
+      "ctrl-shift-k": "outline_panel::ExpandAllEntries",
     },
   },
 
@@ -369,7 +390,6 @@
   {
     "context": "ThreadsSidebar || (ThreadsSidebar > Editor) || (ThreadsSidebar > ThreadsArchiveView)",
     "bindings": {
-      "ctrl-alt-i": "workspace::ToggleLeftDock",
       "ctrl-alt-space": "workspace::CloseAllDocks",
       "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
       "ctrl-space": [
@@ -390,13 +410,6 @@
   },
 
   // Unbinds
-
-  {
-    "unbind": {
-      "ctrl-alt-i": "dev::ToggleInspector",
-      "ctrl-q": "zed::Quit",
-    },
-  },
 
   {
     "context": "GitPanel && ChangesList && !GitBranchSelector",
@@ -422,13 +435,12 @@
       "ctrl-w": "workspace::CloseWindow",
     },
   },
-
-  // Changes from the UI keymap editor
-
   {
     "context": "!Terminal",
     "unbind": {
       "ctrl-shift-c": "collab_panel::ToggleFocus",
     },
   },
+
+  // Changes from the UI keymap editor
 ]
