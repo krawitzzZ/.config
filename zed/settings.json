@@ -15,7 +15,23 @@
     "Groovy": ["Jenkinsfile", "Jenkinsfile.*"],
   },
   "agent_servers": {
+    "gemini": {
+      "type": "registry",
+    },
+    "github-copilot-cli": {
+      "type": "registry",
+    },
+    "opencode": {
+      "default_config_options": {
+        "model": "opencode/deepseek-v4-flash-free",
+      },
+      "type": "registry",
+    },
     "cursor": {
+      "default_config_options": {
+        "reasoning": "medium",
+        "model": "gpt-5.6-sol"
+      },
       "type": "registry",
     },
   },
@@ -32,7 +48,7 @@
     "toolbar": {
       "breadcrumbs": false,
     },
-    "default_height": 280.0,
+    "default_height": 450.0,
     "default_width": 450.0,
     "keep_selection_on_copy": false,
     "font_weight": 500.0,
@@ -61,23 +77,23 @@
     "dock": "left",
     "flexible": false,
     "terminal_init_command": "",
-    "default_height": 300.0,
-    "default_width": 500.0,
+    "default_height": 450.0,
+    "default_width": 550.0,
     "favorite_models": [],
     "model_parameters": [],
   },
   "collaboration_panel": {
     "button": false,
-    "default_width": 360.0,
+    "default_width": 450.0,
   },
   "git_panel": {
     "show_count_badge": true,
-    "default_width": 360.0,
+    "default_width": 450.0,
     "file_icons": true,
     "tree_view": true,
   },
   "outline_panel": {
-    "default_width": 400.0,
+    "default_width": 450.0,
     "indent_size": 20.0,
     "dock": "left",
   },
@@ -94,7 +110,7 @@
     "starts_open": false,
     "indent_size": 20.0,
     "entry_spacing": "standard",
-    "default_width": 360.0,
+    "default_width": 450.0,
   },
   "edit_predictions": {
     "allow_data_collection": "no",
@@ -193,9 +209,10 @@
   },
   "command_aliases": {
     "zlog": "zed::OpenLog",
-    "crp": "workspace::CopyRelativePath",
-    "cap": "workspace::CopyPath",
-    "gdb": "git::BranchDiff",
+    "cr": "workspace::CopyRelativePath",
+    "ca": "workspace::CopyPath",
+    "gm": "git::BranchDiff",
+    "rw": "workspace::Reload",
   },
   "unnecessary_code_fade": 0.55,
   "theme_overrides": {

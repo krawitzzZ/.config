@@ -7,8 +7,12 @@
 // from the command palette.
 [
   {
+    "unbind": {
+      "ctrl-alt-l": "lsp_tool::ToggleMenu",
+    },
     "bindings": {
       "ctrl-shift-c": "workspace::CopyRelativePath",
+      "ctrl-alt-shift-l": "lsp_tool::ToggleMenu",
     },
   },
   {
@@ -82,7 +86,9 @@
   {
     "context": "Editor && VimControl || EmptyPane",
     "bindings": {
-      "ctrl-alt-i": "workspace::ToggleLeftDock",
+      "ctrl-alt-h": "workspace::ToggleLeftDock",
+      "ctrl-alt-j": "workspace::ToggleBottomDock",
+      "ctrl-alt-l": "workspace::ToggleRightDock",
       "ctrl-alt-space": "workspace::CloseAllDocks",
       "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
       "ctrl-space": [
@@ -93,18 +99,18 @@
       "space q": ["pane::CloseOtherItems", { "close_pinned": false }],
       "space s": "workspace::SaveAll",
       "space e": "pane::RevealInProjectPanel",
-      "space g": "git_panel::ToggleFocus",
+      "space g": "git::Diff",
       "space b": "outline_panel::ToggleFocus",
       "space t": "git::FileHistory",
-      "space o d": "diagnostics::Deploy",
       "space f f": "file_finder::Toggle",
-      "space o f": "file_finder::Toggle",
       "space o t": "terminal_panel::ToggleFocus",
-      "space o r": "projects::OpenRecent",
       "space o a": "agent::ToggleFocus",
-      "space o h": "multi_workspace::ToggleWorkspaceSidebar",
       "space o b": "outline_panel::ToggleFocus",
-      "space o g": "git::Diff",
+      "space o d": "diagnostics::Deploy",
+      "space o f": "file_finder::Toggle",
+      "space o g": "git_panel::ToggleFocus",
+      "space o u": "multi_workspace::ToggleWorkspaceSidebar",
+      "space o r": "projects::OpenRecent",
     },
   },
 
@@ -136,8 +142,8 @@
   {
     "context": "Editor && vim_mode != operator",
     "bindings": {
-      "] c": ["workspace::SendKeystrokes", "escape alt-. ctrl-'"],
-      "[ c": ["workspace::SendKeystrokes", "escape alt-, ctrl-'"],
+      // "] c": ["workspace::SendKeystrokes", "escape alt-. ctrl-'"],
+      // "[ c": ["workspace::SendKeystrokes", "escape alt-, ctrl-'"],
     },
   },
 
@@ -226,20 +232,32 @@
   },
 
   {
+    "context": "OutlinePanel > Editor",
+    "bindings": {
+      "ctrl-alt-space": "workspace::CloseAllDocks",
+      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "workspace::SendKeystrokes",
+        "ctrl-alt-space ctrl-alt-shift-=",
+      ],
+      "space": ["workspace::SendKeystrokes", "enter ctrl-b"],
+    },
+  },
+
+  {
     "context": "(multibuffer || Diagnostics || GitGraph) && vim_mode != insert",
     "bindings": {
       "q": ["pane::CloseActiveItem", { "close_pinned": false }],
       "tab": "pane::ActivateNextItem",
       "ctrl-tab": "pane::ActivatePreviousItem",
+      "z a": "editor::ToggleFold",
       "z A": "editor::ToggleFoldAll",
       "ctrl-shift-j": "editor::ToggleFoldAll",
       "ctrl-shift-k": "editor::ToggleFoldAll",
-      "space shift-f": "editor::ToggleFoldAll",
       "ctrl-j": "editor::ToggleFold",
       "ctrl-k": "editor::ToggleFold",
       "ctrl-h": "editor::MoveToEndOfPreviousExcerpt",
       "ctrl-l": "editor::MoveToStartOfNextExcerpt",
-      "space f": "editor::ToggleFold",
     },
   },
 
@@ -257,6 +275,12 @@
     },
     "bindings": {
       "ctrl-space": "workspace::CloseAllDocks",
+      "alt-s": "pane::SplitRight",
+      "alt-v": "pane::SplitDown",
+      "ctrl-s ctrl-h": "pane::SplitLeft",
+      "ctrl-s ctrl-j": "pane::SplitDown",
+      "ctrl-s ctrl-k": "pane::SplitUp",
+      "ctrl-s ctrl-l": "pane::SplitRight",
     },
   },
 
@@ -296,6 +320,8 @@
     "bindings": {
       "space c a": "editor::ToggleCodeActions",
       "shift-q": "editor::SelectAll",
+      "] c": ["workspace::SendKeystrokes", "escape alt-. ctrl-'"],
+      "[ c": ["workspace::SendKeystrokes", "escape alt-, ctrl-'"],
     },
   },
   {
