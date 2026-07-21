@@ -59,6 +59,7 @@
   "use_smartcase_search": true,
   "agent": {
     "dock": "left",
+    "flexible": false,
     "terminal_init_command": "",
     "default_height": 300.0,
     "default_width": 440.0,

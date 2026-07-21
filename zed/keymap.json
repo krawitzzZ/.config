@@ -30,7 +30,7 @@
       "ctrl-alt-shift-x": "zed::Extensions",
       "ctrl-alt-t": "pane::ReopenClosedItem",
       "ctrl-shift-m": "workspace::ToggleZoom",
-      "ctrl-shift-e": "pane::RevealInProjectPanel",
+      "ctrl-shift-e": "workspace::ToggleRightDock",
       "ctrl-g ctrl-g": [
         "task::Spawn",
         {

@@ -1,0 +1,106 @@
+# Worktrunk user config — https://worktrunk.dev/config/
+# Tuned for TypeScript, Haskell, and Rust repos (caches, agents, LLM commits).
+
+# Sibling worktrees: ~/code/myproject.feature-auth
+worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
+
+# --- LLM commit / squash / branch summaries (opencode is installed) ---
+[commit.generation]
+command = "opencode run -m opencode/deepseek-v4-flash-free"
+template-append = """
+- Prefer conventional commits when the recent history uses them (feat:, fix:, chore:, …)
+- Mention the language/ecosystem only when it clarifies the change (Rust crate, TS package, Cabal component)
+"""
+
+[commit]
+stage = "all"
+
+[list]
+# LLM one-liners in `wt list --full` / switch picker (needs commit.generation above)
+summary = true
+# Dev URL column is project-only — add to each repo's `.config/wt.toml`:
+#   [list]
+#   url = "http://localhost:{{ branch | hash_port }}"
+
+[merge]
+squash = true
+commit = true
+rebase = true
+remove = true
+verify = true
+ff = true
+
+[remove]
+delete-branch = true
+
+[switch]
+cd = true
+
+# --- Cold starts: copy gitignored caches into new worktrees (reflink when available) ---
+# Default copies all gitignored files. Prefer a repo `.worktreeinclude` to allowlist
+# (see worktreeinclude.example). These excludes skip venvs / absolute-path tool state.
+[step.copy-ignored]
+exclude = [
+  ".venv/",
+  "venv/",
+  "__pycache__/",
+  ".direnv/",
+  ".envrc.local",
+  # Nested package caches that are cheap to regenerate / often absolute-path sensitive
+  "**/.yarn/cache/",
+  "**/node_modules/.cache/",
+]
+
+# Background: share node_modules/, target/, dist-newstyle/, .stack-work/, .next/, etc.
+[post-start]
+copy = "wt step copy-ignored"
+
+# --- Shortcuts useful across TS / Haskell / Rust ---
+[aliases]
+# Navigation
+s = "wt switch {{ args }}"
+sc = "wt switch --create {{ args }}"
+ls = "wt list {{ args }}"
+ll = "wt list --full {{ args }}"
+
+# Agents in a fresh worktree (Cursor Agent / OpenCode)
+new-agent = "wt switch --create {{ args }} -x agent"
+new-oc = "wt switch --create {{ args }} -x opencode"
+
+# Per-worktree port (pair with Vite/webpack/warp/etc. --port)
+port = "echo {{ branch | hash_port }}"
+url = "echo http://localhost:{{ branch | hash_port }}"
+
+# Git helpers
+since = "git log --oneline {{ default_branch }}..HEAD"
+diff-main = "git diff {{ default_branch }}...HEAD"
+
+# Cache / cleanup
+copy = "wt step copy-ignored {{ args }}"
+prune = "wt step prune {{ args }}"
+
+# Commit helpers
+cm = "wt step commit {{ args }}"
+# Merge with $EDITOR instead of the LLM for this invocation
+mc = '''WORKTRUNK_COMMIT__GENERATION__COMMAND='f=$(mktemp); printf "\n\n" > "$f"; sed "s/^/# /" >> "$f"; ${EDITOR:-vi} "$f" < /dev/tty > /dev/tty; grep -v "^#" "$f"' wt merge {{ args }}'''
+
+# Carry WIP into a new worktree: wt move-changes --to=feature-xyz [-- agent]
+move-changes = '''
+if git diff --quiet HEAD && test -z "$(git ls-files --others --exclude-standard)"; then
+  wt switch --create {{ to }} --execute="{{ args }}"
+else
+  git stash push --include-untracked --quiet
+  wt switch --create {{ to }} --execute="git stash pop --index; {{ args }}"
+fi
+'''
+
+# Rebase every worktree onto its upstream
+up = '''
+git fetch --all --prune && wt step for-each -- sh -c '
+  git rev-parse --verify -q @{u} >/dev/null || exit 0
+  g=$(git rev-parse --git-dir)
+  test -d "$g/rebase-merge" -o -d "$g/rebase-apply" && exit 0
+  git update-index --refresh -q >/dev/null || true
+  git rebase @{u} --no-autostash || git rebase --abort
+'
+'''

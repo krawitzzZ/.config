@@ -1,0 +1,36 @@
+# Copy to a repo root as `.worktreeinclude` to allowlist caches for
+# `wt step copy-ignored` (must also be gitignored).
+# https://worktrunk.dev/step/#copy-ignored
+
+# Shared / env
+.env
+.env.local
+.env.*.local
+
+# TypeScript / JS
+node_modules/
+.pnpm-store/
+.npm/
+.yarn/
+.next/
+.nuxt/
+.turbo/
+.parcel-cache/
+.vite/
+.cache/
+dist/
+build/
+coverage/
+.eslintcache
+*.tsbuildinfo
+
+# Rust
+target/
+
+# Haskell (Cabal / Stack)
+dist-newstyle/
+dist/
+.stack-work/
+.cabal-sandbox/
+cabal.sandbox.config
+.ghc.environment.*
