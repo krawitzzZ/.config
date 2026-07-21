@@ -6,7 +6,7 @@ worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
 
 # --- LLM commit / squash / branch summaries (opencode is installed) ---
 [commit.generation]
-command = "opencode run -m opencode/deepseek-v4-flash-free"
+command = "opencode run -m opencode/deepseek-v4-flash-free | python3 ~/.config/worktrunk/plain-commit-message.py"
 template-append = """
 Branch (authoritative for ticket rules): {{ branch }}
 
@@ -39,7 +39,9 @@ Body:
 - If needed: one blank line after the subject, then a short paragraph on why (not a file list)
 
 Hard constraints:
-- Output only the commit message (subject, optional body) — no quotes, fences, preamble, or explanation
+- Output only the plain-text commit message (subject, optional body) — no quotes, backticks, Markdown, fences, preamble, or explanation
+- The subject line must never start or end with a backtick (`), quote, or any other Markdown delimiter
+- Backticks are allowed only inside the optional body when they meaningfully identify code
 - Never invent a PSWH/BFFTRAC id; if the branch has none, do not use bracket-ticket format
 - Never combine formats (wrong: `feat: [PSWH-123]: …` or `[PSWH-123] feat: …`)
 """

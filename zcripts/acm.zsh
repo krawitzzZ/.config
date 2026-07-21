@@ -9,6 +9,7 @@
 #   acm --stage=tracked|all|none
 acm() {
   emulate -L zsh
+  setopt local_options pipe_fail
 
   local stage=all dry_run=0
   local arg
@@ -149,15 +150,20 @@ Repo: ${repo}
 "
 
   local model="opencode/deepseek-v4-flash-free"
+  local message_filter="${XDG_CONFIG_HOME:-$HOME/.config}/worktrunk/plain-commit-message.py"
   local -a llm_cmd
   llm_cmd=(opencode run --pure -m "$model")
+  [[ -f "$message_filter" ]] || {
+    print -r -- "acm: missing commit-message filter at $message_filter" >&2
+    return 1
+  }
 
   if (( dry_run )); then
     print -r -- "PROMPT"
     print -r -- "$prompt"
     print -r -- ""
     print -r -- "COMMAND"
-    print -r -- "${(j: :)llm_cmd}"
+    print -r -- "${(j: :)llm_cmd} | python3 $message_filter"
     print -r -- ""
     print -r -- "MESSAGE"
   else
@@ -165,15 +171,11 @@ Repo: ${repo}
   fi
 
   local message
-  message=$(print -r -- "$prompt" | "${llm_cmd[@]}") || {
+  message=$(print -r -- "$prompt" | "${llm_cmd[@]}" | python3 "$message_filter") || {
     print -r -- "acm: opencode failed." >&2
     return 1
   }
 
-  # Strip common model noise: fences, surrounding quotes, leading/trailing blank lines.
-  message=$(print -r -- "$message" \
-    | sed -e '1{/^```[a-zA-Z]*$/d;}' -e '${/^```$/d;}' \
-    | sed -e 's/^"//;s/"$//' -e "s/^'//;s/'$//")
   message=${message##[$' \t\n']##}
   message=${message%%[$' \t\n']##}
 
