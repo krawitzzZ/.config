@@ -8,10 +8,40 @@ worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
 [commit.generation]
 command = "opencode run -m opencode/deepseek-v4-flash-free"
 template-append = """
-- Always use Conventional Commits: type(optional-scope): Subject
-- Allowed types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
-- Subject: imperative, starts with capital letter after the type, no trailing period, ≤50 chars
-- Add a body only when the why isn't obvious from the subject. Body should be a detailed explanation of the change.
+Branch (authoritative for ticket rules): {{ branch }}
+
+Choose the subject-line format with this decision tree (first match wins):
+
+1. Branch contains `pswh-<digits>` (case-insensitive):
+   - Format: `[PSWH-<digits>]: <Subject>`
+   - Copy <digits> from the branch. Uppercase the key as PSWH.
+   - Do not use feat/fix/chore/… and do not invent or change the number.
+   - Example: branch `pswh-123/fix-that` → `[PSWH-123]: Fix that in here and there`
+
+2. Branch contains `bfftrac-<digits>` (case-insensitive):
+   - Format: `[BFFTRAC-<digits>]: <Subject>`
+   - Same rules as PSWH (uppercase key, exact digits from branch).
+   - Example: branch `BFFTRAC-9/add-retry` → `[BFFTRAC-9]: Add retry around flaky fetch`
+
+3. Otherwise (no PSWH/BFFTRAC in the branch):
+   - Format: `<type>(optional-scope): <Subject>`
+   - <type> must be one of: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert, boyscout
+   - Use `boyscout` only for small cleanup/hygiene with no ticket; otherwise pick the conventional type that fits the diff.
+   - Example: `feat(auth): Add refresh-token rotation`
+
+Subject rules (all formats):
+- Imperative mood, capital first letter of the subject text, no trailing period
+- ≤60 characters for the subject line
+- Describe the change, not the branch name
+
+Body:
+- Omit the body when the subject is enough
+- If needed: one blank line after the subject, then a short paragraph on why (not a file list)
+
+Hard constraints:
+- Output only the commit message (subject, optional body) — no quotes, fences, preamble, or explanation
+- Never invent a PSWH/BFFTRAC id; if the branch has none, do not use bracket-ticket format
+- Never combine formats (wrong: `feat: [PSWH-123]: …` or `[PSWH-123] feat: …`)
 """
 
 [commit]
