@@ -1,0 +1,99 @@
+[theme]
+# theme = "nord-dark"
+theme = "ctp-macchiato"
+
+[icons]
+icons = "material-nf"
+
+# Recording indicator — shows a red "● REC" while wf-recorder (the GIF capture
+# script) is running, hidden otherwise.
+[[block]]
+block = "custom"
+command = "$HOME/.config/regolith3/i3status-rust/scripts/recording-indicator.sh"
+json = true
+interval = 1
+hide_when_empty = true
+
+[[block]]
+block = "music"
+format = " $icon  {$combo.str(max_w:20,rot_interval:0.3)  $prev $play $next  |}"
+interface_name_exclude = [".*kdeconnect.*", "mpd"]
+
+# Layout of the focused sway container — a single, mutually-exclusive state.
+# 󰕭 = split horizontal (side by side), 󰜩 = split vertical (stacked),
+# 󰓩 = tabbed, 󰌨 = stacked, 󰖲 = floating. Updates live via sway IPC.
+[[block]]
+block = "custom"
+command = "$HOME/.config/regolith3/i3status-rust/scripts/sway-layout.sh"
+persistent = true
+hide_when_empty = true
+
+[[block]]
+block = "keyboard_layout"
+driver = "sway"
+format = " $layout "
+[block.mappings]
+"English (US)" = "EN"
+"Russian (N/A)" = "RU"
+
+[[block]]
+block = "rofication"
+interval = 1
+socket_path = "/tmp/rofi_notification_daemon"
+format = " $icon $num.eng(w:1) "
+[[block.click]]
+button = "left"
+cmd = "ilia -p notifications"
+
+[[block]]
+block = "temperature"
+format = " $icon $max "
+format_alt = " $icon $min.eng()min, $max.eng()max, $average.eng()avg "
+interval = 5
+chip = "*-isa-*"
+
+[[block]]
+block = "cpu"
+interval = 3
+format = " $icon $utilization "
+
+[[block]]
+block = "memory"
+format = " $icon $mem_total_used_percents.eng(w:2) "
+
+[[block]]
+block = "disk_space"
+info_type = "available"
+alert_unit = "GB"
+alert = 15.0
+warning = 20.0
+format = " $icon $available "
+
+[[block]]
+block = "time"
+interval = 5
+format = " \uf073 $timestamp.datetime(f:'%B %-d, %A')"
+
+[[block]]
+block = "time"
+interval = 5
+format = "$icon $timestamp.datetime(f:'%R')"
+
+[[block]]
+block = "sound"
+driver = "pulseaudio"
+format = " $icon {$volume.eng(w:2) |}"
+max_vol = 100
+[[block.click]]
+button = "left"
+cmd = "regolith-control-center sound"
+
+[[block]]
+block = "battery"
+format = " $icon\u2009$percentage "
+missing_format = ""
+
+[[block]]
+block = "net"
+# format = " $icon  ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K) "
+format = " $icon  "

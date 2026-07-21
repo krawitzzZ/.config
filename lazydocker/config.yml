@@ -1,0 +1,8 @@
+reporting: "off"
+gui:
+  returnImmediately: true
+  language: "en" # one of 'auto' | 'en' | 'pl' | 'nl' | 'de' | 'tr'
+  border: "rounded" # one of 'rounded' | 'single' | 'double' | 'hidden'
+  theme:
+    selectedLineBgColor:
+      - cyan

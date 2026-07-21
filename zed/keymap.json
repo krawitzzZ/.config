@@ -1,0 +1,387 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-shift-t": "pane::ReopenClosedItem",
+      "ctrl-w": "workspace::CloseActiveDock",
+      "ctrl-tab": "tab_switcher::Toggle",
+      "ctrl-alt-j": "multi_workspace::ToggleWorkspaceSidebar",
+      "ctrl-shift-x": "zed::Extensions",
+    },
+    "bindings": {
+      "ctrl-s": "workspace::Save",
+      "alt-s": "workspace::SaveWithoutFormat",
+      "ctrl-alt-u": "multi_workspace::ToggleWorkspaceSidebar",
+      "ctrl-alt-.": "zed::OpenKeymapFile",
+      "ctrl-alt-space": "workspace::CloseAllDocks",
+      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "workspace::SendKeystrokes",
+        "ctrl-alt-space ctrl-alt-shift-=",
+      ],
+      "ctrl-shift-tab": "tab_switcher::Toggle",
+      "ctrl-alt-shift-x": "zed::Extensions",
+      "ctrl-alt-t": "pane::ReopenClosedItem",
+      "ctrl-shift-m": "workspace::ToggleZoom",
+      "ctrl-shift-e": "pane::RevealInProjectPanel",
+      "ctrl-g ctrl-g": [
+        "task::Spawn",
+        {
+          "task_name": "LazyGit",
+          "reveal_target": "center",
+        },
+      ],
+    },
+  },
+  {
+    "context": "TabSwitcher",
+    "bindings": {
+      "ctrl-shift-tab": "menu::SelectNext",
+    },
+  },
+  {
+    "context": "ThreadsSidebar || (ThreadsSidebar > Editor)",
+    "bindings": {
+      "ctrl-alt-h": "agents_sidebar::ToggleThreadHistory",
+      "ctrl-g": null,
+    },
+  },
+
+  {
+    "context": "Pane",
+    "unbind": {
+      "ctrl-w": ["pane::CloseActiveItem", { "close_pinned": false }],
+      "ctrl-alt-t": ["pane::CloseOtherItems", { "close_pinned": false }],
+    },
+    "bindings": {
+      "alt-q": ["pane::CloseActiveItem", { "close_pinned": false }],
+    },
+  },
+
+  {
+    "context": "Pane > GitDiff",
+    "bindings": {
+      "alt-q": ["pane::CloseActiveItem", { "close_pinned": false }],
+      "alt-s": "git::ToggleStaged",
+      "alt-r": "git::Restore",
+    },
+  },
+
+  {
+    "context": "Editor && VimControl || EmptyPane",
+    "bindings": {
+      "ctrl-alt-i": "workspace::ToggleLeftDock",
+      "ctrl-alt-space": "workspace::CloseAllDocks",
+      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "workspace::SendKeystrokes",
+        "ctrl-alt-space ctrl-alt-shift-=",
+      ],
+      "space /": "editor::ToggleComments",
+      "space q": ["pane::CloseOtherItems", { "close_pinned": false }],
+      "space s": "workspace::SaveAll",
+      "space e": "pane::RevealInProjectPanel",
+      "space g": "git_panel::ToggleFocus",
+      "space b": "outline_panel::ToggleFocus",
+      "space t": "git::FileHistory",
+      "space o d": "diagnostics::Deploy",
+      "space f f": "file_finder::Toggle",
+      "space o f": "file_finder::Toggle",
+      "space o t": "terminal_panel::ToggleFocus",
+      "space o r": "projects::OpenRecent",
+      "space o a": "agent::ToggleFocus",
+      "space o h": "multi_workspace::ToggleWorkspaceSidebar",
+      "space o b": "outline_panel::ToggleFocus",
+      "space o g": "git::Diff",
+    },
+  },
+
+  {
+    "context": "Editor && !menu && vim_mode != insert",
+    "bindings": {
+      "tab": "pane::ActivateNextItem",
+      "ctrl-tab": "pane::ActivatePreviousItem",
+    },
+  },
+  {
+    "context": "Editor && !menu",
+    "bindings": {
+      "ctrl-c": "editor::Copy",
+      "ctrl-f": "buffer_search::Deploy",
+      "ctrl-shift-h": "pane::SwapItemLeft",
+      "ctrl-shift-l": "pane::SwapItemRight",
+      "alt-p": "editor::GoToPreviousReference",
+      "alt-n": "editor::GoToNextReference",
+    },
+  },
+  {
+    "context": "Editor && !agent_diff",
+    "bindings": {
+      "alt-s": "git::ToggleStaged",
+      "alt-r": "git::Restore",
+    },
+  },
+
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-space": "editor::ShowCompletions",
+      "ctrl-alt-h": "editor::DeleteToPreviousSubwordStart",
+      "ctrl-shift-up": ["editor::SelectPrevious", { "replace_newest": false }],
+      "ctrl-shift-down": ["editor::SelectNext", { "replace_newest": false }],
+      "alt-shift-a": "editor::ToggleBlockComments",
+    },
+    "bindings": {
+      "alt-a": "editor::MoveLineUp",
+      "alt-z": "editor::MoveLineDown",
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-w ctrl-h": "workspace::MovePaneLeft",
+      "ctrl-w ctrl-l": "workspace::MovePaneRight",
+      "ctrl-w ctrl-j": "workspace::MovePaneDown",
+      "ctrl-w ctrl-k": "workspace::MovePaneUp",
+      "] c": ["workspace::SendKeystrokes", "escape alt-. ctrl-'"],
+      "[ c": ["workspace::SendKeystrokes", "escape alt-, ctrl-'"],
+    },
+  },
+
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-shift-up": "workspace::IncreaseActiveDockSize",
+      "ctrl-shift-down": "workspace::DecreaseActiveDockSize",
+      "ctrl-shift-r": "workspace::ResetActiveDockSize",
+    },
+  },
+
+  {
+    "context": "Dock > ProjectPanel && !editing",
+    "unbind": {
+      "s": "workspace::OpenWithSystem",
+      "o": "project_panel::OpenSplitHorizontal",
+    },
+    "bindings": {
+      "space": "pane::TogglePreviewTab",
+      "ctrl-alt-space": "workspace::CloseAllDocks",
+      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "workspace::SendKeystrokes",
+        "ctrl-alt-space ctrl-alt-shift-=",
+      ],
+      "e": ["workspace::SendKeystrokes", "enter ctrl-space"],
+      "s": "project_panel::OpenSplitHorizontal",
+      "v": "project_panel::OpenSplitVertical",
+      "o": "project_panel::Open",
+      "ctrl-h": "project_panel::CollapseSelectedEntryAndChildren",
+      "ctrl-l": "project_panel::ExpandSelectedEntryAndChildren",
+      "ctrl-shift-h": "project_panel::CollapseAllEntries",
+      "ctrl-shift-l": "project_panel::ExpandAllEntries",
+    },
+  },
+
+  {
+    "context": "Dock > GitPanel",
+    "bindings": {
+      "ctrl-alt-space": "workspace::CloseAllDocks",
+      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "workspace::SendKeystrokes",
+        "ctrl-alt-space ctrl-alt-shift-=",
+      ],
+      "e": ["workspace::SendKeystrokes", "enter ctrl-space"],
+      "s": "git::ToggleStaged",
+      "space": ["workspace::SendKeystrokes", "enter ctrl-alt-b"],
+    },
+  },
+
+  {
+    "context": "(multibuffer || Diagnostics || GitGraph) && vim_mode != insert",
+    "bindings": {
+      "q": ["pane::CloseActiveItem", { "close_pinned": false }],
+      "tab": "pane::ActivateNextItem",
+      "ctrl-tab": "pane::ActivatePreviousItem",
+      "z A": "editor::ToggleFoldAll",
+      "ctrl-shift-j": "editor::ToggleFoldAll",
+      "ctrl-shift-k": "editor::ToggleFoldAll",
+      "space shift-f": "editor::ToggleFoldAll",
+      "ctrl-j": "editor::ToggleFold",
+      "ctrl-k": "editor::ToggleFold",
+      "ctrl-h": "editor::MoveToEndOfPreviousExcerpt",
+      "ctrl-l": "editor::MoveToStartOfNextExcerpt",
+      "space f": "editor::ToggleFold",
+    },
+  },
+
+  {
+    "context": "GitGraph && !GitGraphSearchBar",
+    "bindings": {
+      "q": ["pane::CloseActiveItem", { "close_pinned": false }],
+    },
+  },
+
+  {
+    "context": "Terminal",
+    "unbind": {
+      "ctrl-shift-r": "terminal::RerunTask",
+    },
+    "bindings": {
+      "ctrl-space": "workspace::CloseAllDocks",
+    },
+  },
+
+  {
+    "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
+    "bindings": {
+      "q": "vim::MiniQuotes",
+      "b": "vim::MiniBrackets",
+      // "Q": "vim::AnyQuotes",
+      // "B": "vim::AnyBrackets",
+    },
+  },
+
+  {
+    "context": "VimControl && !menu",
+    "unbind": {
+      "q": "vim::ToggleRecord",
+    },
+    "bindings": {
+      "ctrl-alt-q": "vim::ToggleRecord",
+      "ctrl-alt-space": "workspace::CloseAllDocks",
+      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "workspace::SendKeystrokes",
+        "ctrl-alt-space ctrl-alt-shift-=",
+      ],
+    },
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "g w": "vim::HelixJumpToWord",
+    },
+  },
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space c a": "editor::ToggleCodeActions",
+      "shift-q": "editor::SelectAll",
+    },
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": "vim::PushAddSurrounds",
+    },
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "ctrl-space": "editor::ShowCompletions",
+      "ctrl-v": "editor::Paste",
+      "ctrl-a": "editor::SelectAll",
+      "ctrl-q": "editor::MoveToBeginningOfLine",
+      "ctrl-t": "editor::MoveToEndOfLine",
+      "ctrl-h": "editor::MoveLeft",
+      "ctrl-j": "editor::MoveDown",
+      "ctrl-k": "editor::MoveUp",
+      "ctrl-l": "editor::MoveRight",
+    },
+  },
+
+  {
+    "context": "AgentPanel > Editor",
+    "bindings": {
+      "tab": null,
+      "ctrl-tab": null,
+      "ctrl-shift-up": "workspace::IncreaseActiveDockSize",
+      "ctrl-shift-down": "workspace::DecreaseActiveDockSize",
+      "ctrl-shift-r": "workspace::ResetActiveDockSize",
+    },
+  },
+  {
+    "context": "AgentPanel > Editor && showing_completions",
+    "bindings": {
+      "tab": "editor::ComposeCompletion",
+    },
+  },
+
+  {
+    "context": "ThreadsSidebar || (ThreadsSidebar > Editor) || (ThreadsSidebar > ThreadsArchiveView)",
+    "bindings": {
+      "ctrl-alt-i": "workspace::ToggleLeftDock",
+      "ctrl-alt-space": "workspace::CloseAllDocks",
+      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "workspace::SendKeystrokes",
+        "ctrl-alt-space ctrl-alt-shift-=",
+      ],
+      "space": ["workspace::SendKeystrokes", "enter ctrl-alt-shift-="],
+      "ctrl-n": "editor::MoveDown",
+      "ctrl-p": "editor::MoveUp",
+    },
+  },
+
+  {
+    "context": "EmptyPane",
+    "bindings": {
+      "q": ["pane::CloseActiveItem", { "close_pinned": false }],
+    },
+  },
+
+  // Unbinds
+
+  {
+    "unbind": {
+      "ctrl-alt-i": "dev::ToggleInspector",
+      "ctrl-q": "zed::Quit",
+    },
+  },
+
+  {
+    "context": "GitPanel && ChangesList && !GitBranchSelector",
+    "unbind": {
+      "space": "git::ToggleStaged",
+    },
+  },
+  {
+    "context": "SettingsWindow",
+    "unbind": {
+      "ctrl-w": "workspace::CloseWindow",
+    },
+  },
+  {
+    "context": "SkillCreator",
+    "unbind": {
+      "ctrl-w": "workspace::CloseWindow",
+    },
+  },
+  {
+    "context": "SkillCreator > Editor",
+    "unbind": {
+      "ctrl-w": "workspace::CloseWindow",
+    },
+  },
+
+  // Changes from the UI keymap editor
+]

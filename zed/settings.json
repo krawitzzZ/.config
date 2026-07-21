@@ -1,0 +1,322 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "cli_default_open_behavior": "existing_window",
+  "auto_indent_on_paste": false,
+  "diff_view_style": "unified",
+  // Ensure Jenkinsfile variants (e.g. Jenkinsfile.deploy) use Groovy/LSP
+  "file_types": {
+    "Groovy": ["Jenkinsfile", "Jenkinsfile.*"],
+  },
+  "agent_servers": {
+    "cursor": {
+      "type": "registry",
+    },
+  },
+  "proxy": "",
+  "git": {
+    "inline_blame": {
+      "show_commit_summary": false,
+      "padding": 8,
+      "delay_ms": 600,
+    },
+  },
+  "show_signature_help_after_edits": true,
+  "terminal": {
+    "toolbar": {
+      "breadcrumbs": false,
+    },
+    "default_height": 280.0,
+    "default_width": 450.0,
+    "keep_selection_on_copy": false,
+    "font_weight": 500.0,
+    "font_family": "VictorMono Nerd Font",
+    "font_size": 14.0,
+  },
+  "active_pane_modifiers": {
+    "border_size": 1.5,
+    "inactive_opacity": 0.8,
+  },
+  "bottom_dock_layout": "full",
+  "expand_excerpt_lines": 7,
+  "excerpt_context_lines": 4,
+  "code_lens": "menu",
+  "centered_layout": {
+    "left_padding": 0.4,
+    "right_padding": 0.4,
+  },
+  "preview_tabs": {
+    "enable_preview_multibuffer_from_code_navigation": true,
+    "enable_preview_from_file_finder": false,
+  },
+  "seed_search_query_from_cursor": "selection",
+  "use_smartcase_search": true,
+  "agent": {
+    "dock": "left",
+    "terminal_init_command": "",
+    "default_height": 300.0,
+    "default_width": 440.0,
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "collaboration_panel": {
+    "button": false,
+    "default_width": 360.0,
+  },
+  "git_panel": {
+    "show_count_badge": true,
+    "default_width": 360.0,
+    "file_icons": true,
+    "tree_view": true,
+  },
+  "outline_panel": {
+    "default_width": 400.0,
+    "indent_size": 20.0,
+    "dock": "left",
+  },
+  "project_panel": {
+    "auto_open": {
+      "on_drop": false,
+      "on_paste": false,
+      "on_create": false,
+    },
+    "hide_root": true,
+    "git_status_indicator": true,
+    "diagnostic_badges": true,
+    "bold_folder_labels": false,
+    "starts_open": false,
+    "indent_size": 20.0,
+    "entry_spacing": "standard",
+    "default_width": 360.0,
+  },
+  "edit_predictions": {
+    "allow_data_collection": "no",
+    "open_ai_compatible_api": {
+      "model": "",
+    },
+  },
+  "tab_bar": {
+    "show_pinned_tabs_in_separate_row": false,
+  },
+  "tabs": {
+    "show_close_button": "hover",
+    "show_diagnostics": "errors",
+    "file_icons": true,
+    "git_status": true,
+  },
+  "title_bar": {
+    "show_menus": false,
+    "show_branch_status_icon": true,
+  },
+  "status_bar": {
+    "active_encoding_button": "enabled",
+    "show_active_file": true,
+    "line_endings_button": true,
+  },
+  "restore_on_startup": "last_session",
+  "diagnostics": {
+    "inline": {
+      "padding": 4,
+      "min_column": 60,
+      "enabled": true,
+    },
+  },
+  "prettier": {
+    "allowed": true,
+  },
+  "document_symbols": "on",
+  "document_folding_ranges": "on",
+  "semantic_tokens": "combined",
+  "middle_click_paste": false,
+  "completions": {
+    "words_min_length": 2,
+  },
+  "line_ending": "prefer_lf",
+  "format_on_save": "on",
+  "vim": {
+    "cursor_shape": {
+      "insert": "bar",
+    },
+    "highlight_on_yank_duration": 190,
+    "toggle_relative_line_numbers": true,
+  },
+  "gutter": {
+    "min_line_number_digits": 3,
+  },
+  "relative_line_numbers": "wrapped",
+  "drag_and_drop_selection": {
+    "enabled": false,
+  },
+  "which_key": {
+    "enabled": true,
+  },
+  "autosave": "on_window_change",
+  "rounded_selection": true,
+  "selection_highlight": false,
+  "cursor_blink": true,
+  "multi_cursor_modifier": "cmd_or_ctrl",
+  "agent_ui_font_size": 16.0,
+  "ui_font_family": ".ZedSans",
+  "buffer_line_height": "standard",
+  "buffer_font_weight": 600.0,
+  "buffer_font_family": "Victor Mono",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+    "anthropic_retention": false,
+  },
+  "icon_theme": {
+    "mode": "light",
+    "light": "VSCode Icons for Zed (Light)",
+    "dark": "VSCode Icons for Zed (Dark)",
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "vim_mode": true,
+  "ui_font_size": 16.0,
+  "buffer_font_size": 15.0,
+  "show_wrap_guides": true,
+  "show_whitespaces": "all",
+  "wrap_guides": [80, 100],
+  "theme": {
+    "mode": "light",
+    "light": "GitHub Light",
+    "dark": "GitHub Dark",
+  },
+  "command_aliases": {
+    "zlog": "zed::OpenLog",
+    "crp": "workspace::CopyRelativePath",
+    "cap": "workspace::CopyPath",
+    "gdb": "git::BranchDiff",
+  },
+  "unnecessary_code_fade": 0.55,
+  "theme_overrides": {
+    "GitHub Light": {
+      "syntax": {
+        "comment": { "font_style": "italic" },
+        "comment.doc": { "font_style": "italic" },
+
+        "keyword": { "font_style": "italic" },
+        "variable.special": { "font_style": "italic" },
+        "emphasis": { "font_style": "italic" },
+
+        "boolean": { "font_style": "italic" },
+        "constant.builtin": { "font_style": "italic" },
+
+        "type": { "font_weight": 700 },
+        "type.builtin": { "font_weight": 700 },
+        "namespace": { "font_weight": 700 },
+        "attribute": { "font_weight": 700 },
+      },
+    },
+    "GitHub Dark": {
+      "syntax": {
+        "comment": { "font_style": "italic" },
+        "comment.doc": { "font_style": "italic" },
+
+        "keyword": { "font_style": "italic" },
+        "variable.special": { "font_style": "italic" },
+        "emphasis": { "font_style": "italic" },
+
+        "boolean": { "font_style": "italic" },
+        "constant.builtin": { "font_style": "italic" },
+
+        "type": { "font_weight": 700 },
+        "type.builtin": { "font_weight": 700 },
+        "namespace": { "font_weight": 700 },
+        "attribute": { "font_weight": 700 },
+      },
+    },
+  },
+  "global_lsp_settings": {
+    "semantic_token_rules": [
+      {
+        "token_type": "keyword",
+        "font_style": "italic",
+        "font_weight": "bold",
+      },
+      {
+        "token_type": "type",
+        "font_weight": "bold",
+      },
+      {
+        "token_type": "namespace",
+        "font_weight": "bold",
+      },
+      {
+        "token_type": "class",
+        "font_weight": "bold",
+      },
+    ],
+  },
+  "languages": {
+    "Haskell": {
+      "tab_size": 2,
+      "formatter": "language_server",
+      "format_on_save": "on",
+    },
+  },
+  "lsp": {
+    "hls": {
+      "initialization_options": {
+        "haskell": {
+          "formattingProvider": "fourmolu",
+        },
+      },
+    },
+    "eslint": {
+      "settings": {
+        "workingDirectory": {
+          "mode": "auto",
+        },
+      },
+    },
+    "groovy": {
+      // Groovy LSP is a Java jar launched by a thin wrapper. Without java on PATH
+      // the wrapper panics with Os NotFound (exactly the Zed startup error).
+      "binary": {
+        "path": "/home/nikita_demin/.local/bin/groovy-language-server",
+        "env": {
+          "JAVA_HOME": "/home/nikita_demin/.local/share/java/jdk-21",
+          "PATH": "/home/nikita_demin/.local/share/java/jdk-21/bin:/home/nikita_demin/.local/bin:/usr/bin:/bin",
+        },
+      },
+    },
+    "cucumber": {
+      // Prefer the native tree-sitter wrapper; the extension's default WASM
+      // bin breaks under hoisted node_modules and reports every step undefined.
+      "binary": {
+        "path": "/home/nikita_demin/.local/bin/cucumber-language-server",
+        "arguments": ["--stdio"],
+      },
+      "settings": {
+        "features": ["features/**/*.feature"],
+        "glue": [
+          "step-definitions/**/*.{ts,tsx,js,jsx}",
+          "features/**/*.{ts,tsx,js,jsx}",
+        ],
+        // Enum parameter types registered via helpers (not literal defineParameterType)
+        // e2e-repo/step-definitions/cucumber-utils.ts
+        "parameterTypes": [
+          { "name": "endEffectorPowerStatus", "regexp": "On|Off" },
+          {
+            "name": "systemStatus",
+            "regexp": "Starting|FirstStart|Started|RescueSystem|RebootRequired",
+          },
+          {
+            "name": "recoveryType",
+            "regexp": "IdleStatusExceeded|SelfTestsElapsed|GenericJointError|SafetyError|SafeInputUnacknowledged|JointPositionError|JointLimitViolation|SafetyRuleViolation",
+          },
+          { "name": "fciStatus", "regexp": "Active|Inactive" },
+        ],
+      },
+    },
+  },
+}

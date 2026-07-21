@@ -1,0 +1,79 @@
+theme = "github_light"
+
+[editor]
+true-color = true
+line-number = "relative"
+mouse = false
+cursorline = true
+cursorcolumn = false
+undercurl = true
+rulers = [80, 100]
+soft-wrap.enable = true
+color-modes = true
+idle-timeout = 50
+completion-timeout = 50
+popup-border = "all"
+end-of-line-diagnostics = "hint"
+completion-replace = true
+
+[editor.statusline]
+left = ["mode", "spinner", "file-base-name", "spacer", "version-control"]
+center = ["register"]
+right = ["diagnostics", "workspace-diagnostics", "spacer", "file-type"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.whitespace.render]
+space = "all"
+
+[editor.whitespace.characters]
+space = "·"
+
+[editor.indent-guides]
+render = true
+character = "┊"
+
+[editor.file-picker]
+hidden = false
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+other-lines = "hint"
+prefix-len = 3
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = false
+
+# Keybindings
+[keys.normal]
+"G" = "goto_file_end"
+"^" = "select_all"
+"C-q" = "goto_line_start"
+"C-t" = "goto_line_end"
+
+[keys.normal.space.g]
+c = "changed_file_picker"
+g = [
+    ":write-all",
+    ":new",
+    ":insert-output lazygit",
+    ":buffer-close!",
+    ":redraw",
+    ":reload-all",
+]
+b = ":echo %sh{git show --no-patch --format='%%h (%%an: %%ar): %%s' $(git blame -p %{buffer_name} -L%{cursor_line},+1 | head -1 | cut -d' ' -f1)}"
+t = ':echo %sh{pwd}'
+
+[keys.normal.space.o]
+"c" = ":config-open"
+"l" = ":open ~/.config/helix/languages.toml"
+
+[keys.normal.space.r]
+"a" = ":reload-all"

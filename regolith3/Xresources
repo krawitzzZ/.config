@@ -1,0 +1,53 @@
+!regolith.look.path: /usr/share/regolith-look/default
+regolith.look.path: /usr/share/regolith-look/nord
+
+regolith.wallpaper.file: /home/nikita_demin/stash/pics/ugly-bg.png
+regolith.wallpaper.options: wallpaper
+
+gtk.font_name:           Ubuntu 11
+gtk.document_font_name:  Ubuntu 11
+gtk.monospace_font_name: Ubuntu Mono 12
+
+Xcursor.theme: Yaru
+Xcursor.size: 24
+
+wm.hide_cursor.timout: 0
+wm.hide_cursor.show_when_typing: enable
+
+wm.bar.status_config: /home/nikita_demin/.config/regolith3/i3status-rust/config.toml
+
+wm.client.focused.color.border:         #4C7899
+wm.client.focused.color.background:     #285577
+wm.client.focused.color.text:           #FFFFFF
+wm.client.focused.color.indicator:      #f4d62e
+wm.client.focused.color.child_border:   #f4d62e
+
+wm.client.unfocused.color.border:       #333333
+wm.client.unfocused.color.background:   #222222
+wm.client.unfocused.color.child_border: #444444
+
+wm.gaps.smart: off
+wm.gaps.inner.size: 5
+wm.gaps.outer.size: 2
+
+wm.bar.font:      VictorMono Nerd Font 12
+wm.bar.position : top
+
+wm.workspace.01.name: 1:<span> </span>1 <span foreground='#5E81AC'>󰊻</span><span> </span>
+wm.workspace.02.name: 2:<span> </span>2 <span foreground='#88C0D0'></span><span> </span>
+wm.workspace.03.name: 3:<span> </span>3 <span foreground='#A3BE8C'></span><span> </span>
+wm.workspace.04.name: 4:<span> </span>4 <span foreground='#EBCB8B'></span><span> </span>
+wm.workspace.05.name: 5:<span> </span>5 <span foreground='#D08770'></span><span> </span>
+wm.workspace.06.name: 6:<span> </span>6 <span foreground='#BF616A'></span><span> </span>
+wm.workspace.07.name: 7:<span> </span>7 <span foreground='#5E81AC'></span><span> </span>
+wm.workspace.08.name: 8:<span> </span>8 <span foreground='#B48EAD'></span><span> </span>
+wm.workspace.09.name: 9:<span> </span>9 <span foreground='#7B8394'></span><span> </span>
+wm.workspace.10.name: 10:<span> </span>10 <span foreground='#5E81AC'></span><span> </span>
+wm.workspace.11.name: 11:<span> </span>11 <span foreground='#88C0D0'></span><span> </span>
+wm.workspace.12.name: 12:<span> </span>12 <span foreground='#A3BE8C'></span><span> </span>
+wm.workspace.13.name: 13:<span> </span>13 <span foreground='#EBCB8B'></span><span> </span>
+wm.workspace.14.name: 14:<span> </span>14 <span foreground='#D08770'></span><span> </span>
+wm.workspace.15.name: 15:<span> </span>15 <span foreground='#BF616A'></span><span> </span>
+wm.workspace.16.name: 16:<span> </span>16 <span foreground='#5E81AC'></span><span> </span>
+wm.workspace.17.name: 17:<span> </span>17 <span foreground='#B48EAD'></span><span> </span>
+wm.workspace.18.name: 18:<span> </span>18 <span foreground='#7B8394'></span><span> </span>

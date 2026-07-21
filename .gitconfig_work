@@ -1,0 +1,61 @@
+# located at ~/.gitconfig
+
+[color]
+	ui = true
+[user]
+	name = Nikita Demin
+	email = work@email.com
+[includeIf "gitdir:~/personal/"]
+	path = ~/personal/.gitconfig
+[diff "astextplain"]
+	textconv = astextplain
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[http]
+	sslBackend = gnutls
+[core]
+	autocrlf = false
+	fscache = true
+	symlinks = false
+	editor = /usr/bin/hx
+	eol = lf
+	pager = cat
+[fetch]
+	all = true
+	prune = true
+	pruneTags = true
+	tags = true
+[pull]
+	autoStash = true
+	rebase = true
+[rebase]
+	autoStash = true
+	updateRefs = true
+	autoSquash = true
+	missingCommitsCheck = error
+[push]
+	autoSetupRemote = true
+	default = simple
+	followTags = true
+[branch]
+	autoSetupRebase = always
+[credential]
+	helper = manager-core
+	helper = /usr/local/bin/git-credential-manager
+	credentialStore = gpg
+[init]
+	defaultBranch = main
+[help]
+	autocorrect = 1
+[rerere]
+	enabled = true
+	autoupdate = true
+[merge]
+	conflictStyle = zdiff3
+[diff]
+	conflictStyle = zdiff3
+[alias]
+	pushf = push --force-with-lease --force-if-includes
