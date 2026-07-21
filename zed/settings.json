@@ -200,6 +200,8 @@
   "unnecessary_code_fade": 0.55,
   "theme_overrides": {
     "GitHub Light": {
+      "editor.document_highlight.read_background": "#0969da3b",
+      "editor.document_highlight.write_background": "#0969da28",
       "syntax": {
         "comment": { "font_style": "italic" },
         "comment.doc": { "font_style": "italic" },
