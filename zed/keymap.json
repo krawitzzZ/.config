@@ -422,6 +422,18 @@
   },
 
   {
+    "context": "AcpThread || AcpThread > Editor",
+    "unbind": {
+      "ctrl-alt-a": "agent::OpenPermissionDropdown",
+    },
+    "bindings": {
+      "alt-a": "agent::AllowOnce",
+      "alt-x": "agent::RejectOnce",
+      "ctrl-alt-a": "agent::AllowAlways",
+    },
+  },
+
+  {
     "context": "EmptyPane",
     "bindings": {
       "q": ["pane::CloseActiveItem", { "close_pinned": false }],
@@ -466,13 +478,19 @@
       "ctrl-shift-c": "collab_panel::ToggleFocus",
     },
   },
-
-  // Changes from the UI keymap editor
-
   {
     "context": "AcpThread > Editor",
     "unbind": {
       "ctrl-alt-'": "agent::ToggleThinkingEffortMenu",
     },
   },
+  {
+    "context": "AcpThread",
+    "unbind": {
+      "alt-shift-a": "agent::AllowOnce",
+      "alt-shift-q": "agent::AllowAlways",
+    },
+  },
+
+  // Changes from the UI keymap editor
 ]

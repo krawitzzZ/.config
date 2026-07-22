@@ -6,11 +6,68 @@ worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
 
 # --- LLM commit / squash / branch summaries (opencode is installed) ---
 [commit.generation]
-command = "opencode run -m opencode/deepseek-v4-flash-free | python3 ~/.config/worktrunk/plain-commit-message.py"
+command = "opencode run --pure -m opencode/laguna-s-2.1-free | python3 ~/.config/worktrunk/plain-commit-message.py"
+template = """
+<task>
+Generate the Git commit message for the staged diff. Analyze silently.
+Return only JSON matching: {"subject":"...","body":"..."}.
+Use an empty body string when no body is needed.
+</task>
+
+<rules>
+{{ user_guidance }}
+</rules>
+
+<diffstat>
+{{ git_diff_stat }}
+</diffstat>
+
+<diff>
+{{ git_diff }}
+</diff>
+
+<context>
+Branch: {{ branch }}
+Repository: {{ repo }}
+</context>
+"""
+
+squash-template = """
+<task>
+Generate one Git commit message for the combined diff. Analyze silently.
+Return only JSON matching: {"subject":"...","body":"..."}.
+Use an empty body string when no body is needed.
+</task>
+
+<rules>
+{{ user_guidance }}
+</rules>
+
+<diffstat>
+{{ git_diff_stat }}
+</diffstat>
+
+<diff>
+{{ git_diff }}
+</diff>
+
+<context>
+Branch: {{ branch }}
+Target: {{ target_branch }}
+Repository: {{ repo }}
+</context>
+"""
+
 template-append = """
 Branch (authoritative for ticket rules): {{ branch }}
 
-Choose the subject-line format with this decision tree (first match wins):
+RESPONSE CONTRACT — mandatory:
+- Perform any reasoning silently. Never print analysis, reasoning, rule checks, commentary, or justification.
+- Return exactly one JSON object with exactly two string fields: `subject` and `body`.
+- Put the plain commit subject in `subject`; put the optional plain-text body in `body`, or use `""`.
+- Do not use Markdown, code fences, labels, preamble, explanation, or text outside the JSON object.
+
+Choose the subject-line format using this decision tree (first match wins):
 
 1. Branch contains `pswh-<digits>` (case-insensitive):
    - Format: `[PSWH-<digits>]: <Subject>`
@@ -23,7 +80,7 @@ Choose the subject-line format with this decision tree (first match wins):
    - Same rules as PSWH (uppercase key, exact digits from branch).
    - Example: branch `BFFTRAC-9/add-retry` → `[BFFTRAC-9]: Add retry around flaky fetch`
 
-3. Branch contains `innolab` or `IN-<digits> (case-insensitive):
+3. Branch contains `innolab` or `IN-<digits>` (case-insensitive):
    - Format: `[IN-<digits>]: <Subject>` or `[INNOLAB]: <Subject>` if no digits
    - Same rules as PSWH/BFFTRAC (uppercase key, exact digits from branch).
    - Example: branch `IN-123/upgrade-ghc` → `[IN-123]: Upgrade GHC to the latest version`
@@ -44,10 +101,10 @@ Body:
 - If needed: one blank line after the subject, then a short paragraph on why (not a file list)
 
 Hard constraints:
-- Output only the plain-text commit message (subject, optional body) — no quotes, backticks, Markdown, fences, preamble, or explanation
+- The `subject` value must contain only the plain-text subject, with no newline
 - The subject line must never start or end with a backtick (`), quote, or any other Markdown delimiter
-- Backticks are allowed only inside the optional body when they meaningfully identify code
-- Never invent a PSWH/BFFTRAC id; if the branch has none, do not use bracket-ticket format
+- Backticks are allowed only inside the `body` value when they meaningfully identify code
+- Never invent a PSWH/BFFTRAC/IN id; if the branch has none, do not use its bracket-ticket format
 - Never combine formats (wrong: `feat: [PSWH-123]: …` or `[PSWH-123] feat: …`)
 """
 

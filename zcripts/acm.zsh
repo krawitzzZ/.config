@@ -129,7 +129,11 @@ PY
   # Rules come only from worktrunk template-append (no recent-commits, no
   # conflicting default style that could override them).
   local prompt
-  prompt="<task>Write a commit message for the staged changes below.</task>
+  prompt="<task>
+Generate the Git commit message for the staged changes below. Analyze silently.
+Return only JSON matching: {\"subject\":\"...\",\"body\":\"...\"}.
+Use an empty body string when no body is needed.
+</task>
 
 <user-guidance>
 ${user_guidance}
@@ -149,7 +153,7 @@ Repo: ${repo}
 </context>
 "
 
-  local model="opencode/deepseek-v4-flash-free"
+  local model="opencode/laguna-s-2.1-free"
   local message_filter="${XDG_CONFIG_HOME:-$HOME/.config}/worktrunk/plain-commit-message.py"
   local -a llm_cmd
   llm_cmd=(opencode run --pure -m "$model")
