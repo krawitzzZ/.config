@@ -11,8 +11,10 @@
       "ctrl-q": "zed::Quit",
       "ctrl-alt-l": "lsp_tool::ToggleMenu",
       "ctrl-alt-i": "dev::ToggleInspector",
+      "shift-escape": "workspace::ToggleZoom",
     },
     "bindings": {
+      "ctrl-`": "workspace::ToggleZoom",
       "ctrl-shift-c": "workspace::CopyRelativePath",
       "ctrl-alt-shift-l": "lsp_tool::ToggleMenu",
     },
@@ -20,6 +22,7 @@
   {
     "context": "Workspace",
     "unbind": {
+      "ctrl-`": "terminal_panel::Toggle",
       "ctrl-shift-t": "pane::ReopenClosedItem",
       "ctrl-w": "workspace::CloseActiveDock",
       "ctrl-tab": "tab_switcher::Toggle",
@@ -153,6 +156,8 @@
       "alt-shift-a": "editor::ToggleBlockComments",
     },
     "bindings": {
+      "alt-\\": "editor::ToggleEditPrediction",
+      "shift-escape": "editor::ToggleEditPrediction",
       "alt-a": "editor::MoveLineUp",
       "alt-z": "editor::MoveLineDown",
       "ctrl-w h": "workspace::ActivatePaneLeft",
@@ -207,8 +212,8 @@
       "o": "project_panel::Open",
       "ctrl-h": "project_panel::CollapseSelectedEntryAndChildren",
       "ctrl-l": "project_panel::ExpandSelectedEntryAndChildren",
-      "ctrl-shift-h": "project_panel::CollapseAllEntries",
-      "ctrl-shift-l": "project_panel::ExpandAllEntries",
+      "ctrl-shift-j": "project_panel::CollapseAllEntries",
+      "ctrl-shift-k": "project_panel::ExpandAllEntries",
     },
   },
 
@@ -358,6 +363,8 @@
     },
     "bindings": {
       "alt-space": "editor::ShowSignatureHelp",
+      "alt-]": "editor::NextEditPrediction",
+      "alt-[": "editor::PreviousEditPrediction",
       "ctrl-space": "editor::ShowCompletions",
       "ctrl-v": "editor::Paste",
       "ctrl-a": "editor::SelectAll",
@@ -433,6 +440,12 @@
     "context": "SkillCreator > Editor",
     "unbind": {
       "ctrl-w": "workspace::CloseWindow",
+    },
+  },
+  {
+    "context": "CommitEditor > Editor",
+    "unbind": {
+      "shift-escape": "git::ExpandCommitEditor",
     },
   },
   {

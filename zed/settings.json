@@ -113,6 +113,7 @@
     "default_width": 450.0,
   },
   "edit_predictions": {
+    "provider": "copilot",
     "allow_data_collection": "no",
     "open_ai_compatible_api": {
       "model": "",
