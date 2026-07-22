@@ -153,10 +153,13 @@ Repo: ${repo}
 </context>
 "
 
-  local model="opencode/laguna-s-2.1-free"
+  local model="opencode/deepseek-v4-flash-free"
   local message_filter="${XDG_CONFIG_HOME:-$HOME/.config}/worktrunk/plain-commit-message.py"
   local -a llm_cmd
-  llm_cmd=(opencode run --pure -m "$model")
+  llm_cmd=(
+    timeout --foreground --kill-after=5s 90s
+    opencode run --pure -m "$model"
+  )
   [[ -f "$message_filter" ]] || {
     print -r -- "acm: missing commit-message filter at $message_filter" >&2
     return 1
@@ -174,9 +177,20 @@ Repo: ${repo}
     print -r -- "◎ Generating commit message..."
   fi
 
+  local raw_response
+  raw_response=$(print -r -- "$prompt" | "${llm_cmd[@]}") || {
+    local status=$?
+    if (( status == 124 || status == 137 )); then
+      print -r -- "acm: opencode timed out after 90 seconds." >&2
+    else
+      print -r -- "acm: opencode failed (exit $status)." >&2
+    fi
+    return 1
+  }
+
   local message
-  message=$(print -r -- "$prompt" | "${llm_cmd[@]}" | python3 "$message_filter") || {
-    print -r -- "acm: opencode failed." >&2
+  message=$(print -r -- "$raw_response" | python3 "$message_filter") || {
+    print -r -- "acm: model returned an invalid commit message." >&2
     return 1
   }
 

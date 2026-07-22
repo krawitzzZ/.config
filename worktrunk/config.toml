@@ -6,7 +6,7 @@ worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
 
 # --- LLM commit / squash / branch summaries (opencode is installed) ---
 [commit.generation]
-command = "opencode run --pure -m opencode/laguna-s-2.1-free | python3 ~/.config/worktrunk/plain-commit-message.py"
+command = "timeout --foreground --kill-after=5s 90s opencode run --pure -m opencode/deepseek-v4-flash-free | python3 ~/.config/worktrunk/plain-commit-message.py"
 template = """
 <task>
 Generate the Git commit message for the staged diff. Analyze silently.

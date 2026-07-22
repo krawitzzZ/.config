@@ -18,3 +18,4 @@
 !jetpack.toml
 !starship.toml
 !/worktrunk/
+/worktrunk/__pycache__/
