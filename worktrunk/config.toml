@@ -23,7 +23,12 @@ Choose the subject-line format with this decision tree (first match wins):
    - Same rules as PSWH (uppercase key, exact digits from branch).
    - Example: branch `BFFTRAC-9/add-retry` → `[BFFTRAC-9]: Add retry around flaky fetch`
 
-3. Otherwise (no PSWH/BFFTRAC in the branch):
+3. Branch contains `innolab` or `IN-<digits> (case-insensitive):
+   - Format: `[IN-<digits>]: <Subject>` or `[INNOLAB]: <Subject>` if no digits
+   - Same rules as PSWH/BFFTRAC (uppercase key, exact digits from branch).
+   - Example: branch `IN-123/upgrade-ghc` → `[IN-123]: Upgrade GHC to the latest version`
+
+4. Otherwise (no PSWH/BFFTRAC/IN/INNOLAB in the branch):
    - Format: `<type>(optional-scope): <Subject>`
    - <type> must be one of: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert, boyscout
    - Use `boyscout` only for small cleanup/hygiene with no ticket; otherwise pick the conventional type that fits the diff.

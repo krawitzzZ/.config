@@ -30,6 +30,9 @@
       "ctrl-shift-x": "zed::Extensions",
     },
     "bindings": {
+      "ctrl-alt-[": "workspace::ToggleLeftDock",
+      "ctrl-alt-]": "workspace::ToggleRightDock",
+      "ctrl-alt-'": "workspace::ToggleBottomDock",
       "ctrl-s": "workspace::Save",
       "alt-s": "workspace::SaveWithoutFormat",
       "ctrl-alt-u": "multi_workspace::ToggleWorkspaceSidebar",
@@ -60,19 +63,13 @@
       "ctrl-shift-tab": "menu::SelectNext",
     },
   },
-  {
-    "context": "ThreadsSidebar || (ThreadsSidebar > Editor)",
-    "bindings": {
-      "ctrl-alt-h": "agents_sidebar::ToggleThreadHistory",
-      "ctrl-g": null,
-    },
-  },
 
   {
     "context": "Pane",
     "unbind": {
       "ctrl-w": ["pane::CloseActiveItem", { "close_pinned": false }],
       "ctrl-alt-t": ["pane::CloseOtherItems", { "close_pinned": false }],
+      "ctrl-alt-shift-l": "search::ToggleSelection",
     },
     "bindings": {
       "alt-q": ["pane::CloseActiveItem", { "close_pinned": false }],
@@ -279,9 +276,8 @@
       "z a": "editor::ToggleFold",
       "z A": "editor::ToggleFoldAll",
       "ctrl-shift-j": "editor::ToggleFoldAll",
-      "ctrl-shift-k": "editor::ToggleFoldAll",
       "ctrl-j": "editor::ToggleFold",
-      "ctrl-k": "editor::ToggleFold",
+      "ctrl-k": "search::FocusSearch",
       "ctrl-h": "editor::MoveToEndOfPreviousExcerpt",
       "ctrl-l": "editor::MoveToStartOfNextExcerpt",
     },
@@ -406,6 +402,22 @@
       "space": ["workspace::SendKeystrokes", "enter ctrl-alt-shift-="],
       "ctrl-n": "editor::MoveDown",
       "ctrl-p": "editor::MoveUp",
+      "ctrl-alt-h": "agents_sidebar::ToggleThreadHistory",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-l": "workspace::ActivatePaneRight",
+    },
+  },
+  {
+    "context": "(ThreadsSidebar && searching) > Editor",
+    "bindings": {
+      "ctrl-j": "editor::MoveDown",
+    },
+  },
+  {
+    "context": "ThreadsSidebar && !searching",
+    "bindings": {
+      "ctrl-j": null,
+      "ctrl-k": "menu::Cancel",
     },
   },
 
@@ -456,4 +468,11 @@
   },
 
   // Changes from the UI keymap editor
+
+  {
+    "context": "AcpThread > Editor",
+    "unbind": {
+      "ctrl-alt-'": "agent::ToggleThinkingEffortMenu",
+    },
+  },
 ]
