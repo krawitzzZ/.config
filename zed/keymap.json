@@ -27,6 +27,7 @@
       "ctrl-w": "workspace::CloseActiveDock",
       "ctrl-tab": "tab_switcher::Toggle",
       "ctrl-alt-j": "multi_workspace::ToggleWorkspaceSidebar",
+      "ctrl-shift-h": ["pane::DeploySearch", { "replace_enabled": true }],
       "ctrl-shift-x": "zed::Extensions",
     },
     "bindings": {
@@ -46,6 +47,7 @@
       "ctrl-shift-tab": "tab_switcher::Toggle",
       "ctrl-alt-shift-x": "zed::Extensions",
       "ctrl-alt-t": "pane::ReopenClosedItem",
+      "ctrl-m ctrl-m": "workspace::ToggleZoom",
       "ctrl-shift-m": "workspace::ToggleZoom",
       "ctrl-shift-e": "workspace::ToggleRightDock",
       "ctrl-g ctrl-g": [
@@ -69,10 +71,12 @@
     "unbind": {
       "ctrl-w": ["pane::CloseActiveItem", { "close_pinned": false }],
       "ctrl-alt-t": ["pane::CloseOtherItems", { "close_pinned": false }],
+      "ctrl-alt-shift-h": "search::ToggleReplace",
       "ctrl-alt-shift-l": "search::ToggleSelection",
     },
     "bindings": {
       "alt-q": ["pane::CloseActiveItem", { "close_pinned": false }],
+      "ctrl-alt-h": "search::ToggleReplace",
     },
   },
 
@@ -88,9 +92,6 @@
   {
     "context": "Editor && VimControl || EmptyPane",
     "bindings": {
-      "ctrl-alt-h": "workspace::ToggleLeftDock",
-      "ctrl-alt-j": "workspace::ToggleBottomDock",
-      "ctrl-alt-l": "workspace::ToggleRightDock",
       "ctrl-alt-space": "workspace::CloseAllDocks",
       "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
       "ctrl-space": [
@@ -101,6 +102,7 @@
       "space q": ["pane::CloseOtherItems", { "close_pinned": false }],
       "space s": "workspace::SaveAll",
       "space e": "pane::RevealInProjectPanel",
+      "space d": "diagnostics::DeployCurrentFile",
       "space g": "git::Diff",
       "space b": ["workspace::SendKeystrokes", "space o b ctrl-j"],
       "space t": "git::FileHistory",
@@ -223,12 +225,14 @@
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
-      "e": ["workspace::SendKeystrokes", "enter ctrl-alt-b"],
+      "e": "git::ViewFile",
       "j": "git_panel::NextEntry",
       "k": "git_panel::PreviousEntry",
-      "ctrl-j": "git_panel::FocusEditor",
       "s": "git::ToggleStaged",
       "space": "menu::Confirm",
+      "ctrl-j": "git_panel::FocusEditor",
+      "ctrl-d": "git::RestoreFile",
+      "ctrl-shift-d": "git::RestoreTrackedFiles",
     },
   },
   {
@@ -340,6 +344,7 @@
   {
     "context": "vim_mode == normal",
     "bindings": {
+      "space r": "editor::Rename",
       "space c a": "editor::ToggleCodeActions",
       "shift-q": "editor::SelectAll",
       "] c": ["workspace::SendKeystrokes", "escape alt-. ctrl-'"],

@@ -7,6 +7,8 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "vertical_scroll_margin": 5,
+  "lsp_results_location": "multi_buffer",
   "cli_default_open_behavior": "existing_window",
   "auto_indent_on_paste": false,
   "diff_view_style": "unified",
@@ -30,7 +32,7 @@
     "cursor": {
       "default_config_options": {
         "reasoning": "medium",
-        "model": "gpt-5.6-sol"
+        "model": "claude-opus-4-8",
       },
       "type": "registry",
     },
@@ -87,6 +89,8 @@
     "default_width": 450.0,
   },
   "git_panel": {
+    "dock": "right",
+    "group_by": "staging",
     "show_count_badge": true,
     "default_width": 450.0,
     "file_icons": true,
@@ -156,7 +160,10 @@
     "words_min_length": 2,
   },
   "line_ending": "prefer_lf",
-  "format_on_save": "on",
+  "format_on_save": "modifications_if_available",
+  "code_actions_on_format": {
+    "source.fixAll.eslint": true,
+  },
   "vim": {
     "cursor_shape": {
       "insert": "bar",
@@ -212,8 +219,9 @@
     "zlog": "zed::OpenLog",
     "cr": "workspace::CopyRelativePath",
     "ca": "workspace::CopyPath",
-    "gm": "git::BranchDiff",
-    "rw": "workspace::Reload",
+    "gd": "git::BranchDiff",
+    "wr": "workspace::Reload",
+    "wt": "git::Worktree",
   },
   "unnecessary_code_fade": 0.55,
   "theme_overrides": {
@@ -281,7 +289,31 @@
     "Haskell": {
       "tab_size": 2,
       "formatter": "language_server",
-      "format_on_save": "on",
+      "format_on_save": "modifications_if_available",
+    },
+    "Rust": {
+      "formatter": "language_server",
+      "format_on_save": "modifications_if_available",
+      "code_actions_on_format": {
+        "source.fixAll.rust-analyzer": true,
+      },
+    },
+    "Python": {
+      "language_servers": ["ty", "!basedpyright", "..."],
+      "formatter": [
+        {
+          "external": {
+            "command": "isort",
+            "arguments": ["--profile", "black", "-"],
+          },
+        },
+        { "external": { "command": "black", "arguments": ["--quiet", "-"] } },
+      ],
+      "format_on_save": "modifications_if_available",
+    },
+    "Markdown": {
+      "formatter": "language_server",
+      "format_on_save": "modifications_if_available",
     },
   },
   "lsp": {
@@ -303,10 +335,19 @@
       // Groovy LSP is a Java jar launched by a thin wrapper. Without java on PATH
       // the wrapper panics with Os NotFound (exactly the Zed startup error).
       "binary": {
-        "path": "/home/nikita_demin/.local/bin/groovy-language-server",
+        "path": "~/.local/bin/groovy-language-server",
         "env": {
           "JAVA_HOME": "/home/nikita_demin/.local/share/java/jdk-21",
           "PATH": "/home/nikita_demin/.local/share/java/jdk-21/bin:/home/nikita_demin/.local/bin:/usr/bin:/bin",
+        },
+      },
+    },
+    "basedpyright": {
+      "settings": {
+        "basedpyright": {
+          "analysis": {
+            "typeCheckingMode": "basic",
+          },
         },
       },
     },
@@ -314,7 +355,7 @@
       // Prefer the native tree-sitter wrapper; the extension's default WASM
       // bin breaks under hoisted node_modules and reports every step undefined.
       "binary": {
-        "path": "/home/nikita_demin/.local/bin/cucumber-language-server",
+        "path": "~/.local/bin/cucumber-language-server",
         "arguments": ["--stdio"],
       },
       "settings": {

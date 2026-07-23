@@ -92,7 +92,7 @@ Choose the subject-line format using this decision tree (first match wins):
    - Example: `feat(auth): Add refresh-token rotation`
 
 Subject rules (all formats):
-- Imperative mood, capital first letter of the subject text, no trailing period
+- Imperative mood, first letter of the subject text after : symbol is ALWAYS capital, no trailing period
 - ≤60 characters for the subject line
 - Describe the change, not the branch name
 
