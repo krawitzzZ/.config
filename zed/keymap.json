@@ -23,8 +23,9 @@
     "context": "Workspace",
     "unbind": {
       "ctrl-`": "terminal_panel::Toggle",
-      "ctrl-shift-t": "pane::ReopenClosedItem",
+      "ctrl-n": "workspace::NewFile",
       "ctrl-w": "workspace::CloseActiveDock",
+      "ctrl-shift-t": "pane::ReopenClosedItem",
       "ctrl-tab": "tab_switcher::Toggle",
       "ctrl-alt-j": "multi_workspace::ToggleWorkspaceSidebar",
       "ctrl-shift-h": ["pane::DeploySearch", { "replace_enabled": true }],
@@ -280,10 +281,16 @@
       "z a": "editor::ToggleFold",
       "z A": "editor::ToggleFoldAll",
       "ctrl-shift-j": "editor::ToggleFoldAll",
-      "ctrl-j": "editor::ToggleFold",
+      "space": "editor::ToggleFold",
       "ctrl-k": "search::FocusSearch",
       "ctrl-h": "editor::MoveToEndOfPreviousExcerpt",
       "ctrl-l": "editor::MoveToStartOfNextExcerpt",
+    },
+  },
+  {
+    "context": "ProjectSearchBar > Editor",
+    "bindings": {
+      "ctrl-j": "menu::Cancel",
     },
   },
 
@@ -315,8 +322,6 @@
     "bindings": {
       "q": "vim::MiniQuotes",
       "b": "vim::MiniBrackets",
-      // "Q": "vim::AnyQuotes",
-      // "B": "vim::AnyBrackets",
     },
   },
 
@@ -344,11 +349,9 @@
   {
     "context": "vim_mode == normal",
     "bindings": {
-      "space r": "editor::Rename",
-      "space c a": "editor::ToggleCodeActions",
       "shift-q": "editor::SelectAll",
-      "] c": ["workspace::SendKeystrokes", "escape alt-. ctrl-'"],
-      "[ c": ["workspace::SendKeystrokes", "escape alt-, ctrl-'"],
+      "] g": ["workspace::SendKeystrokes", "escape ] c d o"],
+      "[ g": ["workspace::SendKeystrokes", "escape [ c d o"],
     },
   },
   {
@@ -439,6 +442,25 @@
   },
 
   {
+    "context": "WorktreePicker || WorktreePicker > Picker > Editor",
+    "bindings": {
+      // "alt-q": "worktree_picker::RemoveWorktreeFromWindow",
+      "ctrl-d": "worktree_picker::DeleteWorktree",
+      "ctrl-shift-d": "worktree_picker::ForceDeleteWorktree",
+    },
+  },
+
+  {
+    "context": "FileFinder > Picker > Editor",
+    "bindings": {
+      "ctrl-h": "pane::SplitLeft",
+      "ctrl-l": "pane::SplitRight",
+      "ctrl-j": "pane::SplitDown",
+      "ctrl-k": "pane::SplitUp",
+    },
+  },
+
+  {
     "context": "EmptyPane",
     "bindings": {
       "q": ["pane::CloseActiveItem", { "close_pinned": false }],
@@ -494,6 +516,12 @@
     "unbind": {
       "alt-shift-a": "agent::AllowOnce",
       "alt-shift-q": "agent::AllowAlways",
+    },
+  },
+  {
+    "context": "Welcome",
+    "unbind": {
+      "ctrl-n": "workspace::NewFile",
     },
   },
 
