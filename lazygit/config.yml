@@ -538,7 +538,16 @@ disableStartupPopups: false
 
 # User-configured commands that can be invoked from within Lazygit
 # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Command_Keybindings.md
-customCommands: []
+customCommands:
+  # AI commit: stage everything and commit with an acm-generated message.
+  # acm is a zsh function (~/.config/zcripts/acm.zsh), so we run it via zsh -c
+  # after sourcing the file, rather than lazygit's default sh.
+  - key: <c-a>
+    context: files
+    description: "AI commit (acm)"
+    command: 'zsh -c "source ~/.config/zcripts/acm.zsh && acm"'
+    output: terminal
+    loadingText: "Generating commit message with acm..."
 
 # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-pull-request-urls
 services: {}

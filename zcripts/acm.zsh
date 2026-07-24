@@ -188,11 +188,18 @@ Repo: ${repo}
     return 1
   }
 
+  # Prefer a naturally-valid message; if the model misbehaves (e.g. subject
+  # > 60 chars, which it often does), deterministically repair the SAME
+  # response instead of failing or calling the model again.
   local message
-  message=$(print -r -- "$raw_response" | python3 "$message_filter") || {
-    print -r -- "acm: model returned an invalid commit message." >&2
-    return 1
-  }
+  message=$(print -r -- "$raw_response" | python3 "$message_filter" 2>/dev/null) \
+    || message=$(print -r -- "$raw_response" | python3 "$message_filter" --repair) \
+    || {
+      print -r -- "acm: model returned an unusable commit message." >&2
+      print -r -- "  raw model output:" >&2
+      print -r -- "$raw_response" | sed 's/^/  /' >&2
+      return 1
+    }
 
   message=${message##[$' \t\n']##}
   message=${message%%[$' \t\n']##}
