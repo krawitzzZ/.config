@@ -394,22 +394,18 @@
           },
           {
             "linkPattern": "(FX3|SWPL)-[A-Z]+-\\d+",
-            "linkPatternFlags": "i",
             "linkTarget": "https://jama.agile-robots.de/perspective.req#/search?term=\"$0\"",
           },
           {
             "linkPattern": "(SysDD)",
-            "linkPatternFlags": "i",
             "linkTarget": "https://ar2019test.sharepoint.com/:w:/r/sites/FrankaRDProducts/_layouts/15/Doc.aspx?sourcedoc=%7BEA27A75F-665C-49F0-BE9A-615243792D1D%7D&file=SysDD.docx&action=default&mobileredirect=true",
           },
           {
             "linkPattern": "(ProdMan)",
-            "linkPatternFlags": "i",
             "linkTarget": "https://ar2019test.sharepoint.com/sites/FrankaRDProducts/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FFrankaRDProducts%2FShared%20Documents%2F00%5FGeneral%2FUser%20Documentation%2F02%20Franka%20Research%203%2F01%20Product%20Manual",
           },
           {
             "linkPattern": "(HARA)",
-            "linkPatternFlags": "i",
             "linkTarget": "https://ar2019test.sharepoint.com/sites/FrankaRDProducts/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FFrankaRDProducts%2FShared%20Documents%2F01%20FX3%2F03%5FSystem%2FHARA%5FHazard%5Fand%5FRisk%5FAssesement&viewid=0585ae2a%2Dbc03%2D48f4%2Db14e%2D18f70c21b558&FolderCTID=0x012000A66600AA2CBCB845883613A440F09CC1&ovuser=b158a42f%2D650a%2D44dd%2Da095%2Df9035882b277%2Cdavid%2Ekraus%40franka%2Ede&TeamsCID=5bc38cc8%2D81a5%2D4b31%2Db15e%2Dd69f6fe29175&OR=Teams%2DHL&CT=1782888415831&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIxNDE1LzI2MDUyOTA2MTIyIiwiSGFzRmVkZXJhdGVkVXNlciI6ZmFsc2V9",
           },
           {
@@ -429,12 +425,10 @@
           },
           {
             "linkPattern": "(ExtIfSC)",
-            "linkPatternFlags": "i",
             "linkTarget": "https://ar2019test.sharepoint.com/:w:/r/sites/FrankaRDProducts/_layouts/15/Doc.aspx?sourcedoc=%7B68BB2AD6-9A89-4771-83CA-2EFE07589561%7D&file=SysDD_IF_External.docx",
           },
           {
             "linkPattern": "(safety-config)",
-            "linkPatternFlags": "i",
             "linkTarget": "https://ar2019test.sharepoint.com/:w:/r/sites/FrankaRDProducts/_layouts/15/Doc.aspx?sourcedoc=%7B6C758D33-3879-48FB-88FC-23CA3B035C29%7D&file=Safety_Configuration_Concept.docx",
           },
         ],

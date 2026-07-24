@@ -102,6 +102,7 @@ Body:
 
 Hard constraints:
 - The `subject` value must contain only the plain-text subject, with no newline
+- The `subject` value must NEVER exceed 60 characters
 - The subject line must never start or end with a backtick (`), quote, or any other Markdown delimiter
 - Backticks are allowed only inside the `body` value when they meaningfully identify code
 - Never invent a PSWH/BFFTRAC/IN id; if the branch has none, do not use its bracket-ticket format
