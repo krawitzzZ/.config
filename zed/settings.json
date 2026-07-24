@@ -247,10 +247,10 @@
         "boolean": { "font_style": "italic" },
         "constant.builtin": { "font_style": "italic" },
 
-        "type": { "font_weight": 700 },
+        "type": { "color": "#5050d5", "font_weight": 700 },
         "type.builtin": { "font_weight": 700 },
-        "namespace": { "font_weight": 700 },
-        "attribute": { "font_weight": 700 },
+        "namespace": { "color": "#5050d5", "font_weight": 700 },
+        "attribute": { "color": "#5050d5", "font_weight": 700 },
       },
     },
     "GitHub Dark": {
@@ -268,10 +268,10 @@
         "boolean": { "font_style": "italic" },
         "constant.builtin": { "font_style": "italic" },
 
-        "type": { "font_weight": 700 },
+        "type": { "color": "#6c6cf6", "font_weight": 700 },
         "type.builtin": { "font_weight": 700 },
-        "namespace": { "font_weight": 700 },
-        "attribute": { "font_weight": 700 },
+        "namespace": { "color": "#6c6cf6", "font_weight": 700 },
+        "attribute": { "color": "#6c6cf6", "font_weight": 700 },
       },
     },
   },
