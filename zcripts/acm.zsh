@@ -6,7 +6,7 @@
 # Usage:
 #   acm
 #   acm --dry-run
-#   acm --stage=tracked|all|none
+#   acm --stage=tracked|all|staged|none
 acm() {
   emulate -L zsh
   setopt local_options pipe_fail
@@ -16,9 +16,9 @@ acm() {
   for arg in "$@"; do
     case "$arg" in
       --dry-run) dry_run=1 ;;
-      --stage=all|--stage=tracked|--stage=none) stage="${arg#--stage=}" ;;
+      --stage=all|--stage=tracked|--stage=staged|--stage=none) stage="${arg#--stage=}" ;;
       -h|--help)
-        print -r -- "Usage: acm [--dry-run] [--stage=all|tracked|none]"
+        print -r -- "Usage: acm [--dry-run] [--stage=all|tracked|staged|none]"
         return 0
         ;;
       *)
@@ -105,7 +105,7 @@ PY
         return 1
       }
       ;;
-    none) ;;
+    staged|none) ;;
   esac
 
   if git diff --cached --quiet; then
