@@ -26,7 +26,8 @@
     },
     "opencode": {
       "default_config_options": {
-        "model": "opencode/deepseek-v4-flash-free",
+        "effort": "medium",
+        "model": "opencode/big-pickle",
       },
       "type": "registry",
     },
@@ -51,7 +52,7 @@
     "toolbar": {
       "breadcrumbs": false,
     },
-    "default_height": 450.0,
+    "default_height": 480.0,
     "default_width": 450.0,
     "keep_selection_on_copy": false,
     "font_weight": 500.0,
@@ -220,6 +221,7 @@
     "zlog": "zed::OpenLog",
     "ca": "workspace::CopyPath",
     "cr": "workspace::CopyRelativePath",
+    "ff": "workspace::FormatAndSave",
     "gd": "git::BranchDiff",
     "tt": "theme::ToggleMode",
     "wo": "workspace::Open",

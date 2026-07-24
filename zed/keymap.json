@@ -40,9 +40,12 @@
       "alt-s": "workspace::SaveWithoutFormat",
       "ctrl-alt-u": "multi_workspace::ToggleWorkspaceSidebar",
       "ctrl-alt-.": "zed::OpenKeymapFile",
+      "ctrl-alt-w": "workspace::CloseActiveDock",
+      "ctrl-alt-o": "workspace::FocusCenterPane",
+      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
       "ctrl-alt-space": "workspace::CloseAllDocks",
       "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
-      "ctrl-space": [
+      "ctrl-shift-space": [
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
@@ -94,9 +97,10 @@
   {
     "context": "Editor && VimControl || EmptyPane",
     "bindings": {
+      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
       "ctrl-alt-space": "workspace::CloseAllDocks",
       "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
-      "ctrl-space": [
+      "ctrl-shift-space": [
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
@@ -114,6 +118,7 @@
       "space o b": "outline_panel::ToggleFocus",
       "space o d": "diagnostics::Deploy",
       "space o D": "debug_panel::ToggleFocus",
+      "space o e": "project_panel::ToggleFocus",
       "space o f": "file_finder::Toggle",
       "space o g": "git_panel::ToggleFocus",
       "space o u": "multi_workspace::ToggleWorkspaceSidebar",
@@ -201,9 +206,10 @@
     },
     "bindings": {
       "space": "pane::TogglePreviewTab",
+      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
       "ctrl-alt-space": "workspace::CloseAllDocks",
       "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
-      "ctrl-space": [
+      "ctrl-shift-space": [
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
@@ -221,9 +227,10 @@
   {
     "context": "(Dock > GitPanel) && ChangesList",
     "bindings": {
+      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
       "ctrl-alt-space": "workspace::CloseAllDocks",
       "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
-      "ctrl-space": [
+      "ctrl-shift-space": [
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
@@ -248,9 +255,10 @@
   {
     "context": "OutlinePanel > Editor",
     "bindings": {
+      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
       "ctrl-alt-space": "workspace::CloseAllDocks",
       "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
-      "ctrl-space": [
+      "ctrl-shift-space": [
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
@@ -261,9 +269,10 @@
   {
     "context": "OutlinePanel && !editing",
     "bindings": {
+      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
       "ctrl-alt-space": "workspace::CloseAllDocks",
       "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
-      "ctrl-space": [
+      "ctrl-shift-space": [
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
@@ -311,7 +320,8 @@
       "ctrl-shift-r": "terminal::RerunTask",
     },
     "bindings": {
-      "ctrl-space": "workspace::CloseAllDocks",
+      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
+      "ctrl-shift-space": "workspace::CloseAllDocks",
       "alt-s": "pane::SplitRight",
       "alt-v": "pane::SplitDown",
       "ctrl-s ctrl-h": "pane::SplitLeft",
@@ -336,9 +346,10 @@
     },
     "bindings": {
       "ctrl-alt-q": "vim::ToggleRecord",
+      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
       "ctrl-alt-space": "workspace::CloseAllDocks",
       "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
-      "ctrl-space": [
+      "ctrl-shift-space": [
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
@@ -405,9 +416,10 @@
   {
     "context": "ThreadsSidebar || (ThreadsSidebar > Editor) || (ThreadsSidebar > ThreadsArchiveView)",
     "bindings": {
+      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
       "ctrl-alt-space": "workspace::CloseAllDocks",
       "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
-      "ctrl-space": [
+      "ctrl-shift-space": [
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
