@@ -23,6 +23,7 @@
   {
     "context": "Workspace",
     "unbind": {
+      "alt-t": "task::Rerun",
       "ctrl-`": "terminal_panel::Toggle",
       "ctrl-n": "workspace::NewFile",
       "ctrl-w": "workspace::CloseActiveDock",
@@ -89,7 +90,7 @@
     "context": "Pane > GitDiff",
     "bindings": {
       "alt-q": ["pane::CloseActiveItem", { "close_pinned": false }],
-      "alt-s": "git::ToggleStaged",
+      "alt-d": "git::ToggleStaged",
       "alt-r": "git::Restore",
     },
   },
@@ -145,9 +146,9 @@
     },
   },
   {
-    "context": "Editor && !agent_diff",
+    "context": "(GitDiff > Editor) && !agent_diff",
     "bindings": {
-      "alt-s": "git::ToggleStaged",
+      "alt-d": "git::ToggleStaged",
       "alt-r": "git::Restore",
     },
   },
@@ -317,6 +318,7 @@
   {
     "context": "Terminal",
     "unbind": {
+      "alt-t": "terminal::RerunTask",
       "ctrl-shift-r": "terminal::RerunTask",
     },
     "bindings": {
