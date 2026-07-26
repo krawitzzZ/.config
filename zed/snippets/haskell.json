@@ -1,0 +1,22 @@
+{
+  "-- Todo": {
+    "prefix": "td",
+    "body": ["-- TODO(nikita.demin): $0"],
+    "description": "Add a todo comment"
+  },
+  "-- Note": {
+    "prefix": "nt",
+    "body": ["-- NOTE(nikita.demin): $0"],
+    "description": "Add a note comment"
+  },
+  "Type hole in Haskell": {
+    "prefix": "ch",
+    "body": ["_ = $0"],
+    "description": "Create a type hole for an expression"
+  },
+  "Type hole in Haskell (let)": {
+    "prefix": "chl",
+    "body": ["let _ = $0"],
+    "description": "Create a type hole for a let expression"
+  }
+}

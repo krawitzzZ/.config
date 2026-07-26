@@ -275,9 +275,11 @@
       },
     },
   },
+
+  /// Global LSP settings
+
   "global_lsp_settings": {
     "semantic_token_rules": [
-      // { "token_type": "hyperlink", "underline": true, "style": ["link_uri"] },
       { "token_type": "hyperlink", "underline": true },
       {
         "token_type": "keyword",
@@ -298,6 +300,9 @@
       },
     ],
   },
+
+  /// languages
+
   "languages": {
     "Haskell": {
       "tab_size": 2,
@@ -325,10 +330,25 @@
       "format_on_save": "modifications_if_available",
     },
     "Markdown": {
-      "formatter": "language_server",
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": [
+            "--parser",
+            "markdown",
+            "--prose-wrap",
+            "always",
+            "--stdin-filepath",
+            "{buffer_path}",
+          ],
+        },
+      },
       "format_on_save": "modifications_if_available",
     },
   },
+
+  /// LSP
+
   "lsp": {
     "hls": {
       "initialization_options": {
@@ -353,6 +373,13 @@
           "JAVA_HOME": "/home/nikita_demin/.local/share/java/jdk-21",
           "PATH": "/home/nikita_demin/.local/share/java/jdk-21/bin:/home/nikita_demin/.local/bin:/usr/bin:/bin",
         },
+      },
+    },
+    "markdownlint": {
+      "settings": {
+        "MD004": false,
+        "MD007": false,
+        "MD013": false,
       },
     },
     "basedpyright": {

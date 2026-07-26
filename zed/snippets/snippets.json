@@ -1,0 +1,12 @@
+{
+  "# Todo": {
+    "prefix": "td",
+    "body": ["# TODO(nikita.demin): $0"],
+    "description": "Add a todo comment"
+  },
+  "# Note": {
+    "prefix": "nt",
+    "body": ["# NOTE(nikita.demin): $0"],
+    "description": "Add a note comment"
+  }
+}

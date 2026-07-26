@@ -1,0 +1,52 @@
+{
+  "// Todo": {
+    "prefix": "td",
+    "body": ["// TODO(nikita.demin): $0"],
+    "description": "Add a todo comment"
+  },
+  "// Note": {
+    "prefix": "nt",
+    "body": ["// NOTE(nikita.demin): $0"],
+    "description": "Add a note comment"
+  },
+  "Type hole in TypeScript": {
+    "prefix": "ch",
+    "body": ["const _ = $0"],
+    "description": "Create a type hole for an expression"
+  },
+  "Type hole in TypeScript (let)": {
+    "prefix": "chl",
+    "body": ["let _ = $0"],
+    "description": "Create a type hole for a let expression"
+  },
+  "Log to console": {
+    "prefix": "cl",
+    "body": ["console.log($0)"],
+    "description": "Log to console"
+  },
+  "Warn to console": {
+    "prefix": "cw",
+    "body": ["console.warn($0)"],
+    "description": "Warn to console"
+  },
+  "Error to console": {
+    "prefix": "ce",
+    "body": ["console.error($0)"],
+    "description": "Error to console"
+  },
+  "Throw exception": {
+    "prefix": "th",
+    "body": ["throw new Error($0)"],
+    "description": "Throw new Error"
+  },
+  "Put setTimeout statement": {
+    "prefix": "st",
+    "body": ["setTimeout(() => {", "  $0", "}, ${1:3000})"],
+    "description": "Insert setTimeout statement"
+  },
+  "Put setInterval statement": {
+    "prefix": "si",
+    "body": ["setInterval(() => {", "  $0", "}, ${1:3000})"],
+    "description": "Insert setInterval statement"
+  }
+}
