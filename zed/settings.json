@@ -119,9 +119,11 @@
     "default_width": 450.0,
   },
   "edit_predictions": {
-    "provider": "copilot",
+    "provider": "codestral",
     "allow_data_collection": "no",
     "open_ai_compatible_api": {
+      "max_output_tokens": 64,
+      "api_url": "",
       "model": "",
     },
   },

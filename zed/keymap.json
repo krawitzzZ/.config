@@ -88,7 +88,7 @@
   },
 
   {
-    "context": "Pane > GitDiff",
+    "context": "(Pane > GitDiff) || (Pane > Editor && diffs_expanded) || ((GitDiff > Editor) && !agent_diff)",
     "bindings": {
       "alt-q": ["pane::CloseActiveItem", { "close_pinned": false }],
       "alt-d": "git::ToggleStaged",
@@ -148,10 +148,13 @@
     },
   },
   {
-    "context": "(GitDiff > Editor) && !agent_diff",
+    "context": "Editor && edit_prediction",
+    "unbind": {
+      "alt-tab": "editor::AcceptEditPrediction",
+      "tab": "editor::AcceptEditPrediction",
+    },
     "bindings": {
-      "alt-d": "git::ToggleStaged",
-      "alt-r": "git::Restore",
+      "alt-l": "editor::AcceptEditPrediction",
     },
   },
 

@@ -35,7 +35,7 @@ wm.bar.position : top
 
 wm.workspace.01.name: 1:<span> </span>1 <span foreground='#5E81AC'>󰊻</span><span> </span>
 wm.workspace.02.name: 2:<span> </span>2 <span foreground='#88C0D0'></span><span> </span>
-wm.workspace.03.name: 3:<span> </span>3 <span foreground='#A3BE8C'></span><span> </span>
+wm.workspace.03.name: 3:<span> </span>3 <span foreground='#A3BE8C'></span><span> </span>
 wm.workspace.04.name: 4:<span> </span>4 <span foreground='#EBCB8B'></span><span> </span>
 wm.workspace.05.name: 5:<span> </span>5 <span foreground='#D08770'></span><span> </span>
 wm.workspace.06.name: 6:<span> </span>6 <span foreground='#BF616A'></span><span> </span>
