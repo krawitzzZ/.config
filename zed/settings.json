@@ -18,6 +18,9 @@
     "Groovy": ["Jenkinsfile", "Jenkinsfile.*"],
   },
   "agent_servers": {
+    "mistral-vibe": {
+      "type": "registry",
+    },
     "gemini": {
       "type": "registry",
     },
@@ -32,9 +35,14 @@
       "type": "registry",
     },
     "cursor": {
+      "favorite_config_option_values": {
+        "model": ["grok-4.5", "claude-opus-5", "gpt-5.6-sol"],
+      },
       "default_config_options": {
+        "effort": "medium",
+        "fast": "false",
         "reasoning": "medium",
-        "model": "claude-opus-4-8",
+        "model": "grok-4.5",
       },
       "type": "registry",
     },
@@ -420,6 +428,37 @@
           },
           { "name": "fciStatus", "regexp": "Active|Inactive" },
         ],
+      },
+    },
+    "dependi": {
+      "initialization_options": {
+        "inlay_hints": {
+          "enabled": true,
+          "show_up_to_date": false,
+        },
+        "diagnostics": {
+          "enabled": true,
+        },
+        "registries": {
+          "cargo": {
+            "registries": {
+              "artifactory-sdk-release": {
+                "index_url": "sparse+https://artifactory.fe.lan/artifactory/api/cargo/cargo-sdk-release/index/",
+                "auth": {
+                  "type": "env",
+                  "variable": "ARTIFACTORY_SDK_RELEASE_TOKEN",
+                },
+              },
+              "artifactory-sdk-dev": {
+                "index_url": "sparse+https://artifactory.fe.lan/artifactory/api/cargo/cargo-sdk-dev/index/",
+                "auth": {
+                  "type": "env",
+                  "variable": "ARTIFACTORY_SDK_DEV_TOKEN",
+                },
+              },
+            },
+          },
+        },
       },
     },
     "hyperlinks": {

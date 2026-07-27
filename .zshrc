@@ -3,6 +3,13 @@
 
 setopt ignore_eof
 
+# Load local secrets/env (.env syntax).
+if [[ -f "$HOME/.config/.zenv" ]]; then
+  set -a
+  source "$HOME/.config/.zenv"
+  set +a
+fi
+
 # hello, it is me
 export ME="$(whoami)"
 
@@ -280,7 +287,7 @@ alias nr='npm run'
 alias ld='lazydocker'
 alias lg='lazygit'
 alias h='hx .'
-alias zz='zed'
+alias zz='zed -n'
 alias hz='hx ~/.zshrc'
 alias hc='hx ~/.config'
 alias hs='hx ~/.ssh/config'
