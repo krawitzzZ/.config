@@ -268,6 +268,7 @@
       // "q": ["workspace::SendKeystrokes", "ctrl-alt-] alt-q"],
       "e": "workspace::FocusCenterPane",
       "f": "git::ViewFile",
+      "g": "menu::SecondaryConfirm",
       "j": "git_panel::NextEntry",
       "k": "git_panel::PreviousEntry",
       "s": "git::ToggleStaged",

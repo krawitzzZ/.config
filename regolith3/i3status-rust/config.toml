@@ -72,7 +72,7 @@ format = " $icon $available "
 [[block]]
 block = "time"
 interval = 5
-format = " \uf073 $timestamp.datetime(f:'%B %-d, %A')"
+format = " \uf073 $timestamp.datetime(f:'%B %-d %Y, %A')"
 
 [[block]]
 block = "time"

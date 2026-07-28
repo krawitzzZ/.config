@@ -43,6 +43,7 @@
         "model": ["grok-4.5", "claude-opus-5", "gpt-5.6-sol"],
       },
       "default_config_options": {
+        "mode": "ask",
         "effort": "medium",
         "fast": "false",
         "reasoning": "medium",
@@ -134,7 +135,7 @@
     "provider": "codestral",
     "allow_data_collection": "no",
     "open_ai_compatible_api": {
-      "max_output_tokens": 64,
+      "max_output_tokens": 32,
       "api_url": "",
       "model": "",
     },
