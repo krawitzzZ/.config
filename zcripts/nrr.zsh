@@ -8,5 +8,5 @@ nrr() {
     rm -rf package-lock.json node_modules ./**/node_modules ./**/package-lock.json 2>/dev/null
 
     # Only this determines the function's exit status.
-    npm install --force --prefer-online
+    npm install --prefer-online
 }

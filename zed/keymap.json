@@ -30,8 +30,11 @@
       "ctrl-shift-t": "pane::ReopenClosedItem",
       "ctrl-tab": "tab_switcher::Toggle",
       "ctrl-alt-j": "multi_workspace::ToggleWorkspaceSidebar",
+      "ctrl-alt-;": "multi_workspace::FocusWorkspaceSidebar",
       "ctrl-shift-h": ["pane::DeploySearch", { "replace_enabled": true }],
       "ctrl-shift-x": "zed::Extensions",
+      "ctrl-shift-r": ["task::Rerun", { "reevaluate_context": false }],
+      "alt-shift-r": ["task::Spawn", { "reveal_target": "center" }],
     },
     "bindings": {
       "ctrl-alt-[": "workspace::ToggleLeftDock",
@@ -57,6 +60,12 @@
       "ctrl-m ctrl-m": "workspace::ToggleZoom",
       "ctrl-shift-m": "workspace::ToggleZoom",
       "ctrl-shift-e": "workspace::ToggleRightDock",
+      "alt-shift-t": [
+        "task::Spawn",
+        {
+          "reveal_target": "center",
+        },
+      ],
       "ctrl-g ctrl-g": [
         "task::Spawn",
         {
@@ -97,6 +106,17 @@
   },
 
   {
+    "context": "Pane > AgentDiff > Editor",
+    "bindings": {
+      "alt-d": "agent::Keep",
+      "alt-shift-d": "agent::KeepAll",
+      "alt-r": "agent::Reject",
+      "alt-shift-r": "agent::RejectAll",
+      "alt-shift-t": "git_panel::ToggleFocus",
+    },
+  },
+
+  {
     "context": "Editor && VimControl || EmptyPane",
     "bindings": {
       "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
@@ -125,7 +145,8 @@
       "space o f": "file_finder::Toggle",
       "space o g": "git_panel::ToggleFocus",
       "space o u": "multi_workspace::ToggleWorkspaceSidebar",
-      "space o r": "projects::OpenRecent",
+      "space o p": "projects::OpenRecent",
+      "space o r": "agent::OpenAgentDiff",
     },
   },
 
@@ -151,16 +172,17 @@
     "context": "Editor && edit_prediction",
     "unbind": {
       "alt-tab": "editor::AcceptEditPrediction",
-      "tab": "editor::AcceptEditPrediction",
     },
     "bindings": {
       "alt-l": "editor::AcceptEditPrediction",
+      "tab": "editor::AcceptEditPrediction",
     },
   },
 
   {
     "context": "Editor",
     "unbind": {
+      "ctrl-;": "editor::ToggleLineNumbers",
       "ctrl-space": "editor::ShowCompletions",
       "ctrl-alt-h": "editor::DeleteToPreviousSubwordStart",
       "ctrl-shift-up": ["editor::SelectPrevious", { "replace_newest": false }],
@@ -204,7 +226,6 @@
       "ctrl-w j": "workspace::ActivatePaneDown",
       "ctrl-shift-up": "workspace::IncreaseActiveDockSize",
       "ctrl-shift-down": "workspace::DecreaseActiveDockSize",
-      "ctrl-shift-r": "workspace::ResetActiveDockSize",
     },
   },
 
@@ -244,6 +265,7 @@
         "workspace::SendKeystrokes",
         "ctrl-alt-space ctrl-alt-shift-=",
       ],
+      // "q": ["workspace::SendKeystrokes", "ctrl-alt-] alt-q"],
       "e": "workspace::FocusCenterPane",
       "f": "git::ViewFile",
       "j": "git_panel::NextEntry",
@@ -320,7 +342,7 @@
   },
 
   {
-    "context": "GitGraph && !GitGraphSearchBar",
+    "context": "(GitGraph && !GitGraphSearchBar) || (Editor && in_preview)",
     "bindings": {
       "q": ["pane::CloseActiveItem", { "close_pinned": false }],
     },
@@ -416,7 +438,6 @@
       "ctrl-tab": null,
       "ctrl-shift-up": "workspace::IncreaseActiveDockSize",
       "ctrl-shift-down": "workspace::DecreaseActiveDockSize",
-      "ctrl-shift-r": "workspace::ResetActiveDockSize",
     },
   },
   {
@@ -466,6 +487,16 @@
       "alt-a": "agent::AllowOnce",
       "alt-x": "agent::RejectOnce",
       "ctrl-alt-a": "agent::AllowAlways",
+    },
+  },
+
+  {
+    "context": "!AcpThread > Editor && mode == full",
+    "unbind": {
+      "ctrl-:": "editor::ToggleInlayHints",
+    },
+    "bindings": {
+      "ctrl-alt-:": "editor::ToggleInlayHints",
     },
   },
 
@@ -537,6 +568,12 @@
     "context": "AcpThread > Editor",
     "unbind": {
       "ctrl-alt-'": "agent::ToggleThinkingEffortMenu",
+      "alt-shift-z": "agent::RejectAll",
+      "alt-shift-y": "agent::KeepAll",
+    },
+    "bindings": {
+      "alt-shift-d": "agent::KeepAll",
+      "alt-shift-r": "agent::RejectAll",
     },
   },
   {

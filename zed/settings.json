@@ -7,18 +7,22 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "soft_wrap": "none",
   "current_line_highlight": "all",
   "vertical_scroll_margin": 5,
   "lsp_results_location": "multi_buffer",
   "cli_default_open_behavior": "existing_window",
   "auto_indent_on_paste": false,
   "diff_view_style": "unified",
-  // Ensure Jenkinsfile variants (e.g. Jenkinsfile.deploy) use Groovy/LSP
   "file_types": {
     "Groovy": ["Jenkinsfile", "Jenkinsfile.*"],
+    "Dockerfile": ["Dockerfile", "Dockerfile.*"],
   },
   "agent_servers": {
     "mistral-vibe": {
+      "default_config_options": {
+        "mode": "auto-approve",
+      },
       "type": "registry",
     },
     "gemini": {
@@ -42,7 +46,7 @@
         "effort": "medium",
         "fast": "false",
         "reasoning": "medium",
-        "model": "grok-4.5",
+        "model": "claude-opus-5",
       },
       "type": "registry",
     },
@@ -90,7 +94,7 @@
     "flexible": false,
     "terminal_init_command": "",
     "default_height": 450.0,
-    "default_width": 550.0,
+    "default_width": 540.0,
     "favorite_models": [],
     "model_parameters": [],
   },
@@ -231,7 +235,8 @@
     "zlog": "zed::OpenLog",
     "ca": "workspace::CopyPath",
     "cr": "workspace::CopyRelativePath",
-    "ff": "workspace::FormatAndSave",
+    "ff": "editor::Format",
+    "fw": "workspace::FormatAndSave",
     "gd": "git::BranchDiff",
     "tt": "theme::ToggleMode",
     "wo": "workspace::Open",
@@ -348,6 +353,8 @@
             "markdown",
             "--prose-wrap",
             "always",
+            "--ignore-path",
+            "/dev/null",
             "--stdin-filepath",
             "{buffer_path}",
           ],
@@ -365,6 +372,11 @@
         "haskell": {
           "formattingProvider": "fourmolu",
         },
+      },
+    },
+    "rust-analyzer": {
+      "binary": {
+        "path": "rust-analyzer",
       },
     },
     "eslint": {
