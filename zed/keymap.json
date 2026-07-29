@@ -144,8 +144,8 @@
       "space o f": "file_finder::Toggle",
       "space o g": "git_panel::ToggleFocus",
       "space o u": "multi_workspace::ToggleWorkspaceSidebar",
-      "space o p": "projects::OpenRecent",
-      "space o r": "agent::OpenAgentDiff",
+      "space o r": "projects::OpenRecent",
+      "space o R": "agent::OpenAgentDiff",
     },
   },
 
@@ -217,6 +217,15 @@
         "workspace::MoveItemToPaneInDirection",
         { "direction": "right" },
       ],
+    },
+  },
+  {
+    "context": "(Editor && VimControl && !menu) || (OutlinePanel && !editing)",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
     },
   },
 
@@ -396,6 +405,8 @@
       "q": "vim::ToggleRecord",
     },
     "bindings": {
+      "g d": ["editor::GoToDefinition", { "open_results_in": "picker" }],
+      "g i": ["editor::GoToImplementation", { "open_results_in": "picker" }],
       "ctrl-alt-q": "vim::ToggleRecord",
       "ctrl-space": [
         "action::Sequence",
