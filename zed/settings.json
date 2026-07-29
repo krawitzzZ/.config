@@ -215,8 +215,8 @@
   },
   "icon_theme": {
     "mode": "light",
-    "light": "Material Icon Theme",
-    "dark": "Material Icon Theme",
+    "light": "VSCode Icons for Zed (Light)",
+    "dark": "VSCode Icons for Zed (Dark)",
   },
   "session": {
     "trust_all_worktrees": true,
