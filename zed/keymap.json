@@ -44,14 +44,13 @@
       "alt-s": "workspace::SaveWithoutFormat",
       "ctrl-alt-u": "multi_workspace::ToggleWorkspaceSidebar",
       "ctrl-alt-.": "zed::OpenKeymapFile",
-      "ctrl-alt-w": "workspace::CloseActiveDock",
-      "ctrl-alt-o": "workspace::FocusCenterPane",
-      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
-      "ctrl-alt-space": "workspace::CloseAllDocks",
-      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "action::Sequence",
+        ["workspace::CloseActiveDock", "workspace::FocusCenterPane"],
+      ],
       "ctrl-shift-space": [
-        "workspace::SendKeystrokes",
-        "ctrl-alt-space ctrl-alt-shift-=",
+        "action::Sequence",
+        ["workspace::CloseAllDocks", "multi_workspace::CloseWorkspaceSidebar"],
       ],
       "ctrl-shift-tab": "tab_switcher::Toggle",
       "ctrl-alt-shift-x": "zed::Extensions",
@@ -118,12 +117,13 @@
   {
     "context": "Editor && VimControl || EmptyPane",
     "bindings": {
-      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
-      "ctrl-alt-space": "workspace::CloseAllDocks",
-      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "action::Sequence",
+        ["workspace::CloseActiveDock", "workspace::FocusCenterPane"],
+      ],
       "ctrl-shift-space": [
-        "workspace::SendKeystrokes",
-        "ctrl-alt-space ctrl-alt-shift-=",
+        "action::Sequence",
+        ["workspace::CloseAllDocks", "multi_workspace::CloseWorkspaceSidebar"],
       ],
       "space /": "editor::ToggleComments",
       "space q": ["pane::CloseOtherItems", { "close_pinned": false }],
@@ -174,6 +174,8 @@
     "unbind": {
       "tab": "editor::AcceptEditPrediction",
       "alt-tab": "editor::AcceptEditPrediction",
+      "alt-j": "editor::AcceptNextLineEditPrediction",
+      "alt-k": "editor::AcceptNextWordEditPrediction",
     },
     "bindings": {
       "alt-l": "editor::AcceptEditPrediction",
@@ -193,8 +195,8 @@
     "bindings": {
       "alt-\\": "editor::ToggleEditPrediction",
       "shift-escape": "editor::ToggleEditPrediction",
-      "alt-a": "editor::MoveLineUp",
-      "alt-z": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
+      "alt-j": "editor::MoveLineDown",
       "ctrl-w h": "workspace::ActivatePaneLeft",
       "ctrl-w l": "workspace::ActivatePaneRight",
       "ctrl-w k": "workspace::ActivatePaneUp",
@@ -238,12 +240,13 @@
     },
     "bindings": {
       "space": "pane::TogglePreviewTab",
-      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
-      "ctrl-alt-space": "workspace::CloseAllDocks",
-      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "action::Sequence",
+        ["workspace::CloseActiveDock", "workspace::FocusCenterPane"],
+      ],
       "ctrl-shift-space": [
-        "workspace::SendKeystrokes",
-        "ctrl-alt-space ctrl-alt-shift-=",
+        "action::Sequence",
+        ["workspace::CloseAllDocks", "multi_workspace::CloseWorkspaceSidebar"],
       ],
       "e": ["workspace::SendKeystrokes", "enter ctrl-alt-b"],
       "s": "project_panel::OpenSplitHorizontal",
@@ -259,14 +262,21 @@
   {
     "context": "(Dock > GitPanel) && ChangesList",
     "bindings": {
-      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
-      "ctrl-alt-space": "workspace::CloseAllDocks",
-      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
-      "ctrl-shift-space": [
-        "workspace::SendKeystrokes",
-        "ctrl-alt-space ctrl-alt-shift-=",
+      "ctrl-space": [
+        "action::Sequence",
+        ["workspace::CloseActiveDock", "workspace::FocusCenterPane"],
       ],
-      // "q": ["workspace::SendKeystrokes", "ctrl-alt-] alt-q"],
+      "ctrl-shift-space": [
+        "action::Sequence",
+        ["workspace::CloseAllDocks", "multi_workspace::CloseWorkspaceSidebar"],
+      ],
+      // "q": [
+      //   "action::Sequence",
+      //   [
+      //     "workspace::ToggleRightDock",
+      //     ["pane::CloseActiveItem", { "close_pinned": false }],
+      //   ],
+      // ],
       "e": "workspace::FocusCenterPane",
       "f": "git::ViewFile",
       "g": "menu::SecondaryConfirm",
@@ -290,12 +300,13 @@
   {
     "context": "OutlinePanel > Editor",
     "bindings": {
-      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
-      "ctrl-alt-space": "workspace::CloseAllDocks",
-      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "action::Sequence",
+        ["workspace::CloseActiveDock", "workspace::FocusCenterPane"],
+      ],
       "ctrl-shift-space": [
-        "workspace::SendKeystrokes",
-        "ctrl-alt-space ctrl-alt-shift-=",
+        "action::Sequence",
+        ["workspace::CloseAllDocks", "multi_workspace::CloseWorkspaceSidebar"],
       ],
       "ctrl-j": "menu::Cancel",
       "ctrl-n": "menu::Cancel",
@@ -304,12 +315,13 @@
   {
     "context": "OutlinePanel && !editing",
     "bindings": {
-      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
-      "ctrl-alt-space": "workspace::CloseAllDocks",
-      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "action::Sequence",
+        ["workspace::CloseActiveDock", "workspace::FocusCenterPane"],
+      ],
       "ctrl-shift-space": [
-        "workspace::SendKeystrokes",
-        "ctrl-alt-space ctrl-alt-shift-=",
+        "action::Sequence",
+        ["workspace::CloseAllDocks", "multi_workspace::CloseWorkspaceSidebar"],
       ],
       "space": "menu::Confirm",
       "ctrl-k": "menu::Cancel",
@@ -356,8 +368,11 @@
       "ctrl-shift-r": "terminal::RerunTask",
     },
     "bindings": {
-      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
       "ctrl-shift-space": "workspace::CloseAllDocks",
+      "ctrl-space": [
+        "action::Sequence",
+        ["workspace::CloseActiveDock", "workspace::FocusCenterPane"],
+      ],
       "alt-s": "pane::SplitRight",
       "alt-v": "pane::SplitDown",
       "ctrl-s ctrl-h": "pane::SplitLeft",
@@ -381,14 +396,14 @@
       "q": "vim::ToggleRecord",
     },
     "bindings": {
-      "g r": "editor::FindAllReferences",
       "ctrl-alt-q": "vim::ToggleRecord",
-      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
-      "ctrl-alt-space": "workspace::CloseAllDocks",
-      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "action::Sequence",
+        ["workspace::CloseActiveDock", "workspace::FocusCenterPane"],
+      ],
       "ctrl-shift-space": [
-        "workspace::SendKeystrokes",
-        "ctrl-alt-space ctrl-alt-shift-=",
+        "action::Sequence",
+        ["workspace::CloseAllDocks", "multi_workspace::CloseWorkspaceSidebar"],
       ],
     },
   },
@@ -405,6 +420,7 @@
       "<": "vim::PushOutdent",
     },
     "bindings": {
+      "g r": "editor::FindAllReferences",
       "shift-q": "editor::SelectAll",
       "] g": ["workspace::SendKeystrokes", "escape ] c d o"],
       "[ g": ["workspace::SendKeystrokes", "escape [ c d o"],
@@ -456,12 +472,13 @@
   {
     "context": "ThreadsSidebar || (ThreadsSidebar > Editor) || (ThreadsSidebar > ThreadsArchiveView)",
     "bindings": {
-      "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
-      "ctrl-alt-space": "workspace::CloseAllDocks",
-      "ctrl-alt-shift-=": "multi_workspace::CloseWorkspaceSidebar",
+      "ctrl-space": [
+        "action::Sequence",
+        ["workspace::CloseActiveDock", "workspace::FocusCenterPane"],
+      ],
       "ctrl-shift-space": [
-        "workspace::SendKeystrokes",
-        "ctrl-alt-space ctrl-alt-shift-=",
+        "action::Sequence",
+        ["workspace::CloseAllDocks", "multi_workspace::CloseWorkspaceSidebar"],
       ],
       "space": ["workspace::SendKeystrokes", "enter ctrl-alt-shift-="],
       "ctrl-n": "editor::MoveDown",
@@ -587,6 +604,7 @@
     "unbind": {
       "alt-shift-a": "agent::AllowOnce",
       "alt-shift-q": "agent::AllowAlways",
+      "ctrl-alt-a": "agent::OpenPermissionDropdown",
     },
   },
   {
