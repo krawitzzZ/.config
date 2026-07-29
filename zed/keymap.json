@@ -44,7 +44,6 @@
       "alt-s": "workspace::SaveWithoutFormat",
       "ctrl-alt-u": "multi_workspace::ToggleWorkspaceSidebar",
       "ctrl-alt-.": "zed::OpenKeymapFile",
-      "ctrl-alt-9": "editor::OpenExcerpts",
       "ctrl-alt-w": "workspace::CloseActiveDock",
       "ctrl-alt-o": "workspace::FocusCenterPane",
       "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
@@ -155,6 +154,8 @@
     "bindings": {
       "tab": "pane::ActivateNextItem",
       "ctrl-tab": "pane::ActivatePreviousItem",
+      ">": "editor::Indent",
+      "<": "editor::Outdent",
     },
   },
   {
@@ -171,11 +172,11 @@
   {
     "context": "Editor && edit_prediction",
     "unbind": {
+      "tab": "editor::AcceptEditPrediction",
       "alt-tab": "editor::AcceptEditPrediction",
     },
     "bindings": {
       "alt-l": "editor::AcceptEditPrediction",
-      "tab": "editor::AcceptEditPrediction",
     },
   },
 
@@ -273,7 +274,6 @@
       "k": "git_panel::PreviousEntry",
       "s": "git::ToggleStaged",
       "space": "menu::Confirm",
-      "g space": ["workspace::SendKeystrokes", "e ctrl-alt-] ctrl-alt-9"],
       "shift-s": "git::StageAll",
       "ctrl-j": "git_panel::FocusEditor",
       "ctrl-d": "git::RestoreFile",
@@ -381,6 +381,7 @@
       "q": "vim::ToggleRecord",
     },
     "bindings": {
+      "g r": "editor::FindAllReferences",
       "ctrl-alt-q": "vim::ToggleRecord",
       "ctrl-space": ["workspace::SendKeystrokes", "ctrl-alt-w ctrl-alt-o"],
       "ctrl-alt-space": "workspace::CloseAllDocks",
@@ -399,6 +400,10 @@
   },
   {
     "context": "vim_mode == normal",
+    "unbind": {
+      ">": "vim::PushIndent",
+      "<": "vim::PushOutdent",
+    },
     "bindings": {
       "shift-q": "editor::SelectAll",
       "] g": ["workspace::SendKeystrokes", "escape ] c d o"],

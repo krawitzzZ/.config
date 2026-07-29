@@ -43,7 +43,7 @@
         "model": ["grok-4.5", "claude-opus-5", "gpt-5.6-sol"],
       },
       "default_config_options": {
-        "mode": "ask",
+        "mode": "agent",
         "effort": "medium",
         "fast": "false",
         "reasoning": "medium",
