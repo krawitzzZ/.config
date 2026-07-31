@@ -7,27 +7,6 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "context_servers": {
-    "GitLab": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote@latest",
-        "https://gitlab.franka.de/api/v4/mcp",
-      ],
-      "env": {},
-    },
-    "Jenkins-HLSW": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote@latest",
-        "https://jenkins-hlsw.fe.lan/mcp-server/mcp",
-        "--header",
-        "Authorization: Basic ${JENKINS_HLSW_AUTH_TOKEN_BASE64}",
-      ],
-    },
-  },
   "ui_font_weight": 500.0,
   "auto_install_extensions": {
     "codebook": true,
@@ -89,7 +68,7 @@
     },
     "cursor": {
       "favorite_config_option_values": {
-        "model": ["composer-2.5", "grok-4.5", "default", "claude-opus-4-8"],
+        "model": ["composer-2.5", "grok-4.5", "default", "claude-opus-5"],
       },
       "default_config_options": {
         "mode": "agent",
@@ -364,6 +343,30 @@
         "font_weight": "bold",
       },
     ],
+  },
+
+  /// MCP
+
+  "context_servers": {
+    "GitLab": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://gitlab.franka.de/api/v4/mcp",
+      ],
+      "env": {},
+    },
+    "Jenkins-HLSW": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://jenkins-hlsw.fe.lan/mcp-server/mcp",
+        "--header",
+        "Authorization: Basic ${JENKINS_HLSW_AUTH_TOKEN_BASE64}",
+      ],
+    },
   },
 
   /// languages
