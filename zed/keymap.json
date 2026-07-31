@@ -154,6 +154,11 @@
     "bindings": {
       "tab": "pane::ActivateNextItem",
       "ctrl-tab": "pane::ActivatePreviousItem",
+    },
+  },
+  {
+    "context": "Editor && !menu && VimControl && vim_mode != operator",
+    "bindings": {
       ">": "editor::Indent",
       "<": "editor::Outdent",
     },
@@ -194,6 +199,7 @@
     },
     "bindings": {
       "alt-\\": "editor::ToggleEditPrediction",
+      "alt-h": "editor::ToggleEditPrediction",
       "shift-escape": "editor::ToggleEditPrediction",
       "alt-k": "editor::MoveLineUp",
       "alt-j": "editor::MoveLineDown",
@@ -391,6 +397,12 @@
     },
   },
 
+  {
+    "context": "vim_operator == c",
+    "bindings": {
+      "space": "editor::Rename",
+    },
+  },
   {
     "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
     "bindings": {
