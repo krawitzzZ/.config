@@ -613,13 +613,17 @@
   {
     "context": "AcpThread > Editor",
     "unbind": {
+      "ctrl-;": "agent::OpenAddContextMenu",
       "ctrl-alt-'": "agent::ToggleThinkingEffortMenu",
       "alt-shift-z": "agent::RejectAll",
       "alt-shift-y": "agent::KeepAll",
+      "ctrl-alt-k": "agent::ToggleThinkingMode",
     },
     "bindings": {
       "alt-shift-d": "agent::KeepAll",
       "alt-shift-r": "agent::RejectAll",
+      "ctrl-l ctrl-c": "agent::OpenAddContextMenu",
+      "ctrl-l ctrl-t": "agent::ToggleThinkingEffortMenu",
     },
   },
   {
@@ -628,6 +632,10 @@
       "alt-shift-a": "agent::AllowOnce",
       "alt-shift-q": "agent::AllowAlways",
       "ctrl-alt-a": "agent::OpenPermissionDropdown",
+      "ctrl-alt-/": "agent::ToggleModelSelector",
+    },
+    "bindings": {
+      "ctrl-l ctrl-m": "agent::ToggleModelSelector",
     },
   },
   {
