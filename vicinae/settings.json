@@ -82,7 +82,7 @@
     "applications:dev.zed.Zed",
     "applications:cursor",
     "applications:msedge-ompifgpmddkgmclendfeacglnodjjndh-Profile_1",
-    "clipboard:history"
+    "//clipboard:history"
   ],
   "fallbacks": ["files:search"]
 }

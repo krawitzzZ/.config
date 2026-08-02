@@ -71,6 +71,7 @@
         "model": ["composer-2.5", "grok-4.5", "default", "claude-opus-5"],
       },
       "default_config_options": {
+        "context": "1m",
         "mode": "agent",
         "effort": "high",
         "fast": "false",
@@ -160,7 +161,8 @@
     "default_width": 450.0,
   },
   "edit_predictions": {
-    "provider": "codestral",
+    "mode": "subtle",
+    "provider": "copilot",
     "allow_data_collection": "no",
     "open_ai_compatible_api": {
       "max_output_tokens": 32,
