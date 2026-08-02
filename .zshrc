@@ -170,7 +170,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
 else
-  export EDITOR='hx'
+  export EDITOR='nevi'
 fi
 
 # Compilation flags
@@ -286,12 +286,12 @@ alias nci='npm ci'
 alias nr='npm run'
 alias ld='lazydocker'
 alias lg='lazygit'
-alias h='hx .'
 alias zz='zed -n'
 alias zz.='zed -n .'
-alias hz='hx ~/.zshrc'
-alias hc='hx ~/.config'
-alias hs='hx ~/.ssh/config'
+alias e='$EDITOR'
+alias vn='nevi'
+alias vz='nevi ~/.zshrc'
+alias vc='nevi ~/.config'
 alias sz='source $Z'
 
 # autostart ssh-agent
@@ -306,13 +306,11 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
 fi
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
 [ -f "/home/nikita_demin/.ghcup/env" ] && . "/home/nikita_demin/.ghcup/env" # ghcup-env
 
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
-# . "$HOME/bin/env"
 . "$HOME/.cargo/env"
 
 eval "$(starship init zsh)"
