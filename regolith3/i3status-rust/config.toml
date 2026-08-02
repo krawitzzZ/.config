@@ -33,17 +33,20 @@ block = "keyboard_layout"
 driver = "sway"
 format = " $layout "
 [block.mappings]
-"English (US)" = "EN"
-"Russian (N/A)" = "RU"
+"English (US)" = "English"
+"Russian (N/A)" = "Russian"
 
+# SwayNotificationCenter: left click opens the panel, right click toggles DND.
 [[block]]
-block = "rofication"
-interval = 1
-socket_path = "/tmp/rofi_notification_daemon"
-format = " $icon $num.eng(w:1) "
+block = "notify"
+driver = "swaync"
+format = " $icon {$notification_count.eng(w:1) |} "
 [[block.click]]
 button = "left"
-cmd = "ilia -p notifications"
+action = "show"
+[[block.click]]
+button = "right"
+action = "toggle_paused"
 
 [[block]]
 block = "temperature"

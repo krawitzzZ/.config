@@ -16,6 +16,10 @@ wm.hide_cursor.show_when_typing: enable
 
 wm.bar.status_config: /home/nikita_demin/.config/regolith3/i3status-rust/config.toml
 
+! Replaces Regolith's default rofication-daemon + ilia notification viewer.
+wm.program.notifications: /usr/local/bin/swaync
+wm.program.notification_ui: /usr/local/bin/swaync-client -t -sw
+
 wm.client.focused.color.border:         #4C7899
 wm.client.focused.color.background:     #285577
 wm.client.focused.color.text:           #FFFFFF

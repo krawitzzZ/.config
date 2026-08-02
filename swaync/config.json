@@ -1,0 +1,70 @@
+{
+  "$schema": "/etc/xdg/swaync/configSchema.json",
+
+  "positionX": "right",
+  "positionY": "top",
+  "layer": "overlay",
+  "layer-shell": true,
+  "control-center-layer": "top",
+  "cssPriority": "user",
+
+  "timeout": 8,
+  "timeout-low": 4,
+  "timeout-critical": 0,
+  "transition-time": 200,
+
+  "notification-window-width": 460,
+  "notification-icon-size": 64,
+  "notification-body-image-height": 180,
+  "notification-body-image-width": 360,
+  "image-visibility": "when-available",
+  "notification-inline-replies": true,
+  "notification-2fa-action": true,
+
+  "control-center-width": 480,
+  "control-center-height": 700,
+  "control-center-margin-top": 4,
+  "control-center-margin-right": 4,
+  "control-center-margin-bottom": 4,
+  "fit-to-screen": false,
+  "relative-timestamps": true,
+  "keyboard-shortcuts": true,
+  "hide-on-clear": false,
+  "hide-on-action": true,
+  "text-empty": "Nothing to see here",
+
+  "script-fail-notify": true,
+  "scripts": {
+    "sound-critical": {
+      "exec": "canberra-gtk-play -i dialog-warning",
+      "urgency": "Critical"
+    },
+    "sound-normal": {
+      "exec": "canberra-gtk-play -i message-new-instant",
+      "urgency": "Normal",
+      "app-name": "^(?!(Spotify|mpv|VLC media player|Rhythmbox)$).+"
+    }
+  },
+
+  "widgets": [
+    "title",
+    "dnd",
+    "mpris",
+    "notifications"
+  ],
+  "widget-config": {
+    "title": {
+      "text": "Notifications",
+      "clear-all-button": true,
+      "button-text": "Clear All"
+    },
+    "dnd": {
+      "text": "Do Not Disturb"
+    },
+    "mpris": {
+      "image-size": 88,
+      "image-radius": 10,
+      "blacklist": []
+    }
+  }
+}
