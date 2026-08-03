@@ -4,9 +4,9 @@
 # Sibling worktrees: ~/code/myproject.feature-auth
 worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
 
-# --- LLM commit / squash / branch summaries (opencode is installed) ---
+# --- LLM commit / squash / branch summaries (Cursor agent CLI is installed) ---
 [commit.generation]
-command = "timeout --foreground --kill-after=5s 90s opencode run --pure -m opencode/deepseek-v4-flash-free | python3 ~/.config/worktrunk/plain-commit-message.py"
+command = "timeout --foreground --kill-after=5s 90s agent -p --trust --mode ask --model composer-2.5 | python3 ~/.config/worktrunk/plain-commit-message.py"
 template = """
 <task>
 Generate the Git commit message for the staged diff. Analyze silently.
@@ -165,9 +165,8 @@ wt switch {{ args }} -x zed -- '{% raw %}{{ worktree_path }}{% endraw %}' \
   || wt switch --create {{ args }} -x zed -- '{% raw %}{{ worktree_path }}{% endraw %}'
 '''
 
-# Agents in a fresh worktree (Cursor Agent / OpenCode)
+# Agents in a fresh worktree (Cursor Agent)
 new-agent = "wt switch --create {{ args }} -x agent"
-new-oc = "wt switch --create {{ args }} -x opencode"
 
 # Per-worktree port (pair with Vite/webpack/warp/etc. --port)
 port = "echo {{ branch | hash_port }}"

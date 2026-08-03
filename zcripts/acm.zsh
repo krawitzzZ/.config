@@ -1,7 +1,7 @@
-# AI commit via git + OpenCode (no worktrunk).
+# AI commit via git + Cursor Agent (no worktrunk).
 # Stages → builds prompt from staged diff + branch + the same rules as
 # ~/.config/worktrunk/config.toml [commit.generation].template-append →
-# opencode → git commit.
+# agent → git commit.
 #
 # Usage:
 #   acm
@@ -12,6 +12,7 @@ acm() {
   setopt local_options pipe_fail
 
   local stage=all dry_run=0
+
   local arg
   for arg in "$@"; do
     case "$arg" in
@@ -32,8 +33,8 @@ acm() {
     print -r -- "acm: git not found." >&2
     return 1
   }
-  command -v opencode >/dev/null 2>&1 || {
-    print -r -- "acm: opencode not found." >&2
+  command -v agent >/dev/null 2>&1 || {
+    print -r -- "acm: agent (Cursor CLI) not found." >&2
     return 1
   }
   command -v python3 >/dev/null 2>&1 || {
@@ -153,12 +154,12 @@ Repo: ${repo}
 </context>
 "
 
-  local model="opencode/deepseek-v4-flash-free"
+  local model="composer-2.5"
   local message_filter="${XDG_CONFIG_HOME:-$HOME/.config}/worktrunk/plain-commit-message.py"
   local -a llm_cmd
   llm_cmd=(
     timeout --foreground --kill-after=5s 90s
-    opencode run --pure -m "$model"
+    agent -p --trust --mode ask --model "$model"
   )
   [[ -f "$message_filter" ]] || {
     print -r -- "acm: missing commit-message filter at $message_filter" >&2
@@ -181,9 +182,9 @@ Repo: ${repo}
   raw_response=$(print -r -- "$prompt" | "${llm_cmd[@]}") || {
     local status=$?
     if (( status == 124 || status == 137 )); then
-      print -r -- "acm: opencode timed out after 90 seconds." >&2
+      print -r -- "acm: agent timed out after 90 seconds." >&2
     else
-      print -r -- "acm: opencode failed (exit $status)." >&2
+      print -r -- "acm: agent failed (exit $status)." >&2
     fi
     return 1
   }
@@ -205,7 +206,7 @@ Repo: ${repo}
   message=${message%%[$' \t\n']##}
 
   if [[ -z "$message" ]]; then
-    print -r -- "acm: empty commit message from opencode." >&2
+    print -r -- "acm: empty commit message from agent." >&2
     return 1
   fi
 

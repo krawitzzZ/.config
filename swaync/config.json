@@ -46,12 +46,7 @@
     }
   },
 
-  "widgets": [
-    "title",
-    "dnd",
-    "mpris",
-    "notifications"
-  ],
+  "widgets": ["title", "dnd", "notifications"],
   "widget-config": {
     "title": {
       "text": "Notifications",
