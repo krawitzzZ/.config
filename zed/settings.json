@@ -68,13 +68,19 @@
     },
     "cursor": {
       "favorite_config_option_values": {
-        "model": ["composer-2.5", "grok-4.5", "default", "claude-opus-5"],
+        "model": [
+          "composer-2.5",
+          "grok-4.5",
+          "default",
+          "claude-opus-5",
+          "kimi-k3",
+        ],
       },
       "default_config_options": {
         "thinking": "true",
         "context": "1m",
         "mode": "agent",
-        "effort": "high",
+        "effort": "medium",
         "fast": "false",
         "reasoning": "medium",
         "model": "composer-2.5",
@@ -370,6 +376,15 @@
         "Authorization: Basic ${JENKINS_HLSW_AUTH_TOKEN_BASE64}",
       ],
     },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--browser=chrome",
+        "--headless",
+      ],
+    },
   },
 
   /// languages
@@ -573,7 +588,7 @@
             "linkTarget": "https://ar2019test.sharepoint.com/:w:/r/sites/FrankaRDProducts/_layouts/15/Doc.aspx?sourcedoc=%7B68BB2AD6-9A89-4771-83CA-2EFE07589561%7D&file=SysDD_IF_External.docx",
           },
           {
-            "linkPattern": "(safety-config)",
+            "linkPattern": "(safety-config)(?!-)",
             "linkTarget": "https://ar2019test.sharepoint.com/:w:/r/sites/FrankaRDProducts/_layouts/15/Doc.aspx?sourcedoc=%7B6C758D33-3879-48FB-88FC-23CA3B035C29%7D&file=Safety_Configuration_Concept.docx",
           },
         ],
