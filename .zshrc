@@ -2,6 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 setopt ignore_eof
+setopt rm_star_silent
 
 # Load local secrets/env (.env syntax).
 if [[ -f "$HOME/.config/.zenv" ]]; then
@@ -155,7 +156,13 @@ plugins=(
 )
 
 zstyle :omz:plugins:ssh-agent agent-forwarding yes
-zstyle :omz:plugins:ssh-agent identities franka gh gh_franka gh gitlab
+zstyle :omz:plugins:ssh-agent identities franka gh gh_franka gitlab
+
+# GNOME keyring no longer serves SSH (pkcs11/secrets only); session still
+# exports $XDG_RUNTIME_DIR/keyring/ssh which nothing listens on. Prefer gcr.
+if [[ "$SSH_AUTH_SOCK" == */keyring/ssh && -S "${XDG_RUNTIME_DIR}/gcr/ssh" ]]; then
+  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gcr/ssh"
+fi
 
 source $ZSH/oh-my-zsh.sh
 

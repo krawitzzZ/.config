@@ -83,7 +83,7 @@
         "effort": "medium",
         "fast": "false",
         "reasoning": "medium",
-        "model": "composer-2.5",
+        "model": "grok-4.5",
       },
       "type": "registry",
     },
@@ -127,6 +127,11 @@
   "seed_search_query_from_cursor": "selection",
   "use_smartcase_search": true,
   "agent": {
+    "default_model": {
+      "provider": "opencode",
+      "model": "free/big-pickle",
+      "enable_thinking": false,
+    },
     "dock": "left",
     "flexible": false,
     "terminal_init_command": "",
