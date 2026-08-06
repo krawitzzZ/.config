@@ -222,6 +222,7 @@
   "format_on_save": "modifications_if_available",
   "code_actions_on_format": {
     "source.fixAll.eslint": true,
+    // "source.organizeImports": true,
   },
   "vim": {
     "cursor_shape": {
