@@ -6,7 +6,9 @@ worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
 
 # --- LLM commit / squash / branch summaries (Cursor agent CLI is installed) ---
 [commit.generation]
-command = "timeout --foreground --kill-after=5s 90s agent -p --trust --mode ask --model composer-2.5 | python3 ~/.config/worktrunk/plain-commit-message.py"
+# Strip lockfile diffs before the agent so huge package-lock / Cargo.lock / etc.
+# hunks never enter the model context (see strip-lockfile-prompt.py).
+command = "python3 ~/.config/worktrunk/strip-lockfile-prompt.py | timeout --foreground --kill-after=5s 90s agent -p --trust --mode ask --model composer-2.5 | python3 ~/.config/worktrunk/plain-commit-message.py"
 template = """
 <task>
 Generate the Git commit message for the staged diff. Analyze silently.

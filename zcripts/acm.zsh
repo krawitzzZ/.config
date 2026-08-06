@@ -2,6 +2,8 @@
 # Stages → builds prompt from staged diff + branch + the same rules as
 # ~/.config/worktrunk/config.toml [commit.generation].template-append →
 # agent → git commit.
+# Lockfile diffs (package-lock.json, Cargo.lock, go.sum, …) are omitted from
+# the prompt via strip-lockfile-prompt.py — same allowlist as worktrunk.
 #
 # Usage:
 #   acm
@@ -116,10 +118,48 @@ PY
     return 1
   fi
 
+  # Same lockfile filter as worktrunk commit.generation — exclude from git
+  # pathspecs so huge lock diffs never enter the shell/prompt in the first place.
+  local strip_lockfiles="${XDG_CONFIG_HOME:-$HOME/.config}/worktrunk/strip-lockfile-prompt.py"
+  [[ -f "$strip_lockfiles" ]] || {
+    [[ -n "$index_backup" ]] && cp "$index_backup" "$index_path"
+    rm -f "$index_backup"
+    print -r -- "acm: missing lockfile filter at $strip_lockfiles" >&2
+    return 1
+  }
+
+  local -a lock_excludes
+  lock_excludes=("${(@f)$(python3 "$strip_lockfiles" --git-excludes)}") || {
+    [[ -n "$index_backup" ]] && cp "$index_backup" "$index_path"
+    rm -f "$index_backup"
+    print -r -- "acm: failed to load lockfile pathspecs." >&2
+    return 1
+  }
+
   local git_diff git_diff_stat repo
-  git_diff=$(git diff --cached)
-  git_diff_stat=$(git diff --cached --stat)
+  # Pathspec: include everything, then exclude lockfiles (git requires a
+  # positive path before :(exclude…)).
+  git_diff=$(git diff --cached -- . "${lock_excludes[@]}")
+  git_diff_stat=$(git diff --cached --stat -- . "${lock_excludes[@]}")
   repo=$(basename "$(git rev-parse --show-toplevel)")
+
+  # Brief note when lockfiles changed but were omitted from the prompt.
+  local omitted_lockfiles=""
+  local omitted_list
+  omitted_list=$(git diff --cached --name-only | python3 "$strip_lockfiles" --filter-names)
+  if [[ -n "$omitted_list" ]]; then
+    omitted_lockfiles="
+<omitted-lockfiles>
+Dependency lockfile diffs were omitted from the prompt to save context. They are still part of the commit; do not invent lockfile details. Files:
+$(print -r -- "$omitted_list" | sed 's/^/- /')
+</omitted-lockfiles>
+"
+  fi
+
+  if [[ -z "$git_diff" && -n "$omitted_lockfiles" ]]; then
+    git_diff="(no non-lockfile changes; see omitted-lockfiles note)"
+    git_diff_stat="(lockfile-only commit)"
+  fi
 
   if [[ -n "$index_backup" ]]; then
     cp "$index_backup" "$index_path"
@@ -151,7 +191,7 @@ ${git_diff}
 <context>
 Branch: ${branch}
 Repo: ${repo}
-</context>
+${omitted_lockfiles}</context>
 "
 
   local model="composer-2.5"
