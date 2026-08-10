@@ -138,6 +138,7 @@
       "space o t": "terminal_panel::ToggleFocus",
       "space o a": "agent::ToggleFocus",
       "space o b": "outline_panel::ToggleFocus",
+      "space o c": "collab_panel::ToggleFocus",
       "space o d": "diagnostics::Deploy",
       "space o D": "debug_panel::ToggleFocus",
       "space o e": "project_panel::ToggleFocus",
