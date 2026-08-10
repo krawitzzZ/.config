@@ -1,0 +1,114 @@
+# Nevi Language Configuration
+# Configure per-language settings like formatters and tab width.
+# If no formatter is specified, nevi falls back to LSP formatting.
+#
+# Placeholder: {file} - replaced with the full file path
+#
+# Example configurations are commented out below.
+# Uncomment and modify to enable.
+
+# ============================================================================
+# TYPESCRIPT / JAVASCRIPT (Biome - fast Rust-native formatter)
+# ============================================================================
+# [typescript]
+# formatter = { command = "biome", args = ["format", "--stdin-file-path", "{file}"] }
+# tab_width = 2
+#
+# [javascript]
+# formatter = { command = "biome", args = ["format", "--stdin-file-path", "{file}"] }
+# tab_width = 2
+#
+# [tsx]
+# formatter = { command = "biome", args = ["format", "--stdin-file-path", "{file}"] }
+# tab_width = 2
+#
+# [jsx]
+# formatter = { command = "biome", args = ["format", "--stdin-file-path", "{file}"] }
+# tab_width = 2
+
+# ============================================================================
+# TYPESCRIPT / JAVASCRIPT (Oxfmt - fastest, ~2x faster than Biome)
+# Install: npm install -g oxfmt
+# ============================================================================
+# [typescript]
+# formatter = { command = "oxfmt", args = ["--stdin-filepath={file}"] }
+# tab_width = 2
+#
+# [javascript]
+# formatter = { command = "oxfmt", args = ["--stdin-filepath={file}"] }
+# tab_width = 2
+#
+# [tsx]
+# formatter = { command = "oxfmt", args = ["--stdin-filepath={file}"] }
+# tab_width = 2
+#
+# [jsx]
+# formatter = { command = "oxfmt", args = ["--stdin-filepath={file}"] }
+# tab_width = 2
+
+# ============================================================================
+# TYPESCRIPT / JAVASCRIPT (Prettier - if you prefer)
+# ============================================================================
+# [typescript]
+# formatter = { command = "prettier", args = ["--stdin-filepath", "{file}"] }
+# tab_width = 2
+#
+# [javascript]
+# formatter = { command = "prettier", args = ["--stdin-filepath", "{file}"] }
+# tab_width = 2
+
+# ============================================================================
+# PYTHON (Black formatter)
+# ============================================================================
+# [python]
+# formatter = { command = "black", args = ["-", "--stdin-filename", "{file}"] }
+# tab_width = 4
+
+# ============================================================================
+# CSS / SCSS (Oxfmt)
+# ============================================================================
+# [css]
+# formatter = { command = "oxfmt", args = ["--stdin-filepath={file}"] }
+# tab_width = 2
+#
+# [scss]
+# formatter = { command = "oxfmt", args = ["--stdin-filepath={file}"] }
+# tab_width = 2
+
+# ============================================================================
+# CSS / SCSS (Prettier)
+# ============================================================================
+# [css]
+# formatter = { command = "prettier", args = ["--stdin-filepath", "{file}"] }
+# tab_width = 2
+#
+# [scss]
+# formatter = { command = "prettier", args = ["--stdin-filepath", "{file}"] }
+# tab_width = 2
+
+# ============================================================================
+# JSON (Oxfmt)
+# ============================================================================
+# [json]
+# formatter = { command = "oxfmt", args = ["--stdin-filepath={file}"] }
+# tab_width = 2
+
+# ============================================================================
+# JSON (Prettier)
+# ============================================================================
+# [json]
+# formatter = { command = "prettier", args = ["--stdin-filepath", "{file}"] }
+# tab_width = 2
+
+# ============================================================================
+# RUST (uses rust-analyzer LSP by default - no external formatter needed)
+# ============================================================================
+# [rust]
+# tab_width = 4
+
+# ============================================================================
+# GO
+# ============================================================================
+# [go]
+# formatter = { command = "gofmt", args = [] }
+# tab_width = 4
