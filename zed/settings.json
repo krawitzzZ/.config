@@ -293,7 +293,6 @@
       "editor.document_highlight.read_background": "#0969da3b",
       "editor.document_highlight.write_background": "#0969da28",
       "editor.active_line.background": "#0969da1f",
-      "editor.active_line_number": "#0969da",
       "editor.line_number": "#8c959f",
       "syntax": {
         "comment": { "font_style": "italic" },
@@ -308,13 +307,12 @@
 
         "type.builtin": { "font_weight": 700 },
         // "type": { "color": "#5050d5", "font_weight": 700 },
-        // "namespace": { "color": "#5050d5", "font_weight": 700 },
+        "namespace": { "color": "#5050d5", "font_weight": 700 },
         // "attribute": { "color": "#5050d5", "font_weight": 700 },
       },
     },
     "GitHub Dark": {
       "editor.active_line.background": "#58a6ff1a",
-      "editor.active_line_number": "#58a6ff",
       "editor.line_number": "#6e7681",
       "syntax": {
         "comment": { "font_style": "italic" },
@@ -328,9 +326,9 @@
         "constant.builtin": { "font_style": "italic" },
 
         "type.builtin": { "font_weight": 700 },
-        // "type": { "color": "#6c6cf6", "font_weight": 700 },
-        // "namespace": { "color": "#6c6cf6", "font_weight": 700 },
-        // "attribute": { "color": "#6c6cf6", "font_weight": 700 },
+        // "type": { "color": "#aa6bf6", "font_weight": 700 },
+        "namespace": { "color": "#aa6bf6", "font_weight": 700 },
+        // "attribute": { "color": "#aa6bf6", "font_weight": 700 },
       },
     },
   },
@@ -350,11 +348,31 @@
         "font_weight": "bold",
       },
       {
+        "token_type": "typeParameter",
+        "font_weight": "bold",
+      },
+      {
         "token_type": "namespace",
         "font_weight": "bold",
       },
       {
         "token_type": "class",
+        "font_weight": "bold",
+      },
+      {
+        "token_type": "struct",
+        "font_weight": "bold",
+      },
+      {
+        "token_type": "interface",
+        "font_weight": "bold",
+      },
+      {
+        "token_type": "enum",
+        "font_weight": "bold",
+      },
+      {
+        "token_type": "decorator",
         "font_weight": "bold",
       },
     ],
