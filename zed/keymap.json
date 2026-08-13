@@ -24,6 +24,7 @@
     "context": "Workspace",
     "unbind": {
       "alt-t": "task::Rerun",
+      "ctrl-?": "agent::ToggleFocus",
       "ctrl-`": "terminal_panel::Toggle",
       "ctrl-n": "workspace::NewFile",
       "ctrl-w": "workspace::CloseActiveDock",
@@ -147,6 +148,15 @@
       "space o u": "multi_workspace::ToggleWorkspaceSidebar",
       "space o r": "projects::OpenRecent",
       "space o R": "agent::OpenAgentDiff",
+    },
+  },
+  {
+    "context": "Editor && mode == full",
+    "unbind": {
+      "ctrl->": "agent::AddSelectionToThread",
+    },
+    "bindings": {
+      "ctrl-?": "agent::AddSelectionToThread",
     },
   },
 
@@ -394,6 +404,7 @@
   {
     "context": "Terminal",
     "unbind": {
+      "ctrl->": "agent::AddSelectionToThread",
       "alt-t": "terminal::RerunTask",
       "ctrl-shift-r": "terminal::RerunTask",
     },
@@ -405,6 +416,7 @@
       ],
       "alt-s": "pane::SplitRight",
       "alt-v": "pane::SplitDown",
+      "ctrl-?": "agent::AddSelectionToThread",
       "ctrl-s ctrl-h": "pane::SplitLeft",
       "ctrl-s ctrl-j": "pane::SplitDown",
       "ctrl-s ctrl-k": "pane::SplitUp",
@@ -426,6 +438,13 @@
     },
   },
 
+  {
+    "context": "(VimControl && !menu) || (!Editor && !Terminal)",
+    "bindings": {
+      "ctrl->": "vim::ResizePaneRight",
+      "ctrl-<": "vim::ResizePaneLeft",
+    },
+  },
   {
     "context": "VimControl && !menu",
     "unbind": {
@@ -459,6 +478,7 @@
     },
     "bindings": {
       "g r": "editor::FindAllReferences",
+      "g R": ["editor::FindAllReferences", { "open_results_in": "picker" }],
       "shift-q": "editor::SelectAll",
       "] g": ["workspace::SendKeystrokes", "escape ] c d o"],
       "[ g": ["workspace::SendKeystrokes", "escape [ c d o"],
@@ -644,6 +664,7 @@
   {
     "context": "AcpThread",
     "unbind": {
+      "ctrl->": "agent::AddSelectionToThread",
       "alt-shift-a": "agent::AllowOnce",
       "alt-shift-q": "agent::AllowAlways",
       "ctrl-alt-a": "agent::OpenPermissionDropdown",
