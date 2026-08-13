@@ -314,6 +314,20 @@
   },
 
   {
+    "context": "CollabPanel > Editor",
+    "bindings": {
+      "ctrl-space": [
+        "action::Sequence",
+        ["workspace::CloseActiveDock", "workspace::FocusCenterPane"],
+      ],
+      "ctrl-shift-space": [
+        "action::Sequence",
+        ["workspace::CloseAllDocks", "multi_workspace::CloseWorkspaceSidebar"],
+      ],
+    },
+  },
+
+  {
     "context": "OutlinePanel > Editor",
     "bindings": {
       "ctrl-space": [

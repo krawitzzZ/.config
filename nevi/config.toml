@@ -342,6 +342,16 @@ key = "Y"
 action = "\"+y"
 desc = "Yank to system clipboard"
 
+[[keymap.leader_mappings]]
+key = "bn"
+action = ":bn"
+desc = "Next buffer"
+
+[[keymap.leader_mappings]]
+key = "bp"
+action = ":bp"
+desc = "Previous buffer"
+
 # Leader key is not processed in visual mode, so use plain Shift+Y there.
 # Note: nevi always syncs yanks to the system clipboard (clipboard=unnamedplus
 # behavior), so plain `y` on a selection already copies to the clipboard.

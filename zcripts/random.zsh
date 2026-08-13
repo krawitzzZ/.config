@@ -31,10 +31,6 @@ cleanupCursor() {
     rm -rf ~/.local/share/zed/db/0-stable/db.sqlite* || true
 }
 
-reviewers() {
-    echo "@simon.gabl @stefan.loibl @carlo.cagnetta @james.browne @noyan.sahin @moritz.martens @david.kraus @imdad.hussain @olha.todorashko @frank.dedden @michaela.frodlova @shu.lo"
-}
-
 whatOnPort() {
   local port="$1"
 

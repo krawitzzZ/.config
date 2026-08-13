@@ -73,7 +73,7 @@
           "grok-4.5",
           "default",
           "kimi-k3",
-          "gemini-3.1-pro"
+          "gemini-3.1-pro",
         ],
       },
       "default_config_options": {
@@ -82,8 +82,8 @@
         "mode": "agent",
         "effort": "medium",
         "fast": "false",
-        "reasoning": "medium",
-        "model": "kimi-k3",
+        "reasoning": "high",
+        "model": "grok-4.5",
       },
       "type": "registry",
     },
@@ -141,7 +141,7 @@
     "model_parameters": [],
   },
   "collaboration_panel": {
-    "button": false,
+    "button": true,
     "default_width": 450.0,
   },
   "git_panel": {
@@ -364,7 +364,7 @@
 
   "context_servers": {
     "GitLab": {
-      "enabled": true,
+      "enabled": false,
       "command": "npx",
       "args": [
         "-y",
@@ -388,7 +388,7 @@
       "args": [
         "-y",
         "@playwright/mcp@latest",
-        "--browser=chrome",
+        "--browser=chromium",
         "--headless",
       ],
     },
