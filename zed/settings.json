@@ -282,6 +282,7 @@
     "ff": "editor::Format",
     "fw": "workspace::FormatAndSave",
     "gd": "git::DiffBranch",
+    "oi": "editor::OrganizeImports",
     "tt": "theme::ToggleMode",
     "wo": "workspace::Open",
     "wr": "workspace::Reload",
@@ -303,7 +304,7 @@
         "emphasis": { "font_style": "italic" },
 
         "boolean": { "font_style": "italic" },
-        "constant.builtin": { "font_style": "italic" },
+        "constant.builtin": { "color": "#0550ae", "font_style": "italic" },
 
         "type.builtin": { "font_weight": 700 },
         // "type": { "color": "#5050d5", "font_weight": 700 },
@@ -323,7 +324,7 @@
         "emphasis": { "font_style": "italic" },
 
         "boolean": { "font_style": "italic" },
-        "constant.builtin": { "font_style": "italic" },
+        "constant.builtin": { "color": "#79c0ff", "font_style": "italic" },
 
         "type.builtin": { "font_weight": 700 },
         // "type": { "color": "#aa6bf6", "font_weight": 700 },
@@ -420,6 +421,11 @@
       "formatter": "language_server",
       "format_on_save": "modifications_if_available",
     },
+    "Lua": {
+      "tab_size": 2,
+      "formatter": "language_server",
+      "format_on_save": "modifications_if_available",
+    },
     "Rust": {
       "formatter": "language_server",
       "format_on_save": "modifications_if_available",
@@ -463,10 +469,37 @@
   /// LSP
 
   "lsp": {
+    // Same as VS Code `typescript.preferences.importModuleSpecifier`.
+    // Default is "shortest", which with tsconfig `baseUrl` emits
+    // `from 'hooks/foo'` instead of `from '../../hooks/foo'`.
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "preferences": { "importModuleSpecifier": "relative" },
+        },
+        "javascript": {
+          "preferences": { "importModuleSpecifier": "relative" },
+        },
+      },
+    },
+    "typescript-language-server": {
+      "initialization_options": {
+        "preferences": { "importModuleSpecifierPreference": "relative" },
+      },
+    },
     "hls": {
       "initialization_options": {
         "haskell": {
           "formattingProvider": "fourmolu",
+        },
+      },
+    },
+    "lua-language-server": {
+      "settings": {
+        "Lua": {
+          "format": {
+            "enable": true,
+          },
         },
       },
     },

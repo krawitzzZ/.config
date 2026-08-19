@@ -8,6 +8,8 @@ return {
   { key = 'Tab',        mods = 'CTRL',           action = act.ActivateTabRelative(1) },
   { key = 'h',          mods = 'CTRL|ALT',       action = act.ActivateTabRelative(-1) },
   { key = 'l',          mods = 'CTRL|ALT',       action = act.ActivateTabRelative(1) },
+  { key = 'H',          mods = 'SHIFT|CTRL',     action = act.ActivateTabRelative(-1) },
+  { key = 'L',          mods = 'SHIFT|CTRL',     action = act.ActivateTabRelative(1) },
   { key = 'v',          mods = 'ALT',            action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
   { key = 'v',          mods = 'CTRL|ALT',       action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
   { key = 's',          mods = 'ALT',            action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },

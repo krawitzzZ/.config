@@ -186,6 +186,7 @@ fi
 # handy variables
 export CONFIG="$HOME/.config"
 export Z="$HOME/.zshrc"
+export PI="192.168.0.15"
 
 export COLORTERM=truecolor
 export TERM=xterm-256color

@@ -6,7 +6,7 @@
 # ============================================================================
 # EDITOR SETTINGS
 # ============================================================================
-# [editor]
+[editor]
 tab_width = 2              # Spaces per tab
 line_numbers = true        # Show line numbers
 relative_numbers = true   # Show relative line numbers
