@@ -4,7 +4,7 @@
 	ui = true
 [user]
 	name = Nikita Demin
-	email = work@email.com
+	email = nikita.demin@franka.de
 [includeIf "gitdir:~/personal/"]
 	path = ~/personal/.gitconfig
 [includeIf "gitdir:~/config/"]

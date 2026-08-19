@@ -174,7 +174,7 @@
   },
   "edit_predictions": {
     "mode": "subtle",
-    "provider": "copilot",
+    "provider": "codestral",
     "allow_data_collection": "no",
     "open_ai_compatible_api": {
       "max_output_tokens": 32,
