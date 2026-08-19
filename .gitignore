@@ -17,6 +17,7 @@
 !.gitconfig_personal
 !.gitconfig_work
 !.gitignore
+!.dockerignore
 !.zshrc
 !/install.sh
 !/bootstrap.sh

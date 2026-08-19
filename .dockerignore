@@ -1,0 +1,7 @@
+.zenv
+.env
+**/.env
+**/*.pem
+**/*.key
+red/sessions
+**/*.log
