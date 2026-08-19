@@ -95,6 +95,7 @@ command -v rustup
 command -v cargo
 command -v rustc
 command -v zsh
+test "$(command -v rg)" = "$HOME/.local/bin/rg"
 command -v starship
 command -v zoxide
 test -f "$HOME/.fzf.zsh"

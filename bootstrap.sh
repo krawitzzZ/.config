@@ -100,6 +100,28 @@ install_nerd_zip FiraCode "FiraCode Nerd Font"
 install_nerd_zip NerdFontsSymbolsOnly "Symbols Nerd Font"
 fc-cache -f >/dev/null
 
+# --- ripgrep (latest GitHub release) ---
+rg_tag=$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/BurntSushi/ripgrep/releases/latest)
+rg_tag=${rg_tag%/}
+rg_tag=${rg_tag##*/}
+if ! have rg || ! rg --version 2>/dev/null | head -n1 | grep -Fq "$rg_tag"; then
+  case "$(dpkg --print-architecture)" in
+    amd64) rg_target=x86_64-unknown-linux-musl ;;
+    arm64) rg_target=aarch64-unknown-linux-musl ;;
+    *)
+      echo "error: no ripgrep release archive for $(dpkg --print-architecture)" >&2
+      exit 1
+      ;;
+  esac
+  rg_tmp=$(mktemp -d)
+  rg_archive="ripgrep-${rg_tag}-${rg_target}.tar.gz"
+  curl -fsSL "https://github.com/BurntSushi/ripgrep/releases/download/${rg_tag}/${rg_archive}" \
+    -o "$rg_tmp/$rg_archive"
+  tar -xzf "$rg_tmp/$rg_archive" -C "$rg_tmp"
+  install -m 755 "$rg_tmp/ripgrep-${rg_tag}-${rg_target}/rg" "$HOME/.local/bin/rg"
+  rm -rf "$rg_tmp"
+fi
+
 # --- red (https://rededitor.app/) ---
 if ! have red; then
   curl --proto '=https' --tlsv1.2 -fsSL https://rededitor.app/install.sh | sh
