@@ -5,13 +5,16 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: install.sh [--backup|--overwrite] [-y] [--skip-packages]
+Usage: install.sh [--backup|--overwrite] [-y] [--skip-packages] [--skip-apps]
 
   --backup       On name collisions, rename existing DST/name to name.bak
   --overwrite    On name collisions, replace existing DST/name
   -y             Non-interactive (requires --backup or --overwrite)
   --skip-packages
-                 Do not run bootstrap.sh
+                 Do not run bootstrap.sh at all
+  --skip-apps
+                 Run bootstrap.sh --skip-apps (shell/fonts/rg only;
+                 skip rust, node, go, ghcup, wezterm, zed)
 EOF
 }
 
@@ -21,6 +24,7 @@ DST=${HOME}/.config
 CONFLICT_MODE=
 NONINTERACTIVE=0
 SKIP_PACKAGES=0
+SKIP_APPS=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -28,6 +32,7 @@ while [[ $# -gt 0 ]]; do
     --overwrite) CONFLICT_MODE=overwrite ;;
     -y|--yes) NONINTERACTIVE=1 ;;
     --skip-packages) SKIP_PACKAGES=1 ;;
+    --skip-apps) SKIP_APPS=1 ;;
     -h|--help)
       usage
       exit 0
@@ -219,8 +224,10 @@ EOF
 fi
 
 if [[ $SKIP_PACKAGES -eq 0 && -f "$DST/bootstrap.sh" ]]; then
+  bootstrap_args=()
+  [[ $SKIP_APPS -eq 1 ]] && bootstrap_args+=(--skip-apps)
   # shellcheck disable=SC1091
-  bash "$DST/bootstrap.sh"
+  bash "$DST/bootstrap.sh" "${bootstrap_args[@]}"
 fi
 
 echo "install finished"

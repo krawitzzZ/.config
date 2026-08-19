@@ -8,6 +8,7 @@ while [[ $# -gt 0 ]]; do
     --skip-apps) SKIP_APPS=1 ;;
     -h|--help)
       echo "Usage: bootstrap.sh [--skip-apps]"
+      echo "  --skip-apps  skip rust/node/go/ghcup/wezterm/zed"
       exit 0
       ;;
     *)
