@@ -223,6 +223,68 @@ provider = "auto" # "auto", "external", or "lsp"
 # #
 # # Apply language changes without restarting using `:languages reload`.
 
+# typescript-language-server importModuleSpecifierPreference = relative.
+# Full server tables are required; a settings-only override disables the default.
+[lsp.servers.typescript]
+command = "typescript-language-server"
+args = ["--stdio"]
+root_markers = ["package.json", "tsconfig.json", "jsconfig.json", ".git"]
+
+[[lsp.servers.typescript.documents]]
+language_id = "typescript"
+file_extensions = ["ts"]
+
+[[lsp.servers.typescript.documents]]
+language_id = "typescriptreact"
+file_extensions = ["tsx"]
+
+[[lsp.servers.typescript.documents]]
+language_id = "javascript"
+file_extensions = ["js", "mjs", "cjs"]
+
+[[lsp.servers.typescript.documents]]
+language_id = "javascriptreact"
+file_extensions = ["jsx"]
+
+[lsp.servers.typescript.initialization_options.preferences]
+importModuleSpecifierPreference = "relative"
+
+# Zed: lua-language-server Lua.format.enable = true
+[lsp.servers.lua]
+command = "lua-language-server"
+root_markers = [".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", ".git"]
+
+[[lsp.servers.lua.documents]]
+language_id = "lua"
+file_extensions = ["lua"]
+
+[lsp.servers.lua.settings.Lua.format]
+enable = true
+
+# Zed: Lua tab_size = 2
+[languages.lua]
+extensions = ["lua"]
+indent_width = 2
+
+# Zed: Markdown formatter = prettier (prose-wrap always)
+[languages.markdown]
+extensions = ["md", "markdown"]
+indent_width = 2
+
+[languages.markdown.formatter]
+name = "Prettier"
+command = "prettier"
+args = [
+  "--parser",
+  "markdown",
+  "--prose-wrap",
+  "always",
+  "--ignore-path",
+  "/dev/null",
+  "--stdin-filepath",
+  "{file}",
+]
+
 # # Comment templates use Neovim's commentstring format. The single %s is
 # # replaced with each selected line. Add or override languages and extensions
 # # here without installing or starting a language server.
