@@ -1,0 +1,554 @@
+# Red user config.
+# Defaults are built into this version of red.
+# Uncomment settings below to override them.
+# Uncomment the matching table header, such as [keys.normal], with any setting inside it.
+
+# # This is a sample configuration file for red.
+# #
+# # The configuration file is a TOML file. The configuration file is read from
+# # the following locations:
+# #
+# # 1. $XDG_CONFIG_HOME/red/config.toml
+# # 2. $HOME/.config/red/config.toml
+# #
+
+# # Name of the theme to use. The theme file should be present in the
+# # themes directory: $XDG_CONFIG_HOME/red/themes or $HOME/.config/red/themes
+theme = "github-light.json"
+
+# # The number of lines to scroll when using the mouse wheel
+mouse_scroll_lines = 5
+
+# # The minimum number of visible lines to keep above and below the cursor
+# # when scrolling is possible. This matches Vim/Neovim's 'scrolloff'.
+scrolloff = 5
+
+# # Wrap long lines at the window edge. This matches Vim/Neovim's 'wrap'.
+wrap = false
+
+# # Keep inline questions and answers in local editor recovery snapshots.
+# persist_inline_history = true
+
+# # Show the absolute line number on the cursor line and the distance from the
+# # cursor on every other line, like Vim/Neovim's 'relativenumber'.
+relative_line_numbers = true
+
+# # Indent the continuation rows of wrapped lines to match the line's leading
+# # whitespace, like Vim/Neovim's 'breakindent'. At least 20 columns of text
+# # are kept per row, mirroring 'breakindentopt' min:20.
+# breakindent = true
+
+# # Horizontal scrolling behavior when wrap = false. These match
+# # Vim/Neovim's 'sidescroll' and 'sidescrolloff'.
+# sidescroll = 1
+# sidescrolloff = 0
+
+# # Show the startup splash when red opens without file arguments. It
+# # disappears on the first edit, file open, or window split.
+# splash = true
+
+# # Present a themed release announcement once after installing a new version.
+# show_whats_new = true
+
+# # Refresh bundled release notes from GitHub without delaying editor startup.
+# fetch_release_notes = true
+
+# # Path to the log file. Relative paths are resolved from Red's config
+# # directory. If the log file is not present, Red will create it; if it is
+# # present, Red will append to it.
+# log_file = "red.log"
+
+# # Built-in plugins are enabled through the [plugins] table below. Add plugin
+# # names here to disable defaults without copying or editing bundled plugin files.
+# disabled_plugins = []
+
+# # Remove the bundled agent plugin and reject every Codex process launch.
+disable_ai = true
+
+# # Master switch for language-server diagnostics in the editor UI.
+show_diagnostics = true
+
+# # Show one severity-aware sign beside the line number. Supported icon styles
+# # are "nerd_font", "unicode", "ascii", and "none".
+[diagnostics]
+gutter_signs = true
+icon_style = "nerd_font"
+
+# # Direct, reviewable integration with an installed Codex CLI.
+# # Override `command` only when Codex is installed outside PATH.
+# [agent]
+# # command = "/path/to/codex"
+
+# [search]
+# # Preview the next match while typing / or ?.
+# incsearch = true
+# # Highlight all visible matches for the current search.
+# hlsearch = true
+# # Wrap searches around the end or beginning of the buffer.
+# wrapscan = true
+# # Case matching follows Neovim defaults: case-sensitive unless configured.
+# ignorecase = false
+# smartcase = false
+
+# [completion]
+# # Request completion after an identifier prefix is typed. Increase debounce_ms
+# # if the language server should wait for a quiet period before each request.
+# auto_trigger = true
+# min_prefix_length = 1
+# debounce_ms = 0
+# # Mix matching words from open buffers with language-server candidates. This
+# # also provides useful completion when a language server is not installed.
+# buffer_words = true
+# max_buffer_words = 100
+
+# [copilot]
+# # Opt in before any source code is sent to GitHub Copilot. Install the official
+# # @github/copilot-language-server separately, then use :Copilot signin.
+# enabled = false
+# command = "copilot-language-server"
+# args = ["--stdio"]
+# debounce_ms = 150
+# max_file_bytes = 262144
+# excluded_patterns = [".env", ".env.*", "*.pem", "*.key", "**/.git/**"]
+
+# [picker]
+# # Query input position in picker dialogs. Supported values are "bottom" and
+# # "top". Bottom matches the default command-line-oriented picker layout.
+# input_position = "bottom"
+
+# # Picker icons use nvim-web-devicons-compatible glyphs and colors by default
+# # and require Nerd Font 3.3+. "unicode" and "ascii" are portable fallbacks;
+# # "none" hides icon contents.
+# [picker.icons]
+# style = "nerd_font"
+# color = true
+
+# # Sections are ordered from the outer edge toward the center on both sides.
+# # Run :statusline to browse editor, Git, LSP, file, and agent fields, then
+# # arrange them in a terminal panel with a live preview.
+# # The first three positions use the theme's accent, middle, and base shades.
+[statusline]
+left = ["mode", "diagnostics", "git_branch", "filename"]
+right = ["position", "syntax", "encoding"]
+
+
+# # Nerd Font icons match nvim-web-devicons. "unicode" and "ascii" are
+# # portable fallbacks; "none" keeps the labels while hiding their icons.
+[statusline.icons]
+style = "nerd_font"
+color = true
+
+# # Show available continuations after a keymap prefix such as Space or Ctrl-w.
+# # Fast key sequences complete before the guide appears.
+[key_hints]
+enabled = true
+delay_ms = 250
+
+# # Cursor shape per editor state. Supported values are "default",
+# # "blinking_block", "steady_block", "blinking_underscore",
+# # "steady_underscore", "blinking_bar", and "steady_bar".
+# [cursor]
+# normal = "default"
+# insert = "steady_bar"
+# command = "default"
+# search = "default"
+# visual = "default"
+# visual_line = "default"
+# visual_block = "default"
+# waiting = "steady_underscore"
+
+# # Language servers are selected by file extension. The built-in defaults cover
+# # Rust, Fish, Markdown, JavaScript/TypeScript, JSON, TOML, YAML, and Lua.
+# # Fish LSP features require fish-lsp to be installed; Red runs fish-lsp start.
+# # You can override or add servers here. Existing single-language configs still work:
+# #
+[lsp]
+format_on_save = true
+# #
+# # `lsp.format_on_save` remains supported. New configurations can select an
+# # external language-pack formatter, LSP formatting, or automatic fallback:
+# #
+[formatting]
+on_save = true
+provider = "auto" # "auto", "external", or "lsp"
+# #
+# # [lsp.servers.rust]
+# # command = "rust-analyzer"
+# # args = ["-v"]
+# # language_id = "rust"
+# # file_extensions = ["rs"]
+# # root_markers = ["Cargo.toml", ".git"]
+# #
+# # Servers that handle multiple language ids can use document selectors:
+# #
+# # [lsp.servers.typescript]
+# # command = "typescript-language-server"
+# # args = ["--stdio"]
+# # root_markers = ["package.json", "tsconfig.json", "jsconfig.json", ".git"]
+# #
+# # [[lsp.servers.typescript.documents]]
+# # language_id = "typescript"
+# # file_extensions = ["ts"]
+# #
+# # [[lsp.servers.typescript.documents]]
+# # language_id = "javascript"
+# # file_extensions = ["js", "mjs", "cjs"]
+
+# # Unified language definitions can configure syntax, exact filenames, comments,
+# # indentation, trusted Tree-sitter grammars, and LSP from one table. Exact
+# # filenames are case-sensitive; file extensions are case-insensitive.
+# #
+# # [languages.buildspec]
+# # extensions = ["build"]
+# # filenames = ["Buildfile"]
+# # aliases = ["build-script"]
+# # comment = "# %s"
+# # indent_width = 2
+# #
+# # [languages.buildspec.grammar]
+# # builtin = "rust"
+# # # Native libraries require `red language trust buildspec` first:
+# # # path = "~/.local/share/nvim/site/parser/buildspec.so"
+# # # symbol = "tree_sitter_buildspec"
+# # # highlights = ["~/.config/red/queries/buildspec/highlights.scm"]
+# # # textobjects = ["~/.config/red/queries/buildspec/textobjects.scm"]
+# #
+# # [languages.buildspec.lsp]
+# # command = "build-language-server"
+# # args = ["--stdio"]
+# # root_markers = ["Buildfile", ".git"]
+# #
+# # [languages.buildspec.lsp.settings.build]
+# # validate = true
+# #
+# # Apply language changes without restarting using `:languages reload`.
+
+# # Comment templates use Neovim's commentstring format. The single %s is
+# # replaced with each selected line. Add or override languages and extensions
+# # here without installing or starting a language server.
+# [commenting.languages]
+# bash = "# %s"
+# c = "// %s"
+# cc = "// %s"
+# cpp = "// %s"
+# css = "/* %s */"
+# cxx = "// %s"
+# fish = "# %s"
+# go = "// %s"
+# h = "// %s"
+# hpp = "// %s"
+# html = "<!-- %s -->"
+# husk = "// %s"
+# java = "// %s"
+# javascript = "// %s"
+# jsonc = "// %s"
+# jsx = "// %s"
+# lua = "-- %s"
+# markdown = "<!-- %s -->"
+# powershell = "# %s"
+# rust = "// %s"
+# scss = "/* %s */"
+# sql = "-- %s"
+# toml = "# %s"
+# tsx = "// %s"
+# typescript = "// %s"
+# xml = "<!-- %s -->"
+# yaml = "# %s"
+
+# [keys.insert]
+# Enter = "InsertNewLine"
+# Backspace = "DeletePreviousChar"
+# Tab = "InsertTab"
+# "Ctrl-Space" = "RequestCompletion"
+# "Alt-\\" = "RequestInlineCompletion"
+# "Ctrl-k" = "SignatureHelp"
+# Esc = { EnterMode = "Normal" }
+
+# [keys.normal]
+# "w" = [ "MoveToNextWord" ]
+# "W" = "MoveToNextBigWord"
+# "b" = [ "MoveToPreviousWord" ]
+# "e" = "MoveToNextWordEnd"
+# "E" = "MoveToNextBigWordEnd"
+# "B" = "MoveToPreviousBigWord"
+# "o" = "InsertLineBelowCursor"
+# "O" = "InsertLineAtCursor"
+# "G" = "MoveToBottom"
+# "g" = { "g" = "MoveToTop", "%" = "MatchitBackward", "c" = { StartCommentOperator = 1 }, "d" = "GoToDefinition", "j" = "MoveScreenLineDown", "k" = "MoveScreenLineUp", "0" = "MoveToScreenLineStart", "^" = "MoveToScreenLineFirstNonBlank", "$" = "MoveToScreenLineEnd", "e" = "MoveToPreviousWordEnd", "E" = "MoveToPreviousBigWordEnd", "J" = { JoinLinesKeepSpaces = 2 }, "W" = "ToggleWrap", "v" = "RestoreLastVisualSelection", "u" = { StartLowercaseOperator = 1 }, "U" = { StartUppercaseOperator = 1 }, "~" = { StartToggleCaseOperator = 1 }, "-" = "SelectPreviousUndoBranch", "+" = "SelectNextUndoBranch" }
+# "u" = "Undo"
+# "U" = "Redo"
+# "Ctrl-r" = "Redo"
+# "Down" = "MoveDown"
+# "Left" = "MoveLeft"
+# "Right" = "MoveRight"
+# "Up" = "MoveUp"
+# "k" = "MoveUp"
+# "j" = "MoveDown"
+# "h" = "MoveLeft"
+# "l" = "MoveRight"
+# "0" = "MoveToLineStart"
+# "^" = "MoveToFirstLineChar"
+# "Home" = "MoveToLineStart"
+# "$" = "MoveToLineEnd"
+# "End" = "MoveToLineEnd"
+# "H" = { MoveToViewportTop = 1 }
+# "M" = "MoveToViewportMiddle"
+# "L" = { MoveToViewportBottom = 1 }
+# "Ctrl-b" = "PageUp"
+# "Ctrl-f" = "PageDown"
+# "Ctrl-u" = { HalfPageUp = 0 }
+# "Ctrl-d" = { HalfPageDown = 0 }
+# "Ctrl-o" = "JumpBack"
+# "Ctrl-i" = "JumpForward"
+# "Tab" = "JumpForward"
+# "x" = "DeleteCharAtCursorPos"
+# "X" = { DeletePreviousChars = 1 }
+# "s" = { ChangeCharsAtCursor = 1 }
+# "S" = { ChangeCurrentLines = 1 }
+# "D" = "ShowLineDiagnostics"
+# "C" = { ChangeToLineEnd = 1 }
+# "Y" = { YankToLineEnd = 1 }
+# "J" = { JoinLines = 2 }
+# "~" = { ToggleCharCase = 1 }
+# "," = { RepeatCharSearchOpposite = 1 }
+# "." = "RepeatLastChange"
+# "z" = { "z" = "MoveLineToViewportCenter", "h" = "ScrollViewLeft", "l" = "ScrollViewRight", "H" = "ScrollViewHalfPageLeft", "L" = "ScrollViewHalfPageRight", "s" = "ScrollCursorToViewStart", "e" = "ScrollCursorToViewEnd" }
+# "*" = "SearchWordUnderCursor"
+# "%" = "MatchitForward"
+# "n" = "RepeatSearch"
+# "N" = "RepeatSearchOpposite"
+# "a" = [ { EnterMode = "Insert" }, "MoveRight" ]
+# "A" = [ "MoveToLineEnd", { EnterMode = "Insert" }, "MoveRight" ]
+# "i" = { EnterMode = "Insert" }
+# "I" = [ "MoveToFirstLineChar", { EnterMode = "Insert" } ]
+# ";" = { RepeatCharSearch = 1 }
+# ":" = { EnterMode = "Command" }
+# "/" = { EnterSearch = "Forward" }
+# "?" = { EnterSearch = "Backward" }
+# # "|" = "Split"
+# # "_" = "SplitVertical"
+# "Ctrl-p" = "FilePicker"
+# "Ctrl-Shift-p" = "CommandPalette"
+# "Alt-a" = { PluginCommand = "AgentToggle" }
+# "Alt-x" = "CommandPalette"
+# "F1" = "KeyboardShortcuts"
+# "Ctrl-j" = { PluginCommand = "BufferPicker" }
+# "Ctrl-z" = "Suspend"
+# "Ctrl-e" = { PluginCommand = "NeoTree" }
+# "Ctrl-t" = { PluginCommand = "LspDocumentSymbols" }
+# "K" = "Hover"
+# # "L" = "DecreaseLeft"
+# # "R" = "IncreaseLeft"
+# "v" = { EnterMode = "Visual" }
+# "V" = { EnterMode = "VisualLine" }
+# "Ctrl-v" = { EnterMode = "VisualBlock" }
+# "p" = "Paste"
+# "P" = "PasteBefore"
+
+# [keys.normal.">"]
+# ">" = "IndentLine"
+
+# [keys.normal."<"]
+# "<" = "UnindentLine"
+
+# [keys.normal."["]
+# "%" = "MatchitPreviousUnmatched"
+# "c" = "MoveToPreviousClass"
+# "d" = "PreviousDiagnostic"
+# "f" = "MoveToPreviousFunction"
+# "h" = { PluginCommand = "GitHunkPrevious" }
+# "i" = "PreviousOverlappingInlineComment"
+# "m" = "MoveToPreviousCall"
+
+# [keys.normal."]"]
+# "%" = "MatchitNextUnmatched"
+# "c" = "MoveToNextClass"
+# "d" = "NextDiagnostic"
+# "f" = "MoveToNextFunction"
+# "h" = { PluginCommand = "GitHunkNext" }
+# "i" = "NextOverlappingInlineComment"
+# "m" = "MoveToNextCall"
+
+# [keys.normal."Ctrl-w"]
+# "a" = { PluginCommand = "AgentOpen" }
+# "h" = "MoveWindowLeft"
+# "H" = "MoveWindowToLeft"
+# "j" = "MoveWindowDown"
+# "J" = "MoveWindowToBottom"
+# "k" = "MoveWindowUp"
+# "K" = "MoveWindowToTop"
+# "l" = "MoveWindowRight"
+# "L" = "MoveWindowToRight"
+# "w" = "NextWindow"
+# "W" = "PreviousWindow"
+# "p" = "PreviousWindow"
+# "s" = "SplitHorizontal"
+# "v" = "SplitVertical"
+# "d" = "SplitVertical"
+# "|" = "SplitVertical"
+# "c" = "CloseWindow"
+# "q" = "CloseWindow"
+# "Ctrl-w" = "NextWindow"
+# "r" = "EnterPaneResizeMode"
+# "+" = { ResizeWindowDown = 1 }
+# "-" = { ResizeWindowUp = 1 }
+# "<" = { ResizeWindowLeft = 1 }
+# ">" = { ResizeWindowRight = 1 }
+# "=" = "BalanceWindows"
+# "_" = "MaximizeWindow"
+# "z" = "TogglePaneZoom"
+# "o" = "OnlyWindow"
+
+# [keys.normal." "]
+# "m" = "OpenMessages"
+# "H" = "OpenInlineHistory"
+# "N" = "OpenLatestInlineCompletion"
+# "C" = "AddSampleInlineComment"
+# "X" = "ClearInlineComments"
+# "v" = "ShowInlineComment"
+# "x" = "DismissInlineComment"
+# " " = "NextBuffer"
+# "a" = [ "MoveToTop", { EnterMode = "VisualLine" }, "MoveToBottom" ]
+# "A" = { PluginCommand = "Agent" }
+# "i" = "InlineAssist"
+# "n" = "NextBuffer"
+# "p" = "PreviousBuffer"
+# "P" = "ListPlugins"
+# "b" = { PluginCommand = "BufferPicker" }
+# "g" = { PluginCommand = "ProjectSearch" }
+# "t" = { PluginCommand = "ThemeBrowser" }
+# "w" = { PluginCommand = "LspWorkspaceSymbols" }
+# "k" = { PluginCommand = "LspReferences" }
+# "d" = "OpenDiagnosticsPicker"
+# "e" = "OpenErrorDiagnosticsPicker"
+# "f" = "FormatDocument"
+# "." = "CodeAction"
+# "r" = "StartRename"
+# "s" = "OpenStatuslineManager"
+# "G" = { PluginCommand = "GitDashboard" }
+# "?" = "CommandPalette"
+# "h" = { "s" = { PluginCommand = "GitHunkStage" }, "u" = { PluginCommand = "GitHunkUnstage" }, "r" = { PluginCommand = "GitHunkReset" } }
+# "c" = { "c" = { PluginCommand = "GitSubmitMessage" }, "q" = { PluginCommand = "GitCancelMessage" } }
+
+# [keys.normal." "."]"]
+# "c" = "NextInlineComment"
+# "a" = "SwapNextParameter"
+# "m" = "SwapNextFunction"
+
+# [keys.normal." "."["]
+# "c" = "PreviousInlineComment"
+# "a" = "SwapPreviousParameter"
+# "m" = "SwapPreviousFunction"
+
+# [keys.normal."d"]
+# "d" = "DeleteCurrentLine"
+# "w" = "DeleteWord"
+
+# [keys.search]
+# Esc = { EnterMode = "Normal" }
+
+# [keys.command]
+# Esc = { EnterMode = "Normal" }
+
+# [keys.visual]
+# Esc = { EnterMode = "Normal" }
+# ":" = { EnterMode = "Command" }
+# "y" = [ "Yank", { EnterMode = "Normal" } ]
+# "x" = [ "Delete", { EnterMode = "Normal" } ]
+# "c" = "ChangeSelection"
+# "p" = [ "Paste", { EnterMode = "Normal" } ]
+# "P" = [ "PasteBefore", { EnterMode = "Normal" } ]
+# "I" = "InsertBlock"
+# ">" = { IndentSelection = 1 }
+# "<" = { UnindentSelection = 1 }
+# "J" = [ { JoinLines = 2 }, { EnterMode = "Normal" } ]
+# "g" = { "c" = [ "ToggleCommentSelection", { EnterMode = "Normal" } ], "J" = [ { JoinLinesKeepSpaces = 2 }, { EnterMode = "Normal" } ], "v" = "RestoreLastVisualSelection" }
+# "u" = [ { TransformSelection = "Lower" }, { EnterMode = "Normal" } ]
+# "U" = [ { TransformSelection = "Upper" }, { EnterMode = "Normal" } ]
+# "~" = [ { TransformSelection = "Toggle" }, { EnterMode = "Normal" } ]
+
+# [keys.visual." "]
+# "C" = "AddSampleInlineComment"
+# "X" = [ "ClearInlineComments", { EnterMode = "Normal" } ]
+# "A" = { PluginCommand = "Agent" }
+# "i" = "InlineAssist"
+# "h" = { "s" = { PluginCommand = "GitHunkStage" }, "u" = { PluginCommand = "GitHunkUnstage" }, "r" = { PluginCommand = "GitHunkReset" } }
+
+# # TODO: "i" = "SelectInside"
+# # TODO: "o" = "SelectOutside"
+# # TODO: "r" = "ReplaceBlock"
+
+# [keys.visual_block]
+
+# [keys.visual_line]
+
+# [plugins]
+# agent = "agent.hk"
+# barbecue = "barbecue.hk"
+# buffer_picker = "buffer_picker.hk"
+# cool_search = "cool_search.hk"
+# fidget = "fidget.hk"
+# git = "git.hk"
+# indent_guides = "indent_guides.hk"
+# inlay_hints = "inlay_hints.hk"
+# lsp_symbols = "lsp_symbols.hk"
+# neotree = "neotree.hk"
+# project_search = "project_search.hk"
+# session_restore = "session_restore.hk"
+# theme_browser = "theme_browser.hk"
+
+# # Breadcrumb text uses theme colors; file icons use nvim-web-devicons' light/dark palette.
+# # Set nerd_font to false for a plain Unicode presentation.
+# [plugin_config.barbecue]
+# enabled = true
+# separator = ""
+# truncate_marker = "…"
+# show_directory = true
+# # Directory names are plain text by default, matching barbecue.nvim.
+# show_folder_icon = false
+# show_file = true
+# show_symbols = true
+# nerd_font = true
+
+# [plugin_config.barbecue.icons.overrides]
+# # class = "C"
+# # function = "fn"
+# # struct = ""
+
+# [plugin_permissions.project_search]
+# process = ["rg"]
+
+# [plugin_permissions.git]
+# process = ["git"]
+
+# # Git signs use the same glyphs as the default Red/Neovim setup. Each value
+# # must occupy one or two terminal cells.
+# [plugin_config.git.signs]
+# add = "+"
+# change = "~"
+# delete = "_"
+# topdelete = "‾"
+# changedelete = "~"
+
+# [plugin_config.git.signs_staged]
+# add = "┃"
+# change = "┃"
+# delete = "▁"
+# topdelete = "▔"
+# changedelete = "~"
+
+# # Generated commit messages use recent non-merge commits only as style examples.
+# # Set this to 0 to omit commit history, or up to 50 for a larger sample.
+# [plugin_config.git.commit_generation]
+# history_count = 20
+
+# # Symbol pickers use the global picker icon style. Set enabled to false to hide
+# # their icons. Override any lowercase LSP kind with a custom string; an empty
+# # string hides only that kind.
+# [plugin_config.lsp_symbols.icons]
+# enabled = true
+
+# [plugin_config.lsp_symbols.icons.overrides]
+# # class = "C"
+# # function = "fn"
+# # struct = ""

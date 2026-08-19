@@ -4,6 +4,9 @@
 !/lazygit/
 !/nevi/
 /nevi/command_history.txt
+!/red/
+/red/*
+!/red/config.toml
 !/regolith3/
 !/swaync/
 !/vicinae/
@@ -15,6 +18,9 @@
 !.gitconfig_work
 !.gitignore
 !.zshrc
+!/install.sh
+!/bootstrap.sh
+!/install/
 !catppuccin-powerline.toml
 !gruvbox-rainbow.toml
 !jetpack.toml

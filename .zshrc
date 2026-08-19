@@ -177,7 +177,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
 else
-  export EDITOR='nevi'
+  export EDITOR='red'
 fi
 
 # Compilation flags
@@ -279,11 +279,8 @@ alias dcd='docker compose down'
 alias dcr='dcd && dcu'
 alias cdr='cd $HOME/dev/race'
 alias diff='colordiff'
-# alias cat='ccat'
-alias y='yarn'
 alias p='pnpm'
 alias n='npm'
-alias r='race'
 alias ru='race up'
 alias rd='race down'
 alias rc='race clean -y'
@@ -301,9 +298,8 @@ alias lg='lazygit'
 alias zz='zed -n'
 alias zz.='zed -n .'
 alias e='$EDITOR'
-alias v='nevi'
-alias vz='nevi ~/.zshrc'
-alias vc='nevi ~/.config'
+alias r='red'
+alias rz='red ~/.zshrc'
 alias sz='source $Z'
 
 # autostart ssh-agent
@@ -318,7 +314,7 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
 fi
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-[ -f "/home/nikita_demin/.ghcup/env" ] && . "/home/nikita_demin/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
 
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"

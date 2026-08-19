@@ -22,7 +22,7 @@
 	autocrlf = false
 	fscache = true
 	symlinks = false
-	editor = nevi
+	editor = red
 	eol = lf
 	pager = cat
 [fetch]
