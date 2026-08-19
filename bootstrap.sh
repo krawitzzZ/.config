@@ -18,26 +18,19 @@ while [[ $# -gt 0 ]]; do
   shift
 done
 
-have() { command -v "$1" >/dev/null 2>&1; }
-
-run_root() {
-  if [[ "$(id -u)" -eq 0 ]]; then
-    "$@"
-  elif have sudo; then
-    sudo "$@"
-  else
-    echo "error: need root for: $*" >&2
-    exit 1
-  fi
-}
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+# shellcheck source=install/common.sh
+. "$SCRIPT_DIR/install/common.sh"
 
 mkdir -p "$HOME/.local/bin" "$HOME/.local/share/fonts" "$HOME/go/bin"
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.local/go/bin:$HOME/go/bin:$HOME/.ghcup/bin:$PATH"
+export PNPM_HOME="${PNPM_HOME:-$HOME/.local/pnpm}"
+export PATH="$HOME/.local/bin:$HOME/.local/node/bin:$PNPM_HOME:$PNPM_HOME/bin:$HOME/.cargo/bin:$HOME/.local/go/bin:$HOME/go/bin:$HOME/.ghcup/bin:$PATH"
 
 # --- apt ---
 APT_PACKAGES=(
   zsh git curl wget unzip ca-certificates fontconfig xz-utils
   build-essential wl-clipboard colordiff lsof rsync gnupg
+  libatomic1 python3 openssl
 )
 
 need_apt=()
@@ -101,15 +94,13 @@ install_nerd_zip NerdFontsSymbolsOnly "Symbols Nerd Font"
 fc-cache -f >/dev/null
 
 # --- ripgrep (latest GitHub release) ---
-rg_tag=$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/BurntSushi/ripgrep/releases/latest)
-rg_tag=${rg_tag%/}
-rg_tag=${rg_tag##*/}
+rg_tag=$(github_latest_tag https://github.com/BurntSushi/ripgrep/releases/latest)
 if ! have rg || ! rg --version 2>/dev/null | head -n1 | grep -Fq "$rg_tag"; then
-  case "$(dpkg --print-architecture)" in
+  case "$(dpkg_arch)" in
     amd64) rg_target=x86_64-unknown-linux-musl ;;
     arm64) rg_target=aarch64-unknown-linux-musl ;;
     *)
-      echo "error: no ripgrep release archive for $(dpkg --print-architecture)" >&2
+      echo "error: no ripgrep release archive for $(dpkg_arch)" >&2
       exit 1
       ;;
   esac
@@ -122,13 +113,8 @@ if ! have rg || ! rg --version 2>/dev/null | head -n1 | grep -Fq "$rg_tag"; then
   rm -rf "$rg_tmp"
 fi
 
-# --- red (https://rededitor.app/) ---
-if ! have red; then
-  curl --proto '=https' --tlsv1.2 -fsSL https://rededitor.app/install.sh | sh
-fi
-
 if [[ $SKIP_APPS -eq 1 ]]; then
-  echo "bootstrap: skipped rust/go/ghcup/wezterm/zed (--skip-apps)"
+  echo "bootstrap: skipped rust/node/go/ghcup/wezterm/zed (--skip-apps)"
   echo "bootstrap finished"
   exit 0
 fi
@@ -140,11 +126,15 @@ fi
 # shellcheck disable=SC1091
 [[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
+# --- pnpm + Node.js LTS (bundled npm) ---
+# shellcheck source=install/node.sh
+. "$SCRIPT_DIR/install/node.sh"
+
 # --- go + lazygit / lazydocker ---
 if ! have go; then
   go_ver=$(curl -fsSL https://go.dev/VERSION?m=text | head -n1)
   tmp=$(mktemp)
-  curl -fsSL "https://go.dev/dl/${go_ver}.linux-$(dpkg --print-architecture).tar.gz" -o "$tmp"
+  curl -fsSL "https://go.dev/dl/${go_ver}.linux-$(dpkg_arch).tar.gz" -o "$tmp"
   rm -rf "$HOME/.local/go"
   tar -C "$HOME/.local" -xzf "$tmp"
   rm -f "$tmp"

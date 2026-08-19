@@ -18,7 +18,7 @@ git -C "$ROOT" ls-files -z | rsync -a --files-from=- --from0 "$ROOT"/ "$WORKDIR/
 rsync -a "$ROOT/.git/" "$WORKDIR/context/.git/"
 cp -a "$ROOT/install.sh" "$ROOT/bootstrap.sh" "$WORKDIR/context/"
 mkdir -p "$WORKDIR/context/install"
-cp -a "$ROOT/install/Dockerfile" "$WORKDIR/context/install/Dockerfile"
+rsync -a "$ROOT/install/" "$WORKDIR/context/install/"
 
 docker build -f "$WORKDIR/context/install/Dockerfile" -t "$IMAGE" "$WORKDIR/context"
 
@@ -86,16 +86,16 @@ run '
 set -euo pipefail
 rsync -a /opt/dotfiles/ "$HOME/.config/"
 bash "$HOME/.config/install.sh" --backup -y
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.local/go/bin:$HOME/go/bin:$HOME/.ghcup/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/node/bin:$HOME/.local/pnpm:$HOME/.local/pnpm/bin:$HOME/.cargo/bin:$HOME/.local/go/bin:$HOME/go/bin:$HOME/.ghcup/bin:$PATH"
 test -L "$HOME/.gitconfig"
-test "$(git config --global --get core.editor)" = "red"
-command -v red
-red --version
 command -v rustup
 command -v cargo
 command -v rustc
 command -v zsh
 test "$(command -v rg)" = "$HOME/.local/bin/rg"
+command -v pnpm
+command -v node
+command -v npm
 command -v starship
 command -v zoxide
 test -f "$HOME/.fzf.zsh"

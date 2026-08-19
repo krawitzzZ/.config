@@ -419,7 +419,7 @@
     "Haskell": {
       "tab_size": 2,
       "formatter": "language_server",
-      "format_on_save": "modifications_if_available",
+      "format_on_save": "on",
     },
     "Lua": {
       "tab_size": 2,
