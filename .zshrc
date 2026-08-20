@@ -177,7 +177,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
 else
-  export EDITOR='red'
+  export EDITOR='nevi'
 fi
 
 # Compilation flags
@@ -299,8 +299,8 @@ alias lg='lazygit'
 alias zz='zed -n'
 alias zz.='zed -n .'
 alias e='$EDITOR'
-alias r='red'
-alias rz='red ~/.zshrc'
+alias v='nevi'
+alias vz='nevi ~/.zshrc'
 alias sz='source $Z'
 
 # autostart ssh-agent

@@ -26,6 +26,7 @@ config.default_cursor_style = 'BlinkingBlock'
 config.cursor_blink_rate = 450
 config.cursor_blink_ease_in = 'Constant'
 config.cursor_blink_ease_out = 'Constant'
+config.cursor_thickness = '1cell'
 config.font_size = 12.5
 config.font = fontMedium
 config.warn_about_missing_glyphs = false -- sometimes glyphs are missing
