@@ -30,9 +30,9 @@ colorscheme = "github-light"    # Color scheme name
 # ============================================================================
 # FLOATING TERMINAL
 # ============================================================================
-# [terminal]
-# popup_width_ratio = 0.9     # Width as a fraction of the screen (0.2 to 1.0)
-# popup_height_ratio = 0.9    # Height as a fraction of the screen (0.2 to 1.0)
+[terminal]
+popup_width_ratio = 0.92     # Width as a fraction of the screen (0.2 to 1.0)
+popup_height_ratio = 0.92    # Height as a fraction of the screen (0.2 to 1.0)
 #
 # [terminal.shortcuts]
 # new_session = "<C-S-t>"       # Set to "none" to disable
@@ -343,6 +343,31 @@ action = "\"+y"
 desc = "Yank to system clipboard"
 
 [[keymap.leader_mappings]]
+key = "n"
+action = ":bn"
+desc = "Next buffer"
+
+[[keymap.leader_mappings]]
+key = "p"
+action = ":bp"
+desc = "Previous buffer"
+
+[[keymap.leader_mappings]]
+key = "bd"
+action = ":bd"
+desc = "Delete current buffer"
+
+[[keymap.leader_mappings]]
+key = "bf"
+action = ":Format"
+desc = "Format current buffer"
+
+[[keymap.leader_mappings]]
+key = "bb"
+action = ":FindBuffers"
+desc = "Open buffer finder"
+
+[[keymap.leader_mappings]]
 key = "bn"
 action = ":bn"
 desc = "Next buffer"
@@ -351,6 +376,41 @@ desc = "Next buffer"
 key = "bp"
 action = ":bp"
 desc = "Previous buffer"
+
+[[keymap.leader_mappings]]
+key = "cd"
+action = ":Rename"
+desc = "Rename symbol"
+
+[[keymap.leader_mappings]]
+key = "ot"
+action = ":Terminal"
+desc = "Toggle floating terminal"
+
+[[keymap.leader_mappings]]
+key = "a"
+action = ":wa"
+desc = "Save all"
+
+[[keymap.leader_mappings]]
+key = "/"
+action = "gcc"
+desc = "Toggle comment"
+
+[[keymap.leader_mappings]]
+key = "oe"
+action = ":Explorer"
+desc = "File explorer"
+
+[[keymap.leader_mappings]]
+key = "of"
+action = ":FindFiles"
+desc = "Find files"
+
+[[keymap.leader_mappings]]
+key = "od"
+action = ":FindDiagnostics"
+desc = "Diagnostics"
 
 # Leader key is not processed in visual mode, so use plain Shift+Y there.
 # Note: nevi always syncs yanks to the system clipboard (clipboard=unnamedplus
@@ -559,11 +619,14 @@ to = "y"
 # preset = "biome"
 # root_patterns = ["biome.json", "package.json"]
 
+[lsp.servers.markdown]
+enabled = true
+
 # ============================================================================
 # COPILOT
 # ============================================================================
-# [copilot]
-# enabled = true             # Enable GitHub Copilot
+[copilot]
+enabled = false              # Enable GitHub Copilot
 # debounce_ms = 150          # Delay before requesting completions
 # auto_trigger = true        # Auto-trigger in insert mode
 # hide_during_completion = true  # Hide when LSP popup visible

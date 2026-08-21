@@ -300,6 +300,7 @@ alias zz='zed -n'
 alias zz.='zed -n .'
 alias e='$EDITOR'
 alias v='nevi'
+alias v.='nevi .'
 alias vz='nevi ~/.zshrc'
 alias sz='source $Z'
 

@@ -112,3 +112,9 @@
 # [go]
 # formatter = { command = "gofmt", args = [] }
 # tab_width = 4
+
+# ============================================================================
+# MARKDOWN
+# ============================================================================
+[markdown]
+formatter = { command = "prettier", args = ["--stdin-filepath", "{file}"] }
