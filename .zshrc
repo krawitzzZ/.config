@@ -14,62 +14,6 @@ fpath+=~/.zfunc
 autoload -Uz compinit
 compinit
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="geoffgarside"
-# ZSH_THEME="spaceship"
-
-# SPACESHIP configuration
-SPACESHIP_PROMPT_ORDER=(
-  battery       # Battery level and status
-  # time          # Time stamps section
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  # package       # Package version
-  node          # Node.js section
-  # elixir        # Elixir section
-  # swift         # Swift section
-  golang        # Go section
-  rust          # Rust section
-  haskell       # Haskell Stack section # stack is being weird here...
-  docker        # Docker section
-  # aws           # Amazon Web Services section
-  venv          # virtualenv section
-  # conda         # conda virtualenv section
-  # pyenv         # Pyenv section
-  # kubectl       # Kubectl context section
-  line_sep      # Line break
-  # vi_mode       # Vi-mode indicator
-  jobs          # Background jobs indicator
-  char          # Prompt character
-)
-
-SPACESHIP_RPROMPT_ORDER=(
-  exec_time     # Execution time
-  exit_code     # Exit code section
-)
-
-SPACESHIP_DIR_TRUNC_REPO=false
-SPACESHIP_EXIT_CODE_SHOW=true
-SPACESHIP_BATTERY_THRESHOLD=30
-SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true
-SPACESHIP_CHAR_PREFIX=' '
-SPACESHIP_CHAR_SYMBOL=' '
-SPACESHIP_CHAR_SUFFIX=' '
-SPACESHIP_DIR_PREFIX=' '
-SPACESHIP_BATTERY_PREFIX=' '
-SPACESHIP_BATTERY_SUFFIX=''
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
