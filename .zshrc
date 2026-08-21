@@ -4,13 +4,6 @@
 setopt ignore_eof
 setopt rm_star_silent
 
-# Load local secrets/env (.env syntax).
-if [[ -f "$HOME/.config/.zenv" ]]; then
-  set -a
-  source "$HOME/.config/.zenv"
-  set +a
-fi
-
 # hello, it is me
 export ME="$(whoami)"
 
@@ -158,70 +151,22 @@ plugins=(
 zstyle :omz:plugins:ssh-agent agent-forwarding yes
 zstyle :omz:plugins:ssh-agent identities franka gh gh_franka gitlab
 
-# GNOME keyring no longer serves SSH (pkcs11/secrets only); session still
-# exports $XDG_RUNTIME_DIR/keyring/ssh which nothing listens on. Prefer gcr.
-if [[ "$SSH_AUTH_SOCK" == */keyring/ssh && -S "${XDG_RUNTIME_DIR}/gcr/ssh" ]]; then
-  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gcr/ssh"
-fi
-
-source $ZSH/oh-my-zsh.sh
+source "$ZSH"/oh-my-zsh.sh
 
 # User configuration
+# Env/PATH for all zsh (including GUI) lives in ~/.zshenv.
 
 # export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vi'
-else
-  export EDITOR='nevi'
-fi
-
-# Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# handy variables
 export CONFIG="$HOME/.config"
 export Z="$HOME/.zshrc"
 export PI="192.168.0.15"
 
-export COLORTERM=truecolor
 export TERM=xterm-256color
-export GCM_CREDENTIAL_STORE=gpg
-
-export DOCKER_HOST=unix:///run/user/1001/docker.sock
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CONFIG_HOME="$HOME/.config"
 export GTK_IM_MODULE="xim"
-export NODE_EXTRA_CA_CERTS="$HOME/.local/share/ca-certificates/franka-ca.crt"
-export PIP_TRUSTED_HOST=artifactory.fe.lan
-export PIP_INDEX_URL=https://artifactory.fe.lan/artifactory/api/pypi/pypi-virtual-all-dev/simple
-export PYENV_ROOT="$HOME/.pyenv"
-export GOPATH="$HOME/go"
-export PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/snap/bin:$PATH"
-export PATH="/usr/local/go/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.local/node/bin:$PATH"
-export PATH="$HOME/.local/go/bin:$PATH"
-export PATH="$HOME/.npm-global/bin:$PATH"
-export PATH="$HOME/.ghcup/bin:$PATH"
-export PATH="$HOME/.luarocks/bin:$PATH"
-export PATH="$HOME/.opencode/bin:$PATH"
-# export PATH="$(npm get prefix)/bin:$PATH"
 
-# pnpm
-export PNPM_HOME="$HOME/.local/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME/bin:"*) ;;
-  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-esac
-# pnpm end
+export PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
 
 ### Source functions so they can be used in aliases
 
@@ -316,12 +261,8 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
 fi
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
 
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
-
-[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"

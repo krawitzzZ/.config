@@ -218,7 +218,7 @@ ensure_symlink "$DST/.gitconfig_work" "$HOME/.gitconfig"
 
 if [[ ! -e "$DST/.zenv" ]]; then
   cat >"$DST/.zenv" <<'EOF'
-# Local env (not tracked). Sourced with set -a from .zshrc.
+# Local env (not tracked). Sourced with set -a from .zshenv.
 # Add machine-specific exports here.
 EOF
   echo "created $DST/.zenv placeholder"
