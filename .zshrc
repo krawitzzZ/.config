@@ -10,9 +10,8 @@ export ME="$(whoami)"
 # Path to your oh-my-zsh installation.
 export ZSH="/home/${ME}/.oh-my-zsh"
 
+# Completions in ~/.zfunc; oh-my-zsh runs compinit once after this.
 fpath+=~/.zfunc
-autoload -Uz compinit
-compinit
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -68,9 +67,7 @@ zstyle ':omz:update' frequency 10
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git)
 plugins=(
-  asdf
   # battery
   colored-man-pages
   git
@@ -80,7 +77,7 @@ plugins=(
   docker
   docker-compose
   # autoenv
-  git-auto-fetch
+  # git-auto-fetch
   golang
   # kubectl
   # minikube
@@ -107,10 +104,18 @@ export CONFIG="$HOME/.config"
 export Z="$HOME/.zshrc"
 export PI="192.168.0.15"
 
-export TERM=xterm-256color
 export GTK_IM_MODULE="xim"
 
-export PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
+_gem_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/gem-user-bin"
+_gem_bin=
+[[ -r "$_gem_cache" ]] && _gem_bin="$(<"$_gem_cache")"
+if [[ -z "$_gem_bin" || ! -d "$_gem_bin" ]] && command -v ruby >/dev/null 2>&1; then
+  _gem_bin="$(ruby -e 'print Gem.user_dir' 2>/dev/null)/bin"
+  mkdir -p "${_gem_cache:h}"
+  print -r -- "$_gem_bin" >|"$_gem_cache"
+fi
+[[ -d "$_gem_bin" ]] && PATH="$_gem_bin:$PATH"
+unset _gem_cache _gem_bin
 
 ### Source functions so they can be used in aliases
 
@@ -146,15 +151,8 @@ alias aptGetUpdate='sudo apt-get update && sudo apt-get upgrade && sudo apt-get 
 alias aptUpdate='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo apt autoclean'
 alias sup='aptGetUpdate && aptUpdate && omz update'
 alias path='echo -e ${PATH//:/\\n}'
-alias make1mb='mkfile 1m ./1MB.dat'
-alias make5mb='mkfile 5m ./5MB.dat'
-alias make10mb='mkfile 10m ./10MB.dat'
-alias make24mb='mkfile 24m ./24MB.dat'
-alias make25mb='mkfile 25m ./25MB.dat'
-alias make50mb='mkfile 50m ./50MB.dat'
 alias clip='wl-copy'
 alias yolo='echo "$(curl -s http://whatthecommit.com/index.txt)"'
-alias postgr='docker run -e POSTGRES_PASSWORD=password -p 5432:5432 postgres:latest'
 
 # shorthands
 alias gf='git fetch --tags --all --prune -f'
@@ -187,7 +185,7 @@ alias ld='lazydocker'
 alias lg='lazygit'
 alias zz='zed -n'
 alias zz.='zed -n .'
-alias e='$EDITOR'
+alias e='${EDITOR:-nevi}'
 alias v='nevi'
 alias v.='nevi .'
 alias vz='nevi ~/.zshrc'
@@ -206,7 +204,7 @@ fi
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-eval "$(pyenv init - zsh)"
+command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init - zsh)"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"

@@ -18,7 +18,7 @@ fi
 
 export COLORTERM=truecolor
 export GCM_CREDENTIAL_STORE=gpg
-export DOCKER_HOST=unix:///run/user/1001/docker.sock
+export DOCKER_HOST="unix://${XDG_RUNTIME_DIR:-/run/user/${UID}}/docker.sock"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 export NODE_EXTRA_CA_CERTS="$HOME/.local/share/ca-certificates/franka-ca.crt"
