@@ -212,6 +212,7 @@ fi
 
 mkdir -p "$HOME/personal"
 ensure_symlink "$DST/.zshrc" "$HOME/.zshrc"
+ensure_symlink "$DST/.zshenv" "$HOME/.zshenv"
 ensure_symlink "$DST/.gitconfig_personal" "$HOME/personal/.gitconfig"
 ensure_symlink "$DST/.gitconfig_work" "$HOME/.gitconfig"
 
