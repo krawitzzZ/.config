@@ -20,7 +20,7 @@
     "groovy": true,
     "haskell": true,
     "html": true,
-    // "hyperlinks-lsp": true,
+    "hyperlinks-lsp": true,
     "ini": true,
     "log": true,
     "lua": true,
