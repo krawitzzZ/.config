@@ -27,7 +27,7 @@
       "icon_theme": "auto"
     },
     "dark": {
-      "name": "rose-pine-dawn",
+      "name": "libadwaita-light",
       "icon_theme": "Adwaita"
     }
   },

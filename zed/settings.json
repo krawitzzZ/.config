@@ -69,11 +69,10 @@
     "cursor": {
       "favorite_config_option_values": {
         "model": [
-          "composer-2.5",
           "default",
           "kimi-k3",
-          "gemini-3.1-pro",
-          "grok-4.6"
+          "grok-4.6",
+          "claude-opus-5"
         ],
       },
       "default_config_options": {
@@ -83,7 +82,7 @@
         "effort": "high",
         "fast": "false",
         "reasoning": "high",
-        "model": "grok-4.6",
+        "model": "kimi-k3",
       },
       "type": "registry",
     },
