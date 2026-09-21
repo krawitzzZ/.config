@@ -34,6 +34,7 @@
     "toml": true,
     "vscode-icons": true,
     "xml": true,
+    "mustache": true,
   },
   "soft_wrap": "none",
   "current_line_highlight": "all",
@@ -68,21 +69,16 @@
     },
     "cursor": {
       "favorite_config_option_values": {
-        "model": [
-          "default",
-          "kimi-k3",
-          "grok-4.6",
-          "claude-opus-5"
-        ],
+        "model": ["default", "kimi-k3", "grok-4.6", "claude-opus-5"],
       },
       "default_config_options": {
         "thinking": "true",
         "context": "1m",
         "mode": "agent",
-        "effort": "high",
+        "effort": "medium",
         "fast": "false",
         "reasoning": "high",
-        "model": "kimi-k3",
+        "model": "grok-4.6",
       },
       "type": "registry",
     },
@@ -249,6 +245,7 @@
   "ui_font_family": ".SystemUIFont",
   "buffer_line_height": "standard",
   "buffer_font_weight": 600.0,
+  "buffer_font_size": 15.0,
   "buffer_font_family": "Victor Mono",
   "telemetry": {
     "diagnostics": false,
@@ -265,7 +262,6 @@
   },
   "vim_mode": true,
   "ui_font_size": 16.0,
-  "buffer_font_size": 15.0,
   "show_wrap_guides": true,
   "show_whitespaces": "all",
   "wrap_guides": [80, 100],

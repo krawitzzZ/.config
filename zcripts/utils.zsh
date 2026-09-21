@@ -3,10 +3,10 @@ add-ssh() {
 }
 
 killport() {
-  local process_id=$(lsof -t -i:"$1")
+  local -a pids=(${(f)"$(lsof -t -i:"$1")"})
 
-  if [ -n "$process_id" ]; then
-    kill -9 "$process_id"
+  if (( ${#pids} )); then
+    kill -9 $pids
   fi
 }
 

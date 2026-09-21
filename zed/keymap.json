@@ -648,6 +648,7 @@
   {
     "context": "AcpThread > Editor",
     "unbind": {
+      "shift-tab": "agent::CycleModeSelector",
       "ctrl-;": "agent::OpenAddContextMenu",
       "ctrl-alt-'": "agent::ToggleThinkingEffortMenu",
       "alt-shift-z": "agent::RejectAll",
@@ -659,6 +660,7 @@
       "alt-shift-r": "agent::RejectAll",
       "ctrl-l ctrl-c": "agent::OpenAddContextMenu",
       "ctrl-l ctrl-t": "agent::ToggleThinkingEffortMenu",
+      "ctrl-n ctrl-m": "agent::CycleModeSelector",
     },
   },
   {
