@@ -69,16 +69,21 @@
     },
     "cursor": {
       "favorite_config_option_values": {
-        "model": ["default", "kimi-k3", "grok-4.6", "claude-opus-5"],
+        "model": [
+          "default",
+          "kimi-k3",
+          "claude-opus-5",
+          "grok-4.7"
+        ],
       },
       "default_config_options": {
         "thinking": "true",
-        "context": "1m",
+        "context": "500k",
         "mode": "agent",
         "effort": "medium",
         "fast": "false",
         "reasoning": "high",
-        "model": "grok-4.6",
+        "model": "grok-4.7",
       },
       "type": "registry",
     },

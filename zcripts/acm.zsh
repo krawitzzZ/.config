@@ -171,9 +171,11 @@ $(print -r -- "$omitted_list" | sed 's/^/- /')
   # conflicting default style that could override them).
   local prompt
   prompt="<task>
-Generate the Git commit message for the staged changes below. Analyze silently.
+Generate the Git commit message for the staged changes below.
+Do not use tools. The diff below is complete.
 Return only JSON matching: {\"subject\":\"...\",\"body\":\"...\"}.
 Use an empty body string when no body is needed.
+The subject must name the concrete setting or behavior that changed.
 </task>
 
 <user-guidance>
@@ -194,12 +196,15 @@ Repo: ${repo}
 ${omitted_lockfiles}</context>
 "
 
-  local model="composer-2.5"
+  local model="gpt-5.6-sol-none-fast"
   local message_filter="${XDG_CONFIG_HOME:-$HOME/.config}/worktrunk/plain-commit-message.py"
   local -a llm_cmd
   llm_cmd=(
     timeout --foreground --kill-after=5s 90s
     agent -p --trust --mode ask --model "$model"
+    --disable-indexing
+    --disable-codebase-ref
+    --sandbox disabled
   )
   [[ -f "$message_filter" ]] || {
     print -r -- "acm: missing commit-message filter at $message_filter" >&2
