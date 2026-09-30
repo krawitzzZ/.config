@@ -137,6 +137,10 @@ race() {
   poetry -C "$HOME/dev/race" run race "$@"
 }
 
+br() {
+  print -r -- "============ $* ============"
+}
+
 # aliases
 alias ~="cd ~"
 alias ..='cd ../'
@@ -147,9 +151,8 @@ alias please="sudo"
 alias mkdir='mkdir -pv'
 alias ll='ls -FGlAhp --color=always'
 alias c='clear'
-alias aptGetUpdate='sudo apt-get update && sudo apt-get upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
-alias aptUpdate='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo apt autoclean'
-alias sup='aptGetUpdate && aptUpdate && omz update'
+alias aptUpdate='sudo apt update && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean'
+alias sup='br "update docker SNAT" && fix_docker_vpn && br "apt update" && aptUpdate && br "snap refresh" && sudo snap refresh && br "omz update" && omz update'
 alias path='echo -e ${PATH//:/\\n}'
 alias clip='wl-copy'
 alias yolo='echo "$(curl -s http://whatthecommit.com/index.txt)"'
@@ -204,6 +207,7 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
 fi
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[[ -f ~/.jfrog/jfrog_zsh_completion ]] && source ~/.jfrog/jfrog_zsh_completion
 
 command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init - zsh)"
 

@@ -560,6 +560,12 @@
   },
 
   {
+    "context": "AcpThread > Editor && vim_mode == insert",
+    "bindings": {
+      "ctrl-x": "editor::Cut",
+    },
+  },
+  {
     "context": "AcpThread || AcpThread > Editor",
     "unbind": {
       "ctrl-alt-a": "agent::OpenPermissionDropdown",
