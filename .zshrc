@@ -138,7 +138,9 @@ race() {
 }
 
 br() {
+  echo ""
   print -r -- "============ $* ============"
+  echo ""
 }
 
 # aliases
@@ -152,7 +154,7 @@ alias mkdir='mkdir -pv'
 alias ll='ls -FGlAhp --color=always'
 alias c='clear'
 alias aptUpdate='sudo apt update && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean'
-alias sup='br "update docker SNAT" && fix_docker_vpn && br "apt update" && aptUpdate && br "snap refresh" && sudo snap refresh && br "omz update" && omz update'
+alias sup='sudo -v && br "update docker SNAT" && fix_docker_vpn && br "apt update" && aptUpdate && br "snap refresh" && sudo snap refresh && br "omz update" && omz update'
 alias path='echo -e ${PATH//:/\\n}'
 alias clip='wl-copy'
 alias yolo='echo "$(curl -s http://whatthecommit.com/index.txt)"'
