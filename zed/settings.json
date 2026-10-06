@@ -23,6 +23,7 @@
     "html": true,
     "hyperlinks-lsp": true,
     "ini": true,
+    "likec4": true,
     "log": true,
     "lua": true,
     "make": true,

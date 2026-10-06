@@ -477,8 +477,8 @@
       "<": "vim::PushOutdent",
     },
     "bindings": {
-      "g r": "editor::FindAllReferences",
-      "g R": ["editor::FindAllReferences", { "open_results_in": "picker" }],
+      "g r": ["editor::FindAllReferences", { "open_results_in": "picker" }],
+      "g R": "editor::FindAllReferences",
       "shift-q": "editor::SelectAll",
       "] g": ["workspace::SendKeystrokes", "escape ] c d o"],
       "[ g": ["workspace::SendKeystrokes", "escape [ c d o"],
