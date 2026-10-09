@@ -9,6 +9,8 @@
 !/regolith3/
 !/swaync/
 !/vicinae/
+/vicinae/plugins/*
+!/vicinae/plugins/.gitkeep
 !/wezterm/
 !/zcripts/
 !/zed/
