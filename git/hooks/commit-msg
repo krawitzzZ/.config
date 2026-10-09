@@ -1,0 +1,18 @@
+#!/bin/sh
+person='co-authored-by|co-developed-by|signed-off-by'
+tool='assisted-by|generated-by|made-with|ai-assisted-by|ai-generated-by'
+bots='[^<>]*\[bot\]@users\.noreply\.github\.com|[0-9]+\+copilot@users\.noreply\.github\.com'
+domains='[^<>@]*@(anthropic\.com|cursor\.(com|sh)|openai\.com|x\.ai|opencode\.ai|aider\.chat|ampcode\.com|codeium\.com|windsurf\.com|cognition\.ai|devin\.ai|augmentcode\.com|charm\.(land|sh)|mistral\.ai|factory\.ai|kilocode\.ai|cline\.bot|roocode\.com|alibabacloud\.com)'
+names='claude code|cursor( agent)?|(github )?copilot|codex|chatgpt|openai|gemini|grok|opencode|aider|windsurf|codeium|qwen[- ]?coder?|crush|amazon q|mistral vibe|roo code|kilo code|augment code|devin ai|factory droid'
+tools="$names|claude|anthropic|amp|devin|jules|junie|cline|roo|kilo|augment|droid|goose|xai"
+
+sed -i -E \
+  -e "/^($person)[[:space:]]*:.*<($bots|$domains)>[[:space:]]*\$/Id" \
+  -e "/^($person)[[:space:]]*:[[:space:]]*($names)\b[^<]*<[^>]*>[[:space:]]*\$/Id" \
+  -e "/^($tool)[[:space:]]*:.*\b($tools)\b/Id" \
+  -e "/^amp-thread(-id)?[[:space:]]*:/Id" \
+  -e "/^[^[:alnum:]]*(generated|created|made|written) (with|by|using|via) .*\b($tools)\b/Id" \
+  "$1"
+
+local_hook="$(git rev-parse --git-common-dir)/hooks/commit-msg"
+if [ -x "$local_hook" ]; then exec "$local_hook" "$@"; fi

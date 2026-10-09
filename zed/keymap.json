@@ -666,7 +666,7 @@
       "alt-shift-r": "agent::RejectAll",
       "ctrl-l ctrl-c": "agent::OpenAddContextMenu",
       "ctrl-l ctrl-t": "agent::ToggleThinkingEffortMenu",
-      "ctrl-n ctrl-m": "agent::CycleModeSelector",
+      "ctrl-m ctrl-m": "agent::CycleModeSelector",
     },
   },
   {

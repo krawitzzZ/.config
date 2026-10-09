@@ -25,6 +25,7 @@
 	editor = nevi
 	eol = lf
 	pager = cat
+	hooksPath = ~/.config/git/hooks
 [fetch]
 	all = true
 	prune = true
