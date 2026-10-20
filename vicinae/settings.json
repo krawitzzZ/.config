@@ -24,6 +24,9 @@
    "input_server": {
       "enabled": true
    },
+   "tray": {
+      "enabled": false
+   },
    "font": {
       "rendering": "qt",
       "normal": {
@@ -90,8 +93,8 @@
    },
    "favorites": [
       "applications:dev.zed.Zed",
-     "@noyan/franka-robots:robot-picker",
-     "applications:WebApp-YandexMusic7977",
+      "@noyan/franka-robots:robot-picker",
+      "applications:WebApp-YandexMusic7977",
       "applications:msedge-ompifgpmddkgmclendfeacglnodjjndh-Profile_1",
       "applications:msedge-eoficlgicibekocmfdomjbfnjmehnhcd-Profile_1",
       "applications:cursor",

@@ -29,6 +29,7 @@
     "make": true,
     "markdownlint": true,
     "material-icon-theme": true,
+    "mermaid": true,
     "mustache": true,
     "nginx": true,
     "python-requirements": true,
@@ -76,11 +77,11 @@
       "default_config_options": {
         "reasoning_effort": "medium",
         "thinking": "true",
-        "context": "1m",
+        "context": "256k",
         "mode": "agent",
-        "effort": "high",
+        "effort": "medium",
         "fast": "false",
-        "reasoning": "high",
+        "reasoning": "medium",
         "model": "grok-4.7",
       },
       "type": "registry",
@@ -392,6 +393,7 @@
       "env": {},
     },
     "Jenkins-HLSW": {
+      "enabled": false,
       "command": "npx",
       "args": [
         "-y",
@@ -402,6 +404,7 @@
       ],
     },
     "playwright": {
+      "enabled": false,
       "command": "npx",
       "args": [
         "-y",

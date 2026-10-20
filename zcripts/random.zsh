@@ -25,12 +25,6 @@ weather() {
   fi
 }
 
-cursorAndZedCleanup() {
-    rm -rf ~/.config/cursor/chats/* ~/.config/cursor/acp-sessions/* ~/.cursor/projects/* || true
-    rm -rf ~/.local/share/zed/threads/threads.db || true
-    rm -rf ~/.local/share/zed/db/0-stable/db.sqlite* || true
-}
-
 whatOnPort() {
   local port="$1"
 

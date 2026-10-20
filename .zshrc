@@ -119,10 +119,10 @@ unset _gem_cache _gem_bin
 
 ### Source functions so they can be used in aliases
 
-# Source every helper script in the zcripts folder (it only holds zsh helpers).
+# Source every zsh helper in the zcripts folder.
 # The (.N) glob qualifier matches regular files only and yields nothing if empty.
 if [[ -d "$HOME/.config/zcripts" ]]; then
-  for zscript in "$HOME/.config/zcripts"/*(.N); do
+  for zscript in "$HOME/.config/zcripts"/*.zsh(.N); do
     source "$zscript"
   done
   unset zscript

@@ -13,6 +13,7 @@
 !/vicinae/plugins/.gitkeep
 !/wezterm/
 !/zcripts/
+/zcripts/__pycache__/
 !/zed/
 !/zsh/
 !.gitconfig_personal
