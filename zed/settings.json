@@ -7,8 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "show_edit_predictions": false,
   "ui_font_weight": 500.0,
   "auto_install_extensions": {
+    "awk": true,
     "codebook": true,
     "color-highlight": true,
     "cucumber": true,
@@ -49,7 +51,32 @@
   "file_types": {
     "Groovy": ["Jenkinsfile", "Jenkinsfile.*"],
     "Dockerfile": ["Dockerfile", "Dockerfile.*"],
+    "Markdown": ["*.md.html"],
   },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/yocto",
+    "**/out",
+    "**/node_modules",
+    "**/dist",
+    "**/coverage",
+    "**/target",
+    "**/dist-newstyle",
+    "**/.stack-work",
+    "**/.venv",
+    "**/__pycache__",
+    "**/.pytest_cache",
+    "**/.mypy_cache",
+    "**/.ruff_cache",
+  ],
   "agent_servers": {
     "mistral-vibe": {
       "default_config_options": {
@@ -72,7 +99,7 @@
     },
     "cursor": {
       "favorite_config_option_values": {
-        "model": ["default", "kimi-k3", "grok-4.7", "claude-opus-5-5"],
+        "model": ["kimi-k3", "grok-4.7", "claude-opus-5-5", "glm-5p3"],
       },
       "default_config_options": {
         "reasoning_effort": "medium",
@@ -465,15 +492,11 @@
     "Markdown": {
       "formatter": {
         "external": {
-          "command": "prettier",
+          "command": "sh",
           "arguments": [
-            "--parser",
-            "markdown",
-            "--prose-wrap",
-            "always",
-            "--ignore-path",
-            "/dev/null",
-            "--stdin-filepath",
+            "-c",
+            "sh \"$HOME/.config/zed/format-markdown\" \"$1\"",
+            "format-markdown",
             "{buffer_path}",
           ],
         },

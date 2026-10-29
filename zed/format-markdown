@@ -1,0 +1,14 @@
+#!/bin/sh
+path=${1-}
+case $path in
+  *.md.html) ;;
+  *)
+    exec prettier \
+      --parser markdown \
+      --prose-wrap always \
+      --ignore-path /dev/null \
+      --stdin-filepath "${path:-stdin.md}"
+    ;;
+esac
+dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd) || exit 1
+exec gawk -f "$dir/format-markdown.awk"
