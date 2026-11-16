@@ -1,0 +1,3 @@
+#!/bin/sh
+local_hook="$(git rev-parse --git-common-dir)/hooks/pre-push"
+if [ -x "$local_hook" ]; then exec "$local_hook" "$@"; fi

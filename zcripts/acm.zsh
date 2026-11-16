@@ -4,6 +4,7 @@
 # agent → git commit.
 # Lockfile diffs (package-lock.json, Cargo.lock, go.sum, …) are omitted from
 # the prompt via strip-lockfile-prompt.py — same allowlist as worktrunk.
+# A repo's .franka-changelog adds its entry types and scopes to the prompt.
 #
 # Usage:
 #   acm
@@ -136,12 +137,28 @@ PY
     return 1
   }
 
-  local git_diff git_diff_stat repo
+  local git_diff git_diff_stat repo root
   # Pathspec: include everything, then exclude lockfiles (git requires a
   # positive path before :(exclude…)).
   git_diff=$(git diff --cached -- . "${lock_excludes[@]}")
   git_diff_stat=$(git diff --cached --stat -- . "${lock_excludes[@]}")
-  repo=$(basename "$(git rev-parse --show-toplevel)")
+  root=$(git rev-parse --show-toplevel)
+  repo=$(basename "$root")
+
+  local changelog_config="" config_file="$root/.franka-changelog" entry_types scopes
+  if [[ -f "$config_file" ]]; then
+    entry_types=$(git config -f "$config_file" --get-all commits.type | paste -sd ' ' -)
+    scopes=$(git config -f "$config_file" --get-all commits.scope | paste -sd ' ' -)
+    changelog_config="
+<changelog-config>"
+    changelog_config+="
+Entry types: ${entry_types:-feat fix perf}"
+    [[ -n "$scopes" ]] && changelog_config+="
+Scopes: ${scopes}"
+    changelog_config+="
+</changelog-config>
+"
+  fi
 
   # Brief note when lockfiles changed but were omitted from the prompt.
   local omitted_lockfiles=""
@@ -181,7 +198,7 @@ The subject must name the concrete setting or behavior that changed.
 <user-guidance>
 ${user_guidance}
 </user-guidance>
-
+${changelog_config}
 <diffstat>
 ${git_diff_stat}
 </diffstat>
@@ -235,7 +252,7 @@ ${omitted_lockfiles}</context>
   }
 
   # Prefer a naturally-valid message; if the model misbehaves (e.g. subject
-  # > 60 chars, which it often does), deterministically repair the SAME
+  # > 200 chars), deterministically repair the SAME
   # response instead of failing or calling the model again.
   local message
   message=$(print -r -- "$raw_response" | python3 "$message_filter" 2>/dev/null) \

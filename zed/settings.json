@@ -7,7 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "show_edit_predictions": false,
+  "show_edit_predictions": true,
   "ui_font_weight": 500.0,
   "auto_install_extensions": {
     "awk": true,
@@ -51,6 +51,11 @@
   "file_types": {
     "Groovy": ["Jenkinsfile", "Jenkinsfile.*"],
     "Dockerfile": ["Dockerfile", "Dockerfile.*"],
+    "Git Config": [
+      ".franka-changelog",
+      ".gitconfig_work",
+      ".gitconfig_personal",
+    ],
     "Markdown": ["*.md.html"],
   },
   "file_scan_exclusions": [
@@ -64,9 +69,9 @@
     "**/.classpath",
     "**/.settings",
     "**/yocto",
-    "**/out",
-    "**/node_modules",
-    "**/dist",
+    // "**/out",
+    // "**/node_modules",
+    // "**/dist",
     "**/coverage",
     "**/target",
     "**/dist-newstyle",
@@ -99,17 +104,23 @@
     },
     "cursor": {
       "favorite_config_option_values": {
-        "model": ["kimi-k3", "grok-4.7", "claude-opus-5-5", "glm-5p3"],
+        "model": [
+          "kimi-k3",
+          "grok-4.7",
+          "claude-opus-5-5",
+          "claude-sonnet-5-5",
+          "gpt-5.6-terra",
+        ],
       },
       "default_config_options": {
-        "reasoning_effort": "medium",
+        "reasoning_effort": "high",
         "thinking": "true",
-        "context": "256k",
+        "context": "300k",
         "mode": "agent",
         "effort": "medium",
         "fast": "false",
         "reasoning": "medium",
-        "model": "grok-4.7",
+        "model": "claude-sonnet-5-5",
       },
       "type": "registry",
     },

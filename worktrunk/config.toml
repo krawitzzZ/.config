@@ -69,33 +69,23 @@ RESPONSE CONTRACT — mandatory:
 - Put the plain commit subject in `subject`; put the optional plain-text body in `body`, or use `""`.
 - Do not use Markdown, code fences, labels, preamble, explanation, or text outside the JSON object.
 
-Choose the subject-line format using this decision tree (first match wins):
+Subject format: `<type>(<optional-scope>)<optional !>: <Subject>`
+- <type> must be one of: feat, fix, perf, refactor, test, ci, build, chore, docs, style, revert, boyscout, release
+- Pick the conventional type that fits the diff. Use `boyscout` only for small cleanup or hygiene.
+- Add `!` after the type or scope only for a breaking change.
+- If a <changelog-config> block lists scopes, use one of them, or no scope for a change that spans the repository.
+- Example: `feat(auth): Add refresh-token rotation`
 
-1. Branch contains `pswh-<digits>` (case-insensitive):
-   - Format: `[PSWH-<digits>]: <Subject>`
-   - Copy <digits> from the branch. Uppercase the key as PSWH.
-   - Do not use feat/fix/chore/… and do not invent or change the number.
-   - Example: branch `pswh-123/fix-that` → `[PSWH-123]: Fix that in here and there`
+Ticket suffix:
+- The ticket is the first `PSWH-<digits>`, `BFFTRAC-<digits>` or `IN-<digits>` in the branch (case-insensitive). Uppercase the key and copy the digits exactly.
+- Append ` (<KEY>-<digits>)` to the subject only when <type> is an entry type: the entry types in the <changelog-config> block, or feat, fix and perf without one.
+- Append nothing for other types, and nothing when the branch has no ticket.
+- Example: branch `pswh-123/fix-that`, type fix → `fix: Fix that in here and there (PSWH-123)`
+- Example: branch `pswh-123/fix-that`, type refactor → `refactor: Split the parser into modules`
 
-2. Branch contains `bfftrac-<digits>` (case-insensitive):
-   - Format: `[BFFTRAC-<digits>]: <Subject>`
-   - Same rules as PSWH (uppercase key, exact digits from branch).
-   - Example: branch `BFFTRAC-9/add-retry` → `[BFFTRAC-9]: Add retry around flaky fetch`
-
-3. Branch contains `innolab` or `IN-<digits>` (case-insensitive):
-   - Format: `[IN-<digits>]: <Subject>` or `[INNOLAB]: <Subject>` if no digits
-   - Same rules as PSWH/BFFTRAC (uppercase key, exact digits from branch).
-   - Example: branch `IN-123/upgrade-ghc` → `[IN-123]: Upgrade GHC to the latest version`
-
-4. Otherwise (no PSWH/BFFTRAC/IN/INNOLAB in the branch):
-   - Format: `<type>(optional-scope): <Subject>`
-   - <type> must be one of: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert, boyscout
-   - Use `boyscout` only for small cleanup/hygiene with no ticket; otherwise pick the conventional type that fits the diff.
-   - Example: `feat(auth): Add refresh-token rotation`
-
-Subject rules (all formats):
-- Imperative mood, first letter of the subject text after : symbol is ALWAYS capital, no trailing period
-- ≤60 characters for the subject line
+Subject rules:
+- Imperative mood, first letter of the subject text after the colon is ALWAYS capital, no trailing period
+- ≤200 characters for the whole subject line, ticket suffix included; aim for ≤72
 - Describe the change, not the branch name
 
 Body:
@@ -104,11 +94,11 @@ Body:
 
 Hard constraints:
 - The `subject` value must contain only the plain-text subject, with no newline
-- The `subject` value must NEVER exceed 60 characters
-- The subject line must never start or end with a backtick (`), quote, or any other Markdown delimiter
+- The `subject` value must NEVER exceed 200 characters
+- The subject line must never start with a backtick (`), quote, or any other Markdown delimiter, and must end with the ticket suffix or a word
 - Backticks are allowed only inside the `body` value when they meaningfully identify code
-- Never invent a PSWH/BFFTRAC/IN id; if the branch has none, do not use its bracket-ticket format
-- Never combine formats (wrong: `feat: [PSWH-123]: …` or `[PSWH-123] feat: …`)
+- Never invent a PSWH/BFFTRAC/IN id
+- Never use a bracket format or put the ticket anywhere but at the end (wrong: `[PSWH-123]: …`, `feat: [PSWH-123] …`)
 """
 
 [commit]

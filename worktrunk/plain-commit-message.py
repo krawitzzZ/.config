@@ -16,16 +16,15 @@ import re
 import sys
 
 
-MAX_SUBJECT = 60
+MAX_SUBJECT = 200
 
 SUBJECT = re.compile(
-    r"^(?:"
-    r"\[(?:PSWH|BFFTRAC|IN)-\d+\]"
-    r"|\[INNOLAB\]"
-    r"|(?:feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert|boyscout)"
-    r"(?:\([^)]+\))?"
-    r"):\s+(.+)$"
+    r"^(?:feat|fix|perf|refactor|test|ci|build|chore|docs|style|revert|boyscout|release)"
+    r"(?:\([^()\s]+\))?!?"
+    r":\s+(.+)$"
 )
+TICKET = r"(?:PSWH|BFFTRAC|IN)-\d+"
+TICKET_SUFFIX = re.compile(rf"\s+\({TICKET}(?:, {TICKET})*\)$")
 OUTER_DELIMITERS = {("`", "`"), ('"', '"'), ("'", "'")}
 META_BODY = re.compile(
     r"\b(?:the branch|the diff|I chose|this commit message|no body needed|"
@@ -52,9 +51,9 @@ def unwrap(text: str) -> str:
     return text
 
 
-def truncate_subject(prefix: str, description: str) -> str:
-    """Fit `prefix + description` within MAX_SUBJECT, cutting on a word boundary."""
-    budget = MAX_SUBJECT - len(prefix)
+def truncate_subject(prefix: str, description: str, suffix: str = "") -> str:
+    """Fit `prefix + description + suffix` within MAX_SUBJECT, cutting the description on a word boundary."""
+    budget = MAX_SUBJECT - len(prefix) - len(suffix)
     if budget <= 0:
         # Pathological (huge prefix); keep the prefix's leading portion.
         return prefix[:MAX_SUBJECT].rstrip(" :-")
@@ -66,7 +65,7 @@ def truncate_subject(prefix: str, description: str) -> str:
     truncated = truncated.rstrip(" ,;:-\u2014.")
     if not truncated:
         truncated = description[:budget].rstrip()
-    return f"{prefix}{truncated}"
+    return f"{prefix}{truncated}{suffix}"
 
 
 def normalize_subject(line: str) -> "str | None":
@@ -79,7 +78,10 @@ def normalize_subject(line: str) -> "str | None":
     if not match:
         return None
 
-    description = match.group(1).strip().removesuffix(".")
+    description = match.group(1).strip()
+    ticket = TICKET_SUFFIX.search(description)
+    suffix = ticket.group(0) if ticket else ""
+    description = description[: len(description) - len(suffix)].strip().removesuffix(".")
     if not description:
         return None
 
@@ -87,12 +89,12 @@ def normalize_subject(line: str) -> "str | None":
     # despite the explicit local rule. Enforce the rule deterministically.
     description = description[0].upper() + description[1:]
     prefix = line[: match.start(1)]
-    subject = f"{prefix}{description}"
+    subject = f"{prefix}{description}{suffix}"
 
     if len(subject) > MAX_SUBJECT:
         if not REPAIR:
             fail(f"subject exceeds {MAX_SUBJECT} characters: {subject!r}")
-        subject = truncate_subject(prefix, description)
+        subject = truncate_subject(prefix, description, suffix)
     return subject
 
 

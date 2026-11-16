@@ -21,7 +21,6 @@
 [core]
 	autocrlf = false
 	fscache = true
-	symlinks = false
 	editor = nevi
 	eol = lf
 	pager = cat
